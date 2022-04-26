@@ -7,6 +7,7 @@ public:
    String(const char* str);
    String(const char* str,const int length);
    ~String();
+   void print();
    const char* value()const{return m_value;}
    int length()const{return m_length;} 
 private:

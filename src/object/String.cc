@@ -1,6 +1,7 @@
 #include "String.h"
 #include <string.h>
 #include <stdlib.h>
+#include <iostream>
 namespace easy_vm{
 
 String::String(const char* str):m_length(strlen(str)){
@@ -18,5 +19,9 @@ String::~String(){
         delete[] m_value;
         m_value = nullptr;
     }
+}
+
+void String::print(){
+    std::cout << m_value <<std::endl;
 }
 }

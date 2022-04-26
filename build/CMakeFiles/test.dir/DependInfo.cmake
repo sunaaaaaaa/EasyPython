@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/lighthouse/cppSpace/EasyPython/src/main.cc" "/home/lighthouse/cppSpace/EasyPython/build/CMakeFiles/test.dir/src/main.cc.o"
   "/home/lighthouse/cppSpace/EasyPython/src/object/String.cc" "/home/lighthouse/cppSpace/EasyPython/build/CMakeFiles/test.dir/src/object/String.cc.o"
   "/home/lighthouse/cppSpace/EasyPython/src/object/integer.cc" "/home/lighthouse/cppSpace/EasyPython/build/CMakeFiles/test.dir/src/object/integer.cc.o"
+  "/home/lighthouse/cppSpace/EasyPython/src/runtime/interpreter.cc" "/home/lighthouse/cppSpace/EasyPython/build/CMakeFiles/test.dir/src/runtime/interpreter.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -17,6 +18,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   ".././src/object"
   ".././src/util"
   ".././src/code"
+  ".././src"
   )
 
 # Targets to which this target links.

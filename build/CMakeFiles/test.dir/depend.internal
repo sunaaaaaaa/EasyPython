@@ -20,6 +20,7 @@ CMakeFiles/test.dir/src/main.cc.o
  /home/lighthouse/cppSpace/EasyPython/src/main.cc
  /home/lighthouse/cppSpace/EasyPython/src/object/String.h
  /home/lighthouse/cppSpace/EasyPython/src/object/object.h
+ /home/lighthouse/cppSpace/EasyPython/src/runtime/interpreter.h
  /home/lighthouse/cppSpace/EasyPython/src/util/buffer_input_stream.h
 CMakeFiles/test.dir/src/object/String.cc.o
  /home/lighthouse/cppSpace/EasyPython/src/object/String.cc
@@ -27,3 +28,13 @@ CMakeFiles/test.dir/src/object/String.cc.o
  /home/lighthouse/cppSpace/EasyPython/src/object/object.h
 CMakeFiles/test.dir/src/object/integer.cc.o
  /home/lighthouse/cppSpace/EasyPython/src/object/integer.cc
+ /home/lighthouse/cppSpace/EasyPython/src/object/integer.h
+ /home/lighthouse/cppSpace/EasyPython/src/object/object.h
+CMakeFiles/test.dir/src/runtime/interpreter.cc.o
+ /home/lighthouse/cppSpace/EasyPython/src/code/bytecode.hpp
+ /home/lighthouse/cppSpace/EasyPython/src/code/code_object.h
+ /home/lighthouse/cppSpace/EasyPython/src/object/String.h
+ /home/lighthouse/cppSpace/EasyPython/src/object/integer.h
+ /home/lighthouse/cppSpace/EasyPython/src/object/object.h
+ /home/lighthouse/cppSpace/EasyPython/src/runtime/interpreter.cc
+ /home/lighthouse/cppSpace/EasyPython/src/runtime/interpreter.h

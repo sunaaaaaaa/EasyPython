@@ -261,6 +261,33 @@ src/object/integer.cc.s:
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/object/integer.cc.s
 .PHONY : src/object/integer.cc.s
 
+src/runtime/interpreter.o: src/runtime/interpreter.cc.o
+
+.PHONY : src/runtime/interpreter.o
+
+# target to build an object file
+src/runtime/interpreter.cc.o:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/runtime/interpreter.cc.o
+.PHONY : src/runtime/interpreter.cc.o
+
+src/runtime/interpreter.i: src/runtime/interpreter.cc.i
+
+.PHONY : src/runtime/interpreter.i
+
+# target to preprocess a source file
+src/runtime/interpreter.cc.i:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/runtime/interpreter.cc.i
+.PHONY : src/runtime/interpreter.cc.i
+
+src/runtime/interpreter.s: src/runtime/interpreter.cc.s
+
+.PHONY : src/runtime/interpreter.s
+
+# target to generate assembly for a file
+src/runtime/interpreter.cc.s:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/runtime/interpreter.cc.s
+.PHONY : src/runtime/interpreter.cc.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -285,6 +312,9 @@ help:
 	@echo "... src/object/integer.o"
 	@echo "... src/object/integer.i"
 	@echo "... src/object/integer.s"
+	@echo "... src/runtime/interpreter.o"
+	@echo "... src/runtime/interpreter.i"
+	@echo "... src/runtime/interpreter.s"
 .PHONY : help
 
 

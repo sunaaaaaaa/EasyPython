@@ -1,5 +1,5 @@
 #include "code_object.h"
-
+#include <iostream>
 namespace easy_vm{
 
 CodeObject::CodeObject(int argcount, int nlocals, int stacksize, int flag, String* bytecodes,

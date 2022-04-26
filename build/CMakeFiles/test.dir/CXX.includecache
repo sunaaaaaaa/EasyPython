@@ -22,9 +22,13 @@ assert.h
 code_object.h
 /home/lighthouse/cppSpace/EasyPython/src/code/code_object.h
 
+/home/lighthouse/cppSpace/EasyPython/src/code/bytecode.hpp
+
 /home/lighthouse/cppSpace/EasyPython/src/code/code_object.cc
 code_object.h
 /home/lighthouse/cppSpace/EasyPython/src/code/code_object.h
+iostream
+-
 
 /home/lighthouse/cppSpace/EasyPython/src/code/code_object.h
 vector
@@ -43,6 +47,8 @@ code/code_object.h
 /home/lighthouse/cppSpace/EasyPython/src/code/code_object.h
 code/binary_parser.h
 /home/lighthouse/cppSpace/EasyPython/src/code/binary_parser.h
+runtime/interpreter.h
+/home/lighthouse/cppSpace/EasyPython/src/runtime/interpreter.h
 
 /home/lighthouse/cppSpace/EasyPython/src/object/String.cc
 String.h
@@ -51,18 +57,42 @@ string.h
 -
 stdlib.h
 -
+iostream
+-
 
 /home/lighthouse/cppSpace/EasyPython/src/object/String.h
 object.h
 /home/lighthouse/cppSpace/EasyPython/src/object/object.h
 
 /home/lighthouse/cppSpace/EasyPython/src/object/integer.cc
+integer.h
+/home/lighthouse/cppSpace/EasyPython/src/object/integer.h
+iostream
+-
 
 /home/lighthouse/cppSpace/EasyPython/src/object/integer.h
 object.h
 /home/lighthouse/cppSpace/EasyPython/src/object/object.h
 
 /home/lighthouse/cppSpace/EasyPython/src/object/object.h
+
+/home/lighthouse/cppSpace/EasyPython/src/runtime/interpreter.cc
+interpreter.h
+/home/lighthouse/cppSpace/EasyPython/src/runtime/interpreter.h
+../code/bytecode.hpp
+/home/lighthouse/cppSpace/EasyPython/src/code/bytecode.hpp
+../object/integer.h
+/home/lighthouse/cppSpace/EasyPython/src/object/integer.h
+../object/String.h
+/home/lighthouse/cppSpace/EasyPython/src/object/String.h
+vector
+-
+iostream
+-
+
+/home/lighthouse/cppSpace/EasyPython/src/runtime/interpreter.h
+../code/code_object.h
+/home/lighthouse/cppSpace/EasyPython/src/code/code_object.h
 
 /home/lighthouse/cppSpace/EasyPython/src/util/buffer_input_stream.h
 stdio.h

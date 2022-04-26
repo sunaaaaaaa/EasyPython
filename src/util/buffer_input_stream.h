@@ -9,6 +9,10 @@ class BufferedInputStream{
 public:
    BufferedInputStream(char const* filename){
        m_fp = fopen(filename,"rb");
+       if(!m_fp){
+           perror("fail");
+           throw std::logic_error("Error: cannot open this file");
+       }
        fread(m_buffer, sizeof(char),BUFFER_LEN,m_fp);
    }
 

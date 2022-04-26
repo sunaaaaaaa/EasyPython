@@ -61,7 +61,6 @@ CodeObject* BinaryParser::getCodeObject(){
     String* module_name = getModuleName();
     int begin_line_no     = m_bufferIns->read_int();
     String* lnotab      = getNoTable();
-
     return new CodeObject(argcount, nlocals, stacksize, flags, byte_codes,
         consts, names, var_names, free_vars, cell_vars, file_name, module_name,
         begin_line_no, lnotab);
@@ -98,7 +97,8 @@ std::vector<Object*>* BinaryParser::getConsts(){
 std::vector<Object*>* BinaryParser::get_tuple(){
    int length = m_bufferIns->read_int();
    String* str;
-   std::vector<Object*>* list = new std::vector<Object*>(length);
+   std::vector<Object*>* list = new std::vector<Object*>();
+
    for(int i = 0;i<length;i++){
        char obj_type = m_bufferIns->read();
        switch (obj_type)
@@ -119,7 +119,8 @@ std::vector<Object*>* BinaryParser::get_tuple(){
             m_string_table.push_back(str);
             break;
        case 's':
-            list->push_back(getString());break;
+            list->push_back(getString());
+            break;
        case 'R':
             list->push_back(m_string_table.at(m_bufferIns->read_int()));
             break;

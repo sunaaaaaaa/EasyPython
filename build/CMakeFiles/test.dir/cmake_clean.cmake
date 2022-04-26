@@ -4,6 +4,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/test.dir/src/object/integer.cc.o"
   "CMakeFiles/test.dir/src/code/code_object.cc.o"
   "CMakeFiles/test.dir/src/code/binary_parser.cc.o"
+  "CMakeFiles/test.dir/src/runtime/interpreter.cc.o"
   "test.pdb"
   "test"
 )

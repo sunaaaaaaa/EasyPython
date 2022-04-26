@@ -6,5 +6,5 @@ CXX_FLAGS =
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/lighthouse/cppSpace/EasyPython/./src/object -I/home/lighthouse/cppSpace/EasyPython/./src/util -I/home/lighthouse/cppSpace/EasyPython/./src/code 
+CXX_INCLUDES = -I/home/lighthouse/cppSpace/EasyPython/./src/object -I/home/lighthouse/cppSpace/EasyPython/./src/util -I/home/lighthouse/cppSpace/EasyPython/./src/code -I/home/lighthouse/cppSpace/EasyPython/./src 
 
