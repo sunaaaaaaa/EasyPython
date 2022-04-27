@@ -9,6 +9,12 @@ public:
      int value() const {return m_value;}
      void print();
      Object* add(Object* obj);
+     Object* greater(Object* obj);
+     Object* less(Object* obj);
+     Object* equal(Object* obj);
+     Object* not_equal(Object* obj);
+     Object* ge(Object* obj);
+     Object* le(Object* obj);
 private:
      int m_value;
 };

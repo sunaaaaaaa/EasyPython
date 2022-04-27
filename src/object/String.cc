@@ -24,4 +24,12 @@ String::~String(){
 void String::print(){
     std::cout << m_value <<std::endl;
 }
+
+Object* String::greater(Object* obj){}
+Object* String::less(Object* obj){}
+Object* String::equal(Object* obj){}
+Object* String::not_equal(Object* obj){}
+Object* String::ge(Object* obj){}
+Object* String::le(Object* obj){}
+
 }

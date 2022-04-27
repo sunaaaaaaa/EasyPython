@@ -17,7 +17,9 @@ add_executable(test
          src/object/integer.cc
          src/code/code_object.cc
          src/code/binary_parser.cc
-         src/runtime/interpreter.cc)
+         src/runtime/interpreter.cc
+         src/runtime/universe.cc
+         src/util/map.cc)
 
 # SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 # SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

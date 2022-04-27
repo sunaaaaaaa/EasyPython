@@ -288,6 +288,60 @@ src/runtime/interpreter.cc.s:
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/runtime/interpreter.cc.s
 .PHONY : src/runtime/interpreter.cc.s
 
+src/runtime/universe.o: src/runtime/universe.cc.o
+
+.PHONY : src/runtime/universe.o
+
+# target to build an object file
+src/runtime/universe.cc.o:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/runtime/universe.cc.o
+.PHONY : src/runtime/universe.cc.o
+
+src/runtime/universe.i: src/runtime/universe.cc.i
+
+.PHONY : src/runtime/universe.i
+
+# target to preprocess a source file
+src/runtime/universe.cc.i:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/runtime/universe.cc.i
+.PHONY : src/runtime/universe.cc.i
+
+src/runtime/universe.s: src/runtime/universe.cc.s
+
+.PHONY : src/runtime/universe.s
+
+# target to generate assembly for a file
+src/runtime/universe.cc.s:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/runtime/universe.cc.s
+.PHONY : src/runtime/universe.cc.s
+
+src/util/map.o: src/util/map.cc.o
+
+.PHONY : src/util/map.o
+
+# target to build an object file
+src/util/map.cc.o:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/util/map.cc.o
+.PHONY : src/util/map.cc.o
+
+src/util/map.i: src/util/map.cc.i
+
+.PHONY : src/util/map.i
+
+# target to preprocess a source file
+src/util/map.cc.i:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/util/map.cc.i
+.PHONY : src/util/map.cc.i
+
+src/util/map.s: src/util/map.cc.s
+
+.PHONY : src/util/map.s
+
+# target to generate assembly for a file
+src/util/map.cc.s:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/util/map.cc.s
+.PHONY : src/util/map.cc.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -315,6 +369,12 @@ help:
 	@echo "... src/runtime/interpreter.o"
 	@echo "... src/runtime/interpreter.i"
 	@echo "... src/runtime/interpreter.s"
+	@echo "... src/runtime/universe.o"
+	@echo "... src/runtime/universe.i"
+	@echo "... src/runtime/universe.s"
+	@echo "... src/util/map.o"
+	@echo "... src/util/map.i"
+	@echo "... src/util/map.s"
 .PHONY : help
 
 

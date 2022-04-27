@@ -6,6 +6,12 @@ class Object{
 public:
    virtual void print(){}
    virtual Object* add(Object* obj){}
+   virtual Object* greater(Object* obj){};
+   virtual Object* less(Object* obj){};
+   virtual Object* equal(Object* obj){};
+   virtual Object* not_equal(Object* obj){};
+   virtual Object* ge(Object* obj){};
+   virtual Object* le(Object* obj){};
 };
 }
 

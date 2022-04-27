@@ -2,19 +2,31 @@
 #include "../code/bytecode.hpp"
 #include "../object/integer.h"
 #include "../object/String.h"
+#include "universe.h"
+#include "../util/map.h"
 #include <vector>
 #include <iostream>
+#include <map>
 namespace easy_vm{
 
 void Interpreter::run(CodeObject* codes){
+    Universe::genesis();
     int pc = 0;
     int code_length = codes->m_byteCode->length();
-
+    
     m_stack = new std::vector<Object*>();
+    m_stack->resize(codes->m_stackSize);
+
+    //变量表与常量表
+    m_names = codes->m_names;
     m_consts = codes->m_consts;
+
+    Map<Object*,Object*> nameMap;
   
-    while(pc < code_length){
+    while(pc < code_length){ 
         unsigned char op_code = codes->m_byteCode->value()[pc++];
+        //如果操作码大于90，则表示有参数
+        //与0xff进行&运算是为了扩成32位的int型
         bool has_argument = (op_code & 0xFF) >= ByteCode::HAVE_ARGUMENT;
         
         int op_arg = -1;
@@ -22,15 +34,30 @@ void Interpreter::run(CodeObject* codes){
             int byte1 = (codes->m_byteCode->value()[pc++] & 0xFF);
             op_arg = ((codes->m_byteCode->value()[pc++] & 0xFF) <<8)|byte1;
         }
-
+        
         Integer* lhs;
         Integer* rhs;
-        Object* v,*w,*u,*attr;
-
+        Object* v,*w,*u,*attr; 
         switch(op_code){
             case ByteCode::LOAD_CONST:
                 m_stack->push_back(m_consts->at(op_arg));
                 break;
+            case ByteCode::LOAD_NAME:
+                //从变量字典取变量
+                v = m_names->at(op_arg);
+                w = nameMap.get(v);
+                if(w != Universe::None){
+                    m_stack->push_back(w);
+                    break;
+                }
+                m_stack->push_back(Universe::None);
+                break;
+            case ByteCode::STORE_NAME:
+                //放入变量字典
+                v = m_names->at(op_arg);
+                nameMap.put(v,m_stack->at(m_stack->size()-1));
+                m_stack->pop_back(); 
+                break; 
             case ByteCode::PRINT_ITEM:
                 v = m_stack->at(m_stack->size()-1);
                 m_stack->pop_back();
@@ -49,8 +76,57 @@ void Interpreter::run(CodeObject* codes){
             case ByteCode::RETURN_VALUE:
                 m_stack->pop_back();
                 break;
+            case ByteCode::COMPARE_OP:
+                w = m_stack->at(m_stack->size()-1);
+                m_stack->pop_back();
+                v = m_stack->at(m_stack->size()-1);
+                m_stack->pop_back();
+                //判断具体的比较运算符 
+                switch (op_arg)
+                {
+                case ByteCode::GREATER:
+                    m_stack->push_back(v->greater(w));
+                    break;
+                case ByteCode::LESS:
+                    m_stack->push_back(v->less(w));
+                    break;
+                case ByteCode::EQUAL:
+                    m_stack->push_back(v->equal(w));    
+                    break;
+                case ByteCode::NOT_EQUAL:
+                    m_stack->push_back(v->not_equal(w));
+                    break;
+                case ByteCode::GREATER_EQUAL:
+                    m_stack->push_back(v->ge(w));
+                    break;      
+                case ByteCode::LESS_EQUAL: 
+                    m_stack->push_back(v->le(w));
+                    break;                  
+                default:
+                    std::cout << "Error: Unrecognized compare op:"<<op_arg<<std::endl; 
+                    break;
+                }
+                break;
+            case ByteCode::POP_JUMP_IF_FALSE:
+                v = m_stack->at(m_stack->size()-1);
+                m_stack->pop_back();
+                if(((Integer*)v)->value()==0){
+                    pc = op_arg;
+                }
+                break;
+            case ByteCode::JUMP_FORWARD:
+                pc += op_arg;
+                break;
+            case ByteCode::JUMP_ABSOLUTE:
+                //跳至循环起始位置
+                pc = op_arg;
+                break;
+            case ByteCode::SETUP_LOOP:
+                break;
+            case ByteCode::POP_BLOCK:
+                break;         
             default:
-                std::cout << "Error:Unrecognized byte code "<<op_code <<std::endl;                 
+                std::cout << "Error:Unrecognized byte code: "<<std::hex<<op_code <<std::endl;                 
         }
     }
 
