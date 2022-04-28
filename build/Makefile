@@ -288,6 +288,33 @@ src/object/object.cc.s:
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/object/object.cc.s
 .PHONY : src/object/object.cc.s
 
+src/runtime/frame.o: src/runtime/frame.cc.o
+
+.PHONY : src/runtime/frame.o
+
+# target to build an object file
+src/runtime/frame.cc.o:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/runtime/frame.cc.o
+.PHONY : src/runtime/frame.cc.o
+
+src/runtime/frame.i: src/runtime/frame.cc.i
+
+.PHONY : src/runtime/frame.i
+
+# target to preprocess a source file
+src/runtime/frame.cc.i:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/runtime/frame.cc.i
+.PHONY : src/runtime/frame.cc.i
+
+src/runtime/frame.s: src/runtime/frame.cc.s
+
+.PHONY : src/runtime/frame.s
+
+# target to generate assembly for a file
+src/runtime/frame.cc.s:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/runtime/frame.cc.s
+.PHONY : src/runtime/frame.cc.s
+
 src/runtime/interpreter.o: src/runtime/interpreter.cc.o
 
 .PHONY : src/runtime/interpreter.o
@@ -396,6 +423,9 @@ help:
 	@echo "... src/object/object.o"
 	@echo "... src/object/object.i"
 	@echo "... src/object/object.s"
+	@echo "... src/runtime/frame.o"
+	@echo "... src/runtime/frame.i"
+	@echo "... src/runtime/frame.s"
 	@echo "... src/runtime/interpreter.o"
 	@echo "... src/runtime/interpreter.i"
 	@echo "... src/runtime/interpreter.s"

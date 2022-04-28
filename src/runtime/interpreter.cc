@@ -152,4 +152,134 @@ void Interpreter::run(CodeObject* codes){
 
 }
 
+
+
+void Interpreter::run2(CodeObject* codes){
+    Universe::genesis();
+    m_main_frame = new Frame(codes);
+    m_main_frame->m_stack->resize(codes->m_stackSize);
+    Block* cur_block = NULL;//当前语句块
+    
+    while(m_main_frame->hasMoreCodes()){
+        unsigned char op_code = m_main_frame->getOpCode();
+        bool has_argument = (op_code & 0xFF) >= ByteCode::HAVE_ARGUMENT;
+
+        int op_arg = -1;
+        if(has_argument){
+            op_arg = m_main_frame->getOpArg();
+        }
+
+        Integer* lhs;
+        Integer* rhs;
+        Object* v,*w,*u,*attr; 
+        switch(op_code){
+            case ByteCode::LOAD_CONST:
+                m_main_frame->m_stack->push_back(m_main_frame->m_consts->at(op_arg));
+                break;
+            case ByteCode::LOAD_NAME:
+                //从变量字典取变量
+                v = m_main_frame->m_names->at(op_arg);
+                w = m_main_frame->m_locals->get(v);
+                if(w != Universe::None){
+                    m_main_frame->m_stack->push_back(w);
+                    break;
+                }
+                m_main_frame->m_stack->push_back(Universe::None);
+                break;
+            case ByteCode::STORE_NAME:
+                //放入变量字典
+                v = m_main_frame->m_names->at(op_arg);
+                m_main_frame->m_locals->put(v,m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1));
+                m_main_frame->m_stack->pop_back(); 
+                break; 
+            case ByteCode::PRINT_ITEM:
+                v = m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1);
+                m_main_frame->m_stack->pop_back();
+                v->print();
+                break;
+            case ByteCode::PRINT_NEWLINE:
+                std::cout<<std::endl;
+                break;
+            case ByteCode::BINARY_ADD:
+                v = m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1);
+                m_main_frame->m_stack->pop_back();
+                w = m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1);
+                m_main_frame->m_stack->pop_back();
+                m_main_frame->m_stack->push_back(w->add(v));
+                break;
+            case ByteCode::RETURN_VALUE:
+                m_main_frame->m_stack->pop_back();
+                break;
+            case ByteCode::COMPARE_OP:
+                w = m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1);
+                m_main_frame->m_stack->pop_back();
+                v = m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1);
+                m_main_frame->m_stack->pop_back();
+                //判断具体的比较运算符 
+                switch (op_arg)
+                {
+                case ByteCode::GREATER:
+                    m_main_frame->m_stack->push_back(v->greater(w));
+                    break;
+                case ByteCode::LESS:
+                    m_main_frame->m_stack->push_back(v->less(w));
+                    break;
+                case ByteCode::EQUAL:
+                    m_main_frame->m_stack->push_back(v->equal(w));    
+                    break;
+                case ByteCode::NOT_EQUAL:
+                    m_main_frame->m_stack->push_back(v->not_equal(w));
+                    break;
+                case ByteCode::GREATER_EQUAL:
+                    m_main_frame->m_stack->push_back(v->ge(w));
+                    break;      
+                case ByteCode::LESS_EQUAL: 
+                    m_main_frame->m_stack->push_back(v->le(w));
+                    break;                  
+                default:
+                    std::cout << "Error: Unrecognized compare op:"<<op_arg<<std::endl; 
+                    break;
+                }
+                break;
+            case ByteCode::POP_JUMP_IF_FALSE:
+                v = m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1);
+                m_main_frame->m_stack->pop_back();
+                if(((Integer*)v)->value()==0){
+                    m_main_frame->m_pc = op_arg;
+                }
+                break;
+            case ByteCode::JUMP_FORWARD:
+                m_main_frame->m_pc += op_arg;
+                break;
+            case ByteCode::JUMP_ABSOLUTE:
+                //跳至循环起始位置
+                m_main_frame->m_pc = op_arg;
+                break;
+            case ByteCode::SETUP_LOOP:
+                m_main_frame->m_loop_stack->push_back(new Block(op_code,m_main_frame->m_pc + op_arg,STACK_LEVEL())); 
+                break;
+            case ByteCode::POP_BLOCK:
+                //循环正常结束
+                cur_block = m_main_frame->m_loop_stack->at(m_main_frame->m_loop_stack->size()-1);
+                m_main_frame->m_loop_stack->pop_back(); 
+                while(STACK_LEVEL() > cur_block->m_level){
+                    m_main_frame->m_stack->pop_back();
+                }
+                break;
+            case ByteCode::BREAK_LOOP:
+                //当从一个循环中跳出后，需要将当前执行栈中的局部对象清除，因为语句块已经结束，该语句块中的对象的生命周期结束
+                cur_block = m_main_frame->m_loop_stack->at(m_main_frame->m_loop_stack->size()-1);
+                m_main_frame->m_loop_stack->pop_back();
+                while(STACK_LEVEL() > cur_block->m_level){
+                    m_main_frame->m_stack->pop_back();
+                }
+                m_main_frame->m_pc = cur_block->m_target;//地址跳转
+                break;             
+            default:
+                std::cout << "Error:Unrecognized byte code: "<<std::hex<<op_code <<std::endl;                 
+        }
+        
+    }
+}
+
 } 

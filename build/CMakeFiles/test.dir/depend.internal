@@ -24,8 +24,10 @@ CMakeFiles/test.dir/src/main.cc.o
  /home/lighthouse/cppSpace/EasyPython/src/object/String.h
  /home/lighthouse/cppSpace/EasyPython/src/object/object.h
  /home/lighthouse/cppSpace/EasyPython/src/runtime/block.h
+ /home/lighthouse/cppSpace/EasyPython/src/runtime/frame.h
  /home/lighthouse/cppSpace/EasyPython/src/runtime/interpreter.h
  /home/lighthouse/cppSpace/EasyPython/src/util/buffer_input_stream.h
+ /home/lighthouse/cppSpace/EasyPython/src/util/map.h
 CMakeFiles/test.dir/src/object/String.cc.o
  /home/lighthouse/cppSpace/EasyPython/src/object/Klass.h
  /home/lighthouse/cppSpace/EasyPython/src/object/String.cc
@@ -43,6 +45,15 @@ CMakeFiles/test.dir/src/object/object.cc.o
  /home/lighthouse/cppSpace/EasyPython/src/object/Klass.h
  /home/lighthouse/cppSpace/EasyPython/src/object/object.cc
  /home/lighthouse/cppSpace/EasyPython/src/object/object.h
+CMakeFiles/test.dir/src/runtime/frame.cc.o
+ /home/lighthouse/cppSpace/EasyPython/src/code/code_object.h
+ /home/lighthouse/cppSpace/EasyPython/src/object/Klass.h
+ /home/lighthouse/cppSpace/EasyPython/src/object/String.h
+ /home/lighthouse/cppSpace/EasyPython/src/object/object.h
+ /home/lighthouse/cppSpace/EasyPython/src/runtime/block.h
+ /home/lighthouse/cppSpace/EasyPython/src/runtime/frame.cc
+ /home/lighthouse/cppSpace/EasyPython/src/runtime/frame.h
+ /home/lighthouse/cppSpace/EasyPython/src/util/map.h
 CMakeFiles/test.dir/src/runtime/interpreter.cc.o
  /home/lighthouse/cppSpace/EasyPython/src/code/bytecode.hpp
  /home/lighthouse/cppSpace/EasyPython/src/code/code_object.h
@@ -51,6 +62,7 @@ CMakeFiles/test.dir/src/runtime/interpreter.cc.o
  /home/lighthouse/cppSpace/EasyPython/src/object/integer.h
  /home/lighthouse/cppSpace/EasyPython/src/object/object.h
  /home/lighthouse/cppSpace/EasyPython/src/runtime/block.h
+ /home/lighthouse/cppSpace/EasyPython/src/runtime/frame.h
  /home/lighthouse/cppSpace/EasyPython/src/runtime/interpreter.cc
  /home/lighthouse/cppSpace/EasyPython/src/runtime/interpreter.h
  /home/lighthouse/cppSpace/EasyPython/src/runtime/universe.h

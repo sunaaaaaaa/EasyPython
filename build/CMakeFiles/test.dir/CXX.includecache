@@ -94,6 +94,22 @@ assert.h
 
 /home/lighthouse/cppSpace/EasyPython/src/runtime/block.h
 
+/home/lighthouse/cppSpace/EasyPython/src/runtime/frame.cc
+frame.h
+/home/lighthouse/cppSpace/EasyPython/src/runtime/frame.h
+
+/home/lighthouse/cppSpace/EasyPython/src/runtime/frame.h
+vector
+-
+../code/code_object.h
+/home/lighthouse/cppSpace/EasyPython/src/code/code_object.h
+../object/object.h
+/home/lighthouse/cppSpace/EasyPython/src/object/object.h
+../util/map.h
+/home/lighthouse/cppSpace/EasyPython/src/util/map.h
+block.h
+/home/lighthouse/cppSpace/EasyPython/src/runtime/block.h
+
 /home/lighthouse/cppSpace/EasyPython/src/runtime/interpreter.cc
 universe.h
 /home/lighthouse/cppSpace/EasyPython/src/runtime/universe.h
@@ -119,6 +135,8 @@ map
 /home/lighthouse/cppSpace/EasyPython/src/code/code_object.h
 block.h
 /home/lighthouse/cppSpace/EasyPython/src/runtime/block.h
+frame.h
+/home/lighthouse/cppSpace/EasyPython/src/runtime/frame.h
 
 /home/lighthouse/cppSpace/EasyPython/src/runtime/universe.cc
 universe.h

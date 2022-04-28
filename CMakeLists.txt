@@ -20,6 +20,7 @@ add_executable(test
          src/code/binary_parser.cc
          src/runtime/interpreter.cc
          src/runtime/universe.cc
+         src/runtime/frame.cc
          src/util/map.cc)
 
 # SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)

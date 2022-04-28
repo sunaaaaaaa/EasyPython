@@ -10,6 +10,6 @@ int main(){
     easy_vm::CodeObject* code = parser.parse();
     
     easy_vm::Interpreter inter;
-    inter.run(code);
+    inter.run2(code);
     return 0;
 }
