@@ -68,7 +68,7 @@ void Interpreter::run(CodeObject* codes){
                 v->print();
                 break;
             case ByteCode::PRINT_NEWLINE:
-                //std::cout<<std::endl;
+                std::cout<<std::endl;
                 break;
             case ByteCode::BINARY_ADD:
                 v = m_stack->at(m_stack->size()-1);

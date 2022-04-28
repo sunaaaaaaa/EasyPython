@@ -13,6 +13,7 @@ include_directories(./src/)
 
 add_executable(test 
          src/main.cc
+         src/object/object.cc
          src/object/String.cc
          src/object/integer.cc
          src/code/code_object.cc

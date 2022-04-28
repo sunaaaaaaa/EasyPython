@@ -3,52 +3,186 @@
 #include<iostream>
 namespace easy_vm{
 
-void Integer::print(){
-   std::cout << std::dec << m_value <<std::endl; 
+IntegerKlass* IntegerKlass::instance = NULL;
+
+IntegerKlass::IntegerKlass(){}
+
+IntegerKlass* IntegerKlass::getInstance(){
+   if(instance == NULL){
+      instance = new IntegerKlass();
+   }
+   return instance;
 }
 
-Object* Integer::add(Object* obj){
-   return new Integer(m_value + ((Integer*)obj)->m_value);
+void IntegerKlass::print(Object* obj){
+   Integer* i = (Integer*)obj;
+    
+   assert(i && (i->klass()==(Klass*)this));
+   std::cout << std::dec << i->value() <<std::endl; 
 }
 
+Object* IntegerKlass::add(Object* l,Object* r){
+   if(l->klass()!=r->klass()){
+      std::logic_error("integer add error,lvalue class is not sameple to rvalue class");
+   }
 
-Object* Integer::greater(Object* obj){
-   if(m_value > ((Integer*)obj)->m_value){
+   Integer* il = (Integer*)l;
+   Integer* ir = (Integer*)r;
+    
+   assert(il && (il->klass()==(Klass*)this));
+   assert(ir && (ir->klass()==(Klass*)this));
+   return new Integer(il->value() + ir->value());
+}
+
+Object* IntegerKlass::sub(Object* l,Object* r){
+   if(l->klass()!=r->klass()){
+       std::logic_error("integer sub error,lvalue class is not sameple to rvalue class");
+    }
+
+    Integer* il = (Integer*)l;
+    Integer* ir = (Integer*)r;
+    
+    assert(il && (il->klass()==(Klass*)this));
+    assert(ir && (ir->klass()==(Klass*)this));
+
+   return new Integer(il->value() - ir->value());
+}
+
+Object* IntegerKlass::mul(Object* l,Object* r){
+   if(l->klass()!=r->klass()){
+       std::logic_error("integer mul error,lvalue class is not sameple to rvalue class");
+    }
+
+    Integer* il = (Integer*)l;
+    Integer* ir = (Integer*)r;
+    
+    assert(il && (il->klass()==(Klass*)this));
+    assert(ir && (ir->klass()==(Klass*)this));
+
+   return new Integer(il->value() * ir->value());
+}
+
+Object* IntegerKlass::div(Object* l,Object* r){
+   if(l->klass()!=r->klass()){
+       std::logic_error("integer div error,lvalue class is not sameple to rvalue class");
+    }
+
+    Integer* il = (Integer*)l;
+    Integer* ir = (Integer*)r;
+    
+    assert(il && (il->klass()==(Klass*)this));
+    assert(ir && (ir->klass()==(Klass*)this));
+
+   return new Integer(il->value() / ir->value());
+}
+
+Object* IntegerKlass::mod(Object* l,Object* r){
+   if(l->klass()!=r->klass()){
+       std::logic_error("integer mod error,lvalue class is not sameple to rvalue class");
+    }
+
+    Integer* il = (Integer*)l;
+    Integer* ir = (Integer*)r;
+    
+    assert(il && (il->klass()==(Klass*)this));
+    assert(ir && (ir->klass()==(Klass*)this));
+
+   return new Integer(il->value() % ir->value());
+}
+
+Object* IntegerKlass::greater(Object* l,Object* r){
+   if(l->klass()!=r->klass()){
+      std::logic_error("compare op error,lvalue class is not sameple to rvalue class");
+   }
+
+   Integer* il = (Integer*)l;
+   Integer* ir = (Integer*)r;
+    
+   assert(il && (il->klass()==(Klass*)this));
+   assert(ir && (ir->klass()==(Klass*)this));
+   if(il->value() > ir->value()){
       return Universe::True;
    }else{
       return Universe::False;
    }
 }
-Object* Integer::less(Object* obj){
-    if(m_value > ((Integer*)obj)->m_value){
+Object* IntegerKlass::less(Object* l,Object* r){
+   
+   if(l->klass()!=r->klass()){
+      std::logic_error("compare op error,lvalue class is not sameple to rvalue class");
+   }
+
+   Integer* il = (Integer*)l;
+   Integer* ir = (Integer*)r;
+    
+   assert(il && (il->klass()==(Klass*)this));
+   assert(ir && (ir->klass()==(Klass*)this));
+   if(il->value() > ir->value()){
       return Universe::False;
    }else{
       return Universe::True;
    }
 }
-Object* Integer::equal(Object* obj){
-    if(m_value == ((Integer*)obj)->m_value){
+Object* IntegerKlass::equal(Object* l,Object* r){
+    if(l->klass()!=r->klass()){
+       return Universe::False;
+    }
+
+    Integer* il = (Integer*)l;
+    Integer* ir = (Integer*)r;
+    
+    assert(il && (il->klass()==(Klass*)this));
+    assert(ir && (ir->klass()==(Klass*)this));
+    if(il->value() == ir->value()){
       return Universe::True;
    }else{
       return Universe::False;
    }
 }
-Object* Integer::not_equal(Object* obj){
-    if(m_value != ((Integer*)obj)->m_value){
+
+Object* IntegerKlass::not_equal(Object* l,Object* r){
+   if(l->klass()!=r->klass()){
+       return Universe::False;
+    }
+
+    Integer* il = (Integer*)l;
+    Integer* ir = (Integer*)r;
+    
+    assert(il && (il->klass()==(Klass*)this));
+    assert(ir && (ir->klass()==(Klass*)this));
+    if(il->value() != ir->value()){
       return Universe::True;
    }else{
       return Universe::False;
    }
 }
-Object* Integer::ge(Object* obj){
-    if(m_value >= ((Integer*)obj)->m_value){
+Object* IntegerKlass::ge(Object* l,Object* r){
+   if(l->klass()!=r->klass()){
+      std::logic_error("compare op error,lvalue class is not sameple to rvalue class");
+   }
+
+   Integer* il = (Integer*)l;
+   Integer* ir = (Integer*)r;
+    
+   assert(il && (il->klass()==(Klass*)this));
+   assert(ir && (ir->klass()==(Klass*)this));
+   if(il->value() >= ir->value()){
       return Universe::True;
    }else{
       return Universe::False;
    }
 }
-Object* Integer::le(Object* obj){
-    if(m_value <= ((Integer*)obj)->m_value){
+Object* IntegerKlass::le(Object* l,Object* r){
+   if(l->klass()!=r->klass()){
+      std::logic_error("compare op error,lvalue class is not sameple to rvalue class");
+   }
+
+   Integer* il = (Integer*)l;
+   Integer* ir = (Integer*)r;
+    
+   assert(il && (il->klass()==(Klass*)this));
+   assert(ir && (ir->klass()==(Klass*)this));
+   if(il->value() <= ir->value()){
       return Universe::True;
    }else{
       return Universe::False;

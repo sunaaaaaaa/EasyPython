@@ -50,6 +50,10 @@ code/binary_parser.h
 runtime/interpreter.h
 /home/lighthouse/cppSpace/EasyPython/src/runtime/interpreter.h
 
+/home/lighthouse/cppSpace/EasyPython/src/object/Klass.h
+stdio.h
+-
+
 /home/lighthouse/cppSpace/EasyPython/src/object/String.cc
 String.h
 /home/lighthouse/cppSpace/EasyPython/src/object/String.h
@@ -78,7 +82,15 @@ iostream
 object.h
 /home/lighthouse/cppSpace/EasyPython/src/object/object.h
 
+/home/lighthouse/cppSpace/EasyPython/src/object/object.cc
+object.h
 /home/lighthouse/cppSpace/EasyPython/src/object/object.h
+
+/home/lighthouse/cppSpace/EasyPython/src/object/object.h
+Klass.h
+/home/lighthouse/cppSpace/EasyPython/src/object/Klass.h
+assert.h
+-
 
 /home/lighthouse/cppSpace/EasyPython/src/runtime/block.h
 

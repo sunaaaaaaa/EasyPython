@@ -261,6 +261,33 @@ src/object/integer.cc.s:
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/object/integer.cc.s
 .PHONY : src/object/integer.cc.s
 
+src/object/object.o: src/object/object.cc.o
+
+.PHONY : src/object/object.o
+
+# target to build an object file
+src/object/object.cc.o:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/object/object.cc.o
+.PHONY : src/object/object.cc.o
+
+src/object/object.i: src/object/object.cc.i
+
+.PHONY : src/object/object.i
+
+# target to preprocess a source file
+src/object/object.cc.i:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/object/object.cc.i
+.PHONY : src/object/object.cc.i
+
+src/object/object.s: src/object/object.cc.s
+
+.PHONY : src/object/object.s
+
+# target to generate assembly for a file
+src/object/object.cc.s:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/object/object.cc.s
+.PHONY : src/object/object.cc.s
+
 src/runtime/interpreter.o: src/runtime/interpreter.cc.o
 
 .PHONY : src/runtime/interpreter.o
@@ -366,6 +393,9 @@ help:
 	@echo "... src/object/integer.o"
 	@echo "... src/object/integer.i"
 	@echo "... src/object/integer.s"
+	@echo "... src/object/object.o"
+	@echo "... src/object/object.i"
+	@echo "... src/object/object.s"
 	@echo "... src/runtime/interpreter.o"
 	@echo "... src/runtime/interpreter.i"
 	@echo "... src/runtime/interpreter.s"
