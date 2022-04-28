@@ -4,7 +4,7 @@
 namespace easy_vm{
 
 void Integer::print(){
-   std::cout << m_value <<std::endl; 
+   std::cout << std::dec << m_value <<std::endl; 
 }
 
 Object* Integer::add(Object* obj){

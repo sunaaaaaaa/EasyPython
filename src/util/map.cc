@@ -1,4 +1,5 @@
 #include "map.h"
+#include <iostream>
 #include "../object/object.h"
 #include "../runtime/universe.h"
 namespace easy_vm{
@@ -12,8 +13,8 @@ Map<K,V>::Map(){
 
 template <typename K, typename V>
 MapEntry<K, V>::MapEntry(const MapEntry<K, V>& entry) {
-    m_k = entry._k;
-    m_v = entry._v;
+    m_k = entry.m_k;
+    m_v = entry.m_v;
 }
 
 
@@ -34,10 +35,11 @@ void Map<K, V>::put(K k, V v) {
 template <typename K, typename V>
 V Map<K, V>::get(K k) {
     int i = index(k);
-    if (i < 0)
+    if (i < 0){
         return Universe::None;
-    else
-        return m_entries[i].m_v;
+    }else{
+        return m_entries[i].m_v;   
+    }
 }
 
 template <typename K, typename V>

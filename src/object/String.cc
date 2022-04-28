@@ -1,4 +1,5 @@
 #include "String.h"
+#include "../runtime/universe.h"
 #include <string.h>
 #include <stdlib.h>
 #include <iostream>
@@ -27,7 +28,13 @@ void String::print(){
 
 Object* String::greater(Object* obj){}
 Object* String::less(Object* obj){}
-Object* String::equal(Object* obj){}
+Object* String::equal(Object* obj){
+    if(this == obj){
+        return Universe::True;
+    }else{
+        return Universe::False;
+    }
+}
 Object* String::not_equal(Object* obj){}
 Object* String::ge(Object* obj){}
 Object* String::le(Object* obj){}

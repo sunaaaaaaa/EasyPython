@@ -1,12 +1,15 @@
+#include "universe.h"
 #include "interpreter.h"
 #include "../code/bytecode.hpp"
 #include "../object/integer.h"
 #include "../object/String.h"
-#include "universe.h"
 #include "../util/map.h"
 #include <vector>
 #include <iostream>
 #include <map>
+
+#define STACK_LEVEL() m_stack->size()
+
 namespace easy_vm{
 
 void Interpreter::run(CodeObject* codes){
@@ -16,11 +19,12 @@ void Interpreter::run(CodeObject* codes){
     
     m_stack = new std::vector<Object*>();
     m_stack->resize(codes->m_stackSize);
-
+    m_loop_stack = new std::vector<Block*>();
+    Block* cur_block = NULL;//当前语句块
     //变量表与常量表
     m_names = codes->m_names;
     m_consts = codes->m_consts;
-
+    //变量字典，k为names中的变量名，v为当前变量的值，注意会内存泄漏，因为每次生成一个新的对象取代原先的对象，但并没有释放原对象的空间
     Map<Object*,Object*> nameMap;
   
     while(pc < code_length){ 
@@ -64,7 +68,7 @@ void Interpreter::run(CodeObject* codes){
                 v->print();
                 break;
             case ByteCode::PRINT_NEWLINE:
-                std::cout<<std::endl;
+                //std::cout<<std::endl;
                 break;
             case ByteCode::BINARY_ADD:
                 v = m_stack->at(m_stack->size()-1);
@@ -122,9 +126,25 @@ void Interpreter::run(CodeObject* codes){
                 pc = op_arg;
                 break;
             case ByteCode::SETUP_LOOP:
+                m_loop_stack->push_back(new Block(op_code,pc+op_arg,STACK_LEVEL())); 
                 break;
             case ByteCode::POP_BLOCK:
-                break;         
+                //循环正常结束
+                cur_block = m_loop_stack->at(m_loop_stack->size()-1);
+                m_loop_stack->pop_back(); 
+                while(STACK_LEVEL() > cur_block->m_level){
+                    m_stack->pop_back();
+                }
+                break;
+            case ByteCode::BREAK_LOOP:
+                //当从一个循环中跳出后，需要将当前执行栈中的局部对象清除，因为语句块已经结束，该语句块中的对象的生命周期结束
+                cur_block = m_loop_stack->at(m_loop_stack->size()-1);
+                m_loop_stack->pop_back();
+                while(STACK_LEVEL() > cur_block->m_level){
+                    m_stack->pop_back();
+                }
+                pc = cur_block->m_target;//地址跳转
+                break;             
             default:
                 std::cout << "Error:Unrecognized byte code: "<<std::hex<<op_code <<std::endl;                 
         }
