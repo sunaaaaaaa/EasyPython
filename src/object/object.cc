@@ -3,7 +3,9 @@
 namespace easy_vm{
 
 void Object::print(){
-    m_klass->print(this);
+   if(m_klass!=NULL){
+      m_klass->print(this);
+   }  
 }
 
 Object* Object::add(Object* obj){

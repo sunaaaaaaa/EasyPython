@@ -35,9 +35,9 @@ String::~String(){
 }
 
 void StringKlass::print(Object* obj){
-   String* s = (String*)obj;
+   String* s = static_cast<String*>(obj);
     
-   assert(s && (s->klass()==(Klass*)this));
+   assert(s && (s->klass()==static_cast<Klass*>(this)));
    for(int i = 0;i<s->length();++i){
        printf("%c",s->value()[i]);
     } 
@@ -48,11 +48,11 @@ Object* StringKlass::equal(Object* l,Object* r){
         return Universe::False;
     }
 
-    String* sl = (String*)l;
-    String* sr = (String*)r;
+    String* sl = static_cast<String*>(l);
+    String* sr = static_cast<String*>(r);
 
-    assert(sl && sl->klass() == (Klass*)this);
-    assert(sr && sr->klass() == (Klass*)this);
+    assert(sl && sl->klass() == static_cast<Klass*>(this));
+    assert(sr && sr->klass() == static_cast<Klass*>(this));
     
     if(sl->length() != sr->length()){
         return Universe::False;

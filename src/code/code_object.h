@@ -12,7 +12,7 @@ public:
         std::vector<Object*>* arglist, 
         std::vector<Object*>* freevars, std::vector<Object*>* cellvars,
         String* file_name, String* co_name, int lineno, String* notable);
-   
+   void print();
 private:
     CodeObject();
 public:

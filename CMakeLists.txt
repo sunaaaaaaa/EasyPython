@@ -13,12 +13,13 @@ include_directories(./src/)
 
 add_executable(test 
          src/main.cc
+         src/code/binary_parser.cc
+         src/code/code_object.cc
+         src/runtime/interpreter.cc
          src/object/object.cc
          src/object/String.cc
          src/object/integer.cc
-         src/code/code_object.cc
-         src/code/binary_parser.cc
-         src/runtime/interpreter.cc
+         src/object/function.cc
          src/runtime/universe.cc
          src/runtime/frame.cc
          src/util/map.cc)

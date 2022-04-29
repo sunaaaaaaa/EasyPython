@@ -234,6 +234,33 @@ src/object/String.cc.s:
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/object/String.cc.s
 .PHONY : src/object/String.cc.s
 
+src/object/function.o: src/object/function.cc.o
+
+.PHONY : src/object/function.o
+
+# target to build an object file
+src/object/function.cc.o:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/object/function.cc.o
+.PHONY : src/object/function.cc.o
+
+src/object/function.i: src/object/function.cc.i
+
+.PHONY : src/object/function.i
+
+# target to preprocess a source file
+src/object/function.cc.i:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/object/function.cc.i
+.PHONY : src/object/function.cc.i
+
+src/object/function.s: src/object/function.cc.s
+
+.PHONY : src/object/function.s
+
+# target to generate assembly for a file
+src/object/function.cc.s:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/object/function.cc.s
+.PHONY : src/object/function.cc.s
+
 src/object/integer.o: src/object/integer.cc.o
 
 .PHONY : src/object/integer.o
@@ -417,6 +444,9 @@ help:
 	@echo "... src/object/String.o"
 	@echo "... src/object/String.i"
 	@echo "... src/object/String.s"
+	@echo "... src/object/function.o"
+	@echo "... src/object/function.i"
+	@echo "... src/object/function.s"
 	@echo "... src/object/integer.o"
 	@echo "... src/object/integer.i"
 	@echo "... src/object/integer.s"

@@ -11,5 +11,7 @@ CodeObject::CodeObject(int argcount, int nlocals, int stacksize, int flag, Strin
         ,m_file_name(file_name),m_co_name(co_name),m_lineNum(lineno),m_notable(notable),m_consts(consts)
         ,m_names(names),m_argList(arglist),m_free_vars(freevars),m_cell_vars(cellvars){}
 
-
+void CodeObject::print(){
+        m_co_name->print();
+}
 }

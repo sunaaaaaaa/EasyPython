@@ -4,12 +4,12 @@
 #include "code/binary_parser.h"
 #include "runtime/interpreter.h"
 int main(){
-    easy_vm::BufferedInputStream stream("../tests/test_break.pyc");
+    easy_vm::BufferedInputStream stream("../tests/test_func.pyc");
     easy_vm::BinaryParser parser(&stream);
     
     easy_vm::CodeObject* code = parser.parse();
     
     easy_vm::Interpreter inter;
-    inter.run2(code);
+    inter.run(code);
     return 0;
 }

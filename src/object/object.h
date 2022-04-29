@@ -6,7 +6,7 @@
 namespace easy_vm{
 class Object{
 public:
-   Object(){}
+   // Object(){}
    Klass* klass(){
       assert(m_klass!=NULL);
       return m_klass;
