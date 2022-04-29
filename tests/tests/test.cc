@@ -8,7 +8,13 @@ class Son:public Parent{
 
 };
 
-int main(){
+void test(){
+  std::vector<int> vec(3,0);
+  vec.insert(vec.begin()+1,3);
+  std::cout << vec.at(1)<<std::endl; 
+}
+
+void test1(){
   int length = 5;
 
   while(length--){
@@ -28,5 +34,9 @@ int main(){
 
   std::cout << length <<std::endl;
   std::cout << vector->size() << std::endl; 
+}
+
+int main(){
+  test();
 
 }

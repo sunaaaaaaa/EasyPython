@@ -24,6 +24,8 @@ public:
    Object* not_equal(Object* obj);
    Object* ge(Object* obj);
    Object* le(Object* obj);
+
+   
 private:
    Klass* m_klass;   
 };

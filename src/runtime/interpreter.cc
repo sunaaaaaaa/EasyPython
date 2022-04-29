@@ -79,6 +79,9 @@ void Interpreter::runMainFrame(){
             case ByteCode::STORE_NAME:
                 //放入变量字典
                 v = m_main_frame->m_names->at(op_arg);
+                v->print();
+                std::cout<<std::endl;
+                //std::cout<<"arg:"<<op_arg<<std::endl;
                 m_main_frame->m_locals->put(v,m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1));
                 m_main_frame->m_stack->pop_back(); 
                 break; 
@@ -108,7 +111,14 @@ void Interpreter::runMainFrame(){
             case ByteCode::STORE_FAST:
                 v = m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1);
                 m_main_frame->m_stack->pop_back();
-                m_main_frame->m_arg_list->insert(m_main_frame->m_arg_list->begin() + op_arg,v);
+                if(op_arg >= m_main_frame->m_arg_list->size()){
+                    m_main_frame->m_arg_list->resize(op_arg + 1);
+                }
+                {
+                   auto& temp = m_main_frame->m_arg_list->at(op_arg);
+                   temp = v;
+                }
+                //m_main_frame->m_arg_list->insert(m_main_frame->m_arg_list->begin() + op_arg,v);
                 break; 
             case ByteCode::PRINT_ITEM:
                 v = m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1);
@@ -230,7 +240,12 @@ void Interpreter::runMainFrame(){
                         m_main_frame->m_stack->pop_back();
                         args->push_back(v);
                    }
+                   
                    subFunc->setDefaults(args);
+                }
+                if(args != NULL){
+                    delete args;
+                    args = NULL;
                 }
                 m_main_frame->m_stack->push_back(subFunc);
                 break;
@@ -244,6 +259,7 @@ void Interpreter::runMainFrame(){
                         args->push_back(v);
                     }
                 }
+                
                 v = m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1);
                 m_main_frame->m_stack->pop_back();
                 buildFrame(v,args);

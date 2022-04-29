@@ -25,22 +25,27 @@ Frame::Frame(Function* func,std::vector<Object*>* args)
     m_stack = new std::vector<Object*>();
     m_loop_stack = new std::vector<Block*>();
     m_globals = func->getGlobals();
-    m_arg_list = new std::vector<Object*>();
+    m_arg_list = new std::vector<Object*>(m_codes->m_argCount,0);
     m_sender = NULL;
-    
+
     if(func->m_defaults){
         int def_cnt = func->m_defaults->size();
         int arg_cnt = m_codes->m_argCount;
-        while(def_cnt--){
+        while(def_cnt){
+            def_cnt--;
             --arg_cnt;
-            m_arg_list->insert(m_arg_list->begin() + arg_cnt,func->m_defaults->at(def_cnt));
+            auto& temp = m_arg_list->at(arg_cnt);
+            temp = func->m_defaults->at(def_cnt);
         }
     }
-    
+    if(m_arg_list->size()==3){
+        m_arg_list->at(1)->print();
+        
+    }
     if(args){
-       
        for(int i = 0;i<args->size();++i){
-           m_arg_list->insert(m_arg_list->begin() + i,args->at(i));
+           auto& temp = m_arg_list->at(i);
+           temp = args->at(i);
        }
     }
 }
