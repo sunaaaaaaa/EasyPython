@@ -11,6 +11,10 @@ class Son:public Parent{
 int main(){
   int length = 5;
 
+  while(length--){
+    std::cout << length << std::endl;
+  }
+  length = 5;
   int* a = &length;
   int* b = &length;
   if(a==b){

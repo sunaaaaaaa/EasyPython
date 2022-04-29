@@ -4,7 +4,7 @@
 #include "code/binary_parser.h"
 #include "runtime/interpreter.h"
 int main(){
-    easy_vm::BufferedInputStream stream("../tests/test_while.pyc");
+    easy_vm::BufferedInputStream stream("../tests/test_default_param.pyc");
     easy_vm::BinaryParser parser(&stream);
     
     easy_vm::CodeObject* code = parser.parse();

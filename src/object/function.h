@@ -26,11 +26,14 @@ public:
     int flags(){return m_flags;}
     Map<Object*,Object*>* getGlobals(){return m_global;}
     void setGlobals(Map<Object*,Object*>* global){ m_global = global;}
+    std::vector<Object*>* getDefaults(){return m_defaults;}
+    void setDefaults(std::vector<Object*>* defaults);
 private:
     String* m_funcName;
     unsigned int m_flags;
-    CodeObject* m_codes;
-    Map<Object*,Object*>* m_global;
+    CodeObject* m_codes;             //函数代码  
+    Map<Object*,Object*>* m_global;  //函数所在域的全局变量 
+    std::vector<Object*>* m_defaults;//参数默认值
 };
 
 }

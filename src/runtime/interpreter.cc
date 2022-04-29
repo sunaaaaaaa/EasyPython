@@ -14,6 +14,13 @@
 
 namespace easy_vm{
 
+Interpreter::Interpreter(){
+    m_builtins = new Map<Object*,Object*>;
+    m_builtins->put(new String("True"),Universe::True);
+    m_builtins->put(new String("False"),Universe::False);
+    m_builtins->put(new String("None"),Universe::None);
+}
+
 void Interpreter::run(CodeObject* codes){
     m_main_frame = new Frame(codes);
     m_main_frame->m_stack->resize(codes->m_stackSize);
@@ -21,12 +28,6 @@ void Interpreter::run(CodeObject* codes){
     runMainFrame();
     destoryFrame();
     
-}
-
-void Interpreter::buildFrame(Object* callable){
-    Frame* frame = new Frame(static_cast<Function*>(callable));
-    frame->setSender(m_main_frame);
-    m_main_frame = frame;
 }
 
 void Interpreter::runMainFrame(){
@@ -42,7 +43,8 @@ void Interpreter::runMainFrame(){
             op_arg = m_main_frame->getOpArg();
         }
         
-        Function* subFunc; 
+        Function* subFunc;
+        std::vector<Object*>* args = NULL; 
         Integer* lhs;
         Integer* rhs;
         Object* v,*w,*u,*attr; 
@@ -65,6 +67,12 @@ void Interpreter::runMainFrame(){
                     m_main_frame->m_stack->push_back(w);
                     break;
                 }
+                //寻找内置变量表
+                w = m_builtins->get(v);
+                if(w != Universe::None){
+                    m_main_frame->m_stack->push_back(w);
+                    break;
+                }
                 //如果都找不到，则压入空对象
                 m_main_frame->m_stack->push_back(Universe::None);
                 break;
@@ -81,6 +89,11 @@ void Interpreter::runMainFrame(){
                     m_main_frame->m_stack->push_back(w);
                     break;
                 }
+                w = m_builtins->get(v);
+                if(w != Universe::None){
+                    m_main_frame->m_stack->push_back(w);
+                    break;
+                }
                 m_main_frame->m_stack->push_back(Universe::None);
                 break;    
             case ByteCode::STORE_GLOBAL:
@@ -88,6 +101,15 @@ void Interpreter::runMainFrame(){
                  m_main_frame->m_globals->put(v,m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1));
                  m_main_frame->m_stack->pop_back();
                  break;
+            case ByteCode::LOAD_FAST:
+                v = m_main_frame->m_arg_list->at(op_arg);
+                m_main_frame->m_stack->push_back(v); 
+                break;
+            case ByteCode::STORE_FAST:
+                v = m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1);
+                m_main_frame->m_stack->pop_back();
+                m_main_frame->m_arg_list->insert(m_main_frame->m_arg_list->begin() + op_arg,v);
+                break; 
             case ByteCode::PRINT_ITEM:
                 v = m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1);
                 m_main_frame->m_stack->pop_back();
@@ -138,7 +160,21 @@ void Interpreter::runMainFrame(){
                     break;      
                 case ByteCode::LESS_EQUAL: 
                     m_main_frame->m_stack->push_back(v->le(w));
-                    break;                  
+                    break;
+                case ByteCode::IS:
+                    if(v == w){
+                        m_main_frame->m_stack->push_back(Universe::True);
+                    }else{
+                        m_main_frame->m_stack->push_back(Universe::False);
+                    }
+                    break;
+                case ByteCode::IS_NOT:
+                    if(v == w){
+                        m_main_frame->m_stack->push_back(Universe::False);
+                    }else{
+                        m_main_frame->m_stack->push_back(Universe::True);
+                    }
+                    break;                     
                 default:
                     std::cout << "Error: Unrecognized compare op:"<<op_arg<<std::endl; 
                     break;
@@ -186,18 +222,47 @@ void Interpreter::runMainFrame(){
                 m_main_frame->m_stack->pop_back();
                 subFunc = new Function(v);
                 subFunc->setGlobals(m_main_frame->mGlobals());
+                //此处提出的为函数的默认参数
+                if(op_arg > 0){
+                   args = new std::vector<Object*>();
+                   while(op_arg--){
+                        v = m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1);
+                        m_main_frame->m_stack->pop_back();
+                        args->push_back(v);
+                   }
+                   subFunc->setDefaults(args);
+                }
                 m_main_frame->m_stack->push_back(subFunc);
                 break;
             case ByteCode::CALL_FUNCTION:
+                //此处为函数运行传入的实参
+                if(op_arg > 0){
+                    args = new std::vector<Object*>();
+                    while(op_arg--){
+                        v = m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1);
+                        m_main_frame->m_stack->pop_back();
+                        args->push_back(v);
+                    }
+                }
                 v = m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1);
                 m_main_frame->m_stack->pop_back();
-                buildFrame(v);
+                buildFrame(v,args);
+                if(args != NULL){
+                    delete args;
+                    args = NULL;
+                }
                 break;    
             default:
                 std::cout << "Error:Unrecognized byte code: "<<std::hex<<op_code <<std::endl;                 
         }
         
     }
+}
+//创建栈帧
+void Interpreter::buildFrame(Object* callable, std::vector<Object*>* argList){
+    Frame* frame = new Frame(static_cast<Function*>(callable),argList);
+    frame->setSender(m_main_frame);
+    m_main_frame = frame;
 }
 
 //退出当前栈帧，将返回值压入调用者栈

@@ -1,9 +1,9 @@
 #include "frame.h"
-
+#include <iostream>
 namespace easy_vm{
 //该构造函数仅用于main函数
 Frame::Frame(CodeObject* codes):m_consts(codes->m_consts),m_names(codes->m_names),
-                                m_codes(codes),m_pc(0),m_sender(NULL){
+                                m_codes(codes),m_pc(0),m_arg_list(codes->m_argList),m_sender(NULL){
     m_locals = new Map<Object*,Object*>();
     m_stack = new std::vector<Object*>();
     m_loop_stack = new std::vector<Block*>();
@@ -15,7 +15,34 @@ Frame::Frame(Function* func):m_consts(func->m_codes->m_consts),m_names(func->m_c
     m_stack = new std::vector<Object*>();
     m_loop_stack = new std::vector<Block*>();
     m_globals = func->getGlobals();
+    m_arg_list = NULL;
     m_sender = NULL; 
+}
+
+Frame::Frame(Function* func,std::vector<Object*>* args)
+      :m_consts(func->m_codes->m_consts),m_names(func->m_codes->m_names),m_codes(func->m_codes),m_pc(0){
+    m_locals = new Map<Object*,Object*>();
+    m_stack = new std::vector<Object*>();
+    m_loop_stack = new std::vector<Block*>();
+    m_globals = func->getGlobals();
+    m_arg_list = new std::vector<Object*>();
+    m_sender = NULL;
+    
+    if(func->m_defaults){
+        int def_cnt = func->m_defaults->size();
+        int arg_cnt = m_codes->m_argCount;
+        while(def_cnt--){
+            --arg_cnt;
+            m_arg_list->insert(m_arg_list->begin() + arg_cnt,func->m_defaults->at(def_cnt));
+        }
+    }
+    
+    if(args){
+       
+       for(int i = 0;i<args->size();++i){
+           m_arg_list->insert(m_arg_list->begin() + i,args->at(i));
+       }
+    }
 }
 
 bool Frame::hasMoreCodes(){

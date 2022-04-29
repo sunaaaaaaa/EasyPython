@@ -25,6 +25,7 @@ Function::Function(Object* obj){
     m_codes = codes;
     m_funcName = codes->m_co_name;
     m_flags = codes->m_flag;
+    m_defaults = NULL;
     setKlass(FunctionKlass::getInstance());
 }
 
@@ -32,7 +33,20 @@ Function::Function(Klass* klass){
     m_funcName = NULL;
     m_codes = NULL;
     m_flags = 0;
+    m_defaults = NULL;
     setKlass(FunctionKlass::getInstance());
+}
+
+void Function::setDefaults(std::vector<Object*>* defaults){
+    if(defaults == NULL){
+        m_defaults = NULL;
+        return;
+    }
+    m_defaults = new std::vector<Object*>();
+    for(int i = 0;i< defaults->size();++i){
+        //m_defaults->insert(m_defaults->begin()+i,defaults->at(i));
+        m_defaults->push_back(defaults->at(i));
+    }
 }
 
 }
