@@ -15,6 +15,8 @@ assert.h
 -
 ../object/integer.h
 /home/lighthouse/cppSpace/EasyPython/src/object/integer.h
+../runtime/universe.h
+/home/lighthouse/cppSpace/EasyPython/src/runtime/universe.h
 
 /home/lighthouse/cppSpace/EasyPython/src/code/binary_parser.h
 ../util/buffer_input_stream.h
@@ -83,6 +85,8 @@ Klass.h
 /home/lighthouse/cppSpace/EasyPython/src/object/Klass.h
 object.h
 /home/lighthouse/cppSpace/EasyPython/src/object/object.h
+../util/map.h
+/home/lighthouse/cppSpace/EasyPython/src/util/map.h
 ../code/code_object.h
 /home/lighthouse/cppSpace/EasyPython/src/code/code_object.h
 

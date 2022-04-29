@@ -2,6 +2,7 @@
 #include <iostream>
 #include <assert.h>
 #include "../object/integer.h"
+#include "../runtime/universe.h"
 namespace easy_vm{
 
 BinaryParser::BinaryParser(BufferedInputStream* stream):m_bufferIns(stream){}
@@ -9,6 +10,7 @@ BinaryParser::BinaryParser(BufferedInputStream* stream):m_bufferIns(stream){}
 BinaryParser::~BinaryParser(){}
 
 CodeObject* BinaryParser::parse(){
+    Universe::genesis();
     //读取魔数
     int magic_number = m_bufferIns->read_int();
     std::cout << "magic number is: " <<std::hex << magic_number << std::endl;
@@ -111,7 +113,8 @@ std::vector<Object*>* BinaryParser::get_tuple(){
            list->push_back(new Integer(m_bufferIns->read_int()));
            break;
        case 'N':
-           list->push_back(NULL);
+        //    std::cout << "add none" << std::endl; 
+           list->push_back(Universe::None);
            break;
        case 't':
             str = getString();

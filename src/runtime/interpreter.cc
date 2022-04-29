@@ -15,9 +15,9 @@
 namespace easy_vm{
 
 void Interpreter::run(CodeObject* codes){
-    Universe::genesis();
     m_main_frame = new Frame(codes);
     m_main_frame->m_stack->resize(codes->m_stackSize);
+    m_ret_value = NULL;
     runMainFrame();
     destoryFrame();
     
@@ -54,10 +54,18 @@ void Interpreter::runMainFrame(){
                 //从变量字典取变量
                 v = m_main_frame->m_names->at(op_arg);
                 w = m_main_frame->m_locals->get(v);
+                //先从本地变量字典中取
                 if(w != Universe::None){
                     m_main_frame->m_stack->push_back(w);
                     break;
                 }
+                //取不到则从全局变量字典中取
+                w = m_main_frame->m_globals->get(v);
+                if(w != Universe::None){
+                    m_main_frame->m_stack->push_back(w);
+                    break;
+                }
+                //如果都找不到，则压入空对象
                 m_main_frame->m_stack->push_back(Universe::None);
                 break;
             case ByteCode::STORE_NAME:
@@ -66,6 +74,20 @@ void Interpreter::runMainFrame(){
                 m_main_frame->m_locals->put(v,m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1));
                 m_main_frame->m_stack->pop_back(); 
                 break; 
+            case ByteCode::LOAD_GLOBAL:   
+                v = m_main_frame->m_names->at(op_arg);
+                w = m_main_frame->m_globals->get(v);
+                if(w != Universe::None){
+                    m_main_frame->m_stack->push_back(w);
+                    break;
+                }
+                m_main_frame->m_stack->push_back(Universe::None);
+                break;    
+            case ByteCode::STORE_GLOBAL:
+                 v = m_main_frame->m_names->at(op_arg);
+                 m_main_frame->m_globals->put(v,m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1));
+                 m_main_frame->m_stack->pop_back();
+                 break;
             case ByteCode::PRINT_ITEM:
                 v = m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1);
                 m_main_frame->m_stack->pop_back();
@@ -147,6 +169,9 @@ void Interpreter::runMainFrame(){
                     m_main_frame->m_stack->pop_back();
                 }
                 break;
+            case ByteCode::POP_TOP:
+                m_main_frame->m_stack->pop_back();
+                break;    
             case ByteCode::BREAK_LOOP:
                 //当从一个循环中跳出后，需要将当前执行栈中的局部对象清除，因为语句块已经结束，该语句块中的对象的生命周期结束
                 cur_block = m_main_frame->m_loop_stack->at(m_main_frame->m_loop_stack->size()-1);
@@ -160,6 +185,7 @@ void Interpreter::runMainFrame(){
                 v = m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1);
                 m_main_frame->m_stack->pop_back();
                 subFunc = new Function(v);
+                subFunc->setGlobals(m_main_frame->mGlobals());
                 m_main_frame->m_stack->push_back(subFunc);
                 break;
             case ByteCode::CALL_FUNCTION:
