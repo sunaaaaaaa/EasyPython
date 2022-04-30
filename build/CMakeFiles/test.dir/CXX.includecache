@@ -56,6 +56,26 @@ runtime/interpreter.h
 stdio.h
 -
 
+/home/lighthouse/cppSpace/EasyPython/src/object/List.cc
+List.h
+/home/lighthouse/cppSpace/EasyPython/src/object/List.h
+integer.h
+/home/lighthouse/cppSpace/EasyPython/src/object/integer.h
+../runtime/universe.h
+/home/lighthouse/cppSpace/EasyPython/src/runtime/universe.h
+assert.h
+-
+iostream
+-
+
+/home/lighthouse/cppSpace/EasyPython/src/object/List.h
+Klass.h
+/home/lighthouse/cppSpace/EasyPython/src/object/Klass.h
+object.h
+/home/lighthouse/cppSpace/EasyPython/src/object/object.h
+vector
+-
+
 /home/lighthouse/cppSpace/EasyPython/src/object/String.cc
 String.h
 /home/lighthouse/cppSpace/EasyPython/src/object/String.h
@@ -147,6 +167,8 @@ interpreter.h
 /home/lighthouse/cppSpace/EasyPython/src/runtime/interpreter.h
 ../code/bytecode.hpp
 /home/lighthouse/cppSpace/EasyPython/src/code/bytecode.hpp
+../object/List.h
+/home/lighthouse/cppSpace/EasyPython/src/object/List.h
 ../object/integer.h
 /home/lighthouse/cppSpace/EasyPython/src/object/integer.h
 ../object/String.h

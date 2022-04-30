@@ -69,8 +69,27 @@ Object* StringKlass::equal(Object* l,Object* r){
     }
     return Universe::True;
 }
-// Object* String::greater(Object* obj){}
-// Object* String::less(Object* obj){}
+
+Object* StringKlass::subscr(Object* obj,Object* index){
+    assert(obj && obj->klass() == static_cast<Klass*>(this));
+    assert(index && index->klass() == static_cast<Klass*>(IntegerKlass::getInstance()));
+    String* str = static_cast<String*>(obj);
+    Integer* idx = static_cast<Integer*>(index);
+    return new String((&str->value()[idx->value()]),1);
+}
+
+Object* StringKlass::contains(Object* obj,Object* ele){
+    String* str = static_cast<String*>(obj);
+    assert(str && str->klass() == static_cast<Klass*>(this));
+    String* subStr = static_cast<String*>(ele);
+    assert(subStr && subStr->klass() == static_cast<Klass*>(this));
+    std::string s1(str->value());
+    std::string s2(subStr->value());
+    if(s1.find(s2) != std::string::npos){
+        return Universe::True;
+    }
+    return Universe::False; 
+}
 
 // Object* String::not_equal(Object* obj){}
 // Object* String::ge(Object* obj){}

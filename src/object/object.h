@@ -25,8 +25,8 @@ public:
    Object* not_equal(Object* obj);
    Object* ge(Object* obj);
    Object* le(Object* obj);
-
-   
+   Object* subscr(Object* obj);//取下标操作，用于String类和List类，其他类该方法不实现
+   Object* contains(Object* obj);
 private:
    Klass* m_klass;   
 };

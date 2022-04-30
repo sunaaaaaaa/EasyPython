@@ -4,6 +4,7 @@
 #include "universe.h"
 #include "interpreter.h"
 #include "../code/bytecode.hpp"
+#include "../object/List.h"
 #include "../object/integer.h"
 #include "../object/String.h"
 #include "../object/function.h"
@@ -11,7 +12,7 @@
 
 
 #define STACK_LEVEL() m_main_frame->m_stack->size()
-
+#define STACK_TOP() m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1)
 namespace easy_vm{
 
 Interpreter::Interpreter(){
@@ -133,6 +134,21 @@ void Interpreter::runMainFrame(){
                 m_main_frame->m_stack->pop_back();
                 m_main_frame->m_stack->push_back(w->add(v));
                 break;
+            case ByteCode::BINARY_SUBTRACT:
+                break;
+            case ByteCode::BINARY_MULTIPLY:
+                break;
+            case ByteCode::BINARY_DIVIDE:
+                break;       
+            case ByteCode::BINARY_SUBSCR:
+                v = STACK_TOP();
+                m_main_frame->m_stack->pop_back();
+                w = STACK_TOP();
+                m_main_frame->m_stack->pop_back();
+                m_main_frame->m_stack->push_back(w->subscr(v)); 
+                break;
+            case ByteCode::BINARY_MODULO:
+                break;    
             case ByteCode::RETURN_VALUE:
                 m_ret_value = m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1);
                 m_main_frame->m_stack->pop_back();
@@ -183,6 +199,9 @@ void Interpreter::runMainFrame(){
                         m_main_frame->m_stack->push_back(Universe::True);
                     }
                     break;                     
+                case ByteCode::IN:
+                    m_main_frame->m_stack->push_back(w->contains(v));
+                    break;
                 default:
                     std::cout << "Error: Unrecognized compare op:"<<op_arg<<std::endl; 
                     break;
@@ -266,6 +285,19 @@ void Interpreter::runMainFrame(){
                     args = NULL;
                 }
                 break;    
+            case ByteCode::BUILD_LIST:
+                v = new List();
+                while(op_arg--){
+                    w = m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1);
+                    m_main_frame->m_stack->pop_back();
+                    static_cast<List*>(v)->set(op_arg,w);
+                }
+                m_main_frame->m_stack->push_back(v);
+                break; 
+            case ByteCode::BUILD_MAP:
+                break;
+            case ByteCode::BUILD_CLASS:
+                break; 
             default:
                 std::cout << "Error:Unrecognized byte code: "<<std::hex<<op_code <<std::endl;                 
         }

@@ -58,4 +58,14 @@ Object* Object::le(Object* obj){
    m_klass->le(this,obj);
 }
 
+Object* Object::subscr(Object* index){
+   assert(m_klass != NULL);
+   m_klass->subscr(this,index);
+}
+
+Object* Object::contains(Object* obj){
+   assert(m_klass != NULL);
+   m_klass->contains(this,obj);
+}
+
 }

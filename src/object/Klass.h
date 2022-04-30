@@ -26,6 +26,8 @@ public:
     virtual Object* mul(Object* obj1,Object* obj2){return 0;}
     virtual Object* div(Object* obj1,Object* obj2){return 0;}
     virtual Object* mod(Object* obj1,Object* obj2){return 0;}
+    virtual Object* subscr(Object* obj,Object* index){return 0;}
+    virtual Object* contains(Object* obj1,Object* obj2){return 0;}
 private:
     String* m_name;
 };

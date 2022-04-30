@@ -12,6 +12,8 @@ public:
    virtual Object* equal(Object* l,Object* r);
    virtual void print(Object* obj);
    virtual Object* len(Object* obj);
+   virtual Object* subscr(Object* obj,Object* index);
+   virtual Object* contains(Object* obj,Object* ele);
 };
 
 class String:public Object{
