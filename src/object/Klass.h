@@ -14,6 +14,7 @@ public:
     String* getName(){return m_name;}
 
     virtual void print(Object* obj1){}
+    virtual Object* len(Object* obj){}
     virtual Object* greater(Object* obj1,Object* obj2){return 0;}
     virtual Object* less(Object* obj1,Object* obj2){return 0;}
     virtual Object* equal(Object* obj1,Object* obj2){return 0;}

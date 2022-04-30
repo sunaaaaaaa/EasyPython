@@ -10,7 +10,8 @@ private:
 public:
    static StringKlass* getInstance();
    virtual Object* equal(Object* l,Object* r);
-   virtual void print(Object* obj); 
+   virtual void print(Object* obj);
+   virtual Object* len(Object* obj);
 };
 
 class String:public Object{

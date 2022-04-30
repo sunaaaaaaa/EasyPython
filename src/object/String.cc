@@ -40,7 +40,12 @@ void StringKlass::print(Object* obj){
    assert(s && (s->klass()==static_cast<Klass*>(this)));
    for(int i = 0;i<s->length();++i){
        printf("%c",s->value()[i]);
-    } 
+    }
+    std::cout << std::endl; 
+}
+
+Object* StringKlass::len(Object* obj){
+    return new Integer(static_cast<String*>(obj)->length());
 }
 
 Object* StringKlass::equal(Object* l,Object* r){

@@ -19,6 +19,7 @@ Interpreter::Interpreter(){
     m_builtins->put(new String("True"),Universe::True);
     m_builtins->put(new String("False"),Universe::False);
     m_builtins->put(new String("None"),Universe::None);
+    m_builtins->put(new String("len"),new Function(len));
 }
 
 void Interpreter::run(CodeObject* codes){
@@ -79,9 +80,6 @@ void Interpreter::runMainFrame(){
             case ByteCode::STORE_NAME:
                 //放入变量字典
                 v = m_main_frame->m_names->at(op_arg);
-                v->print();
-                std::cout<<std::endl;
-                //std::cout<<"arg:"<<op_arg<<std::endl;
                 m_main_frame->m_locals->put(v,m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1));
                 m_main_frame->m_stack->pop_back(); 
                 break; 
@@ -276,9 +274,14 @@ void Interpreter::runMainFrame(){
 }
 //创建栈帧
 void Interpreter::buildFrame(Object* callable, std::vector<Object*>* argList){
-    Frame* frame = new Frame(static_cast<Function*>(callable),argList);
-    frame->setSender(m_main_frame);
-    m_main_frame = frame;
+    if(callable->klass()==NativeFunctionKlass::getInstance()){
+       //执行内置函数,将结果压栈
+       m_main_frame->m_stack->push_back(static_cast<Function*>(callable)->call(argList));
+    }else{
+       Frame* frame = new Frame(static_cast<Function*>(callable),argList);
+       frame->setSender(m_main_frame);
+       m_main_frame = frame; 
+    }  
 }
 
 //退出当前栈帧，将返回值压入调用者栈

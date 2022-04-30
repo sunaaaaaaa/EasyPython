@@ -6,13 +6,14 @@
 namespace easy_vm{
 class Object{
 public:
-   // Object(){}
+   Object(){}
    Klass* klass(){
       assert(m_klass!=NULL);
       return m_klass;
    }
    void setKlass(Klass* kls){ m_klass = kls;}
    void print();
+   Object* len();
    Object* add(Object* obj);
    Object* sub(Object* obj);
    Object* mul(Object* obj);
