@@ -1,4 +1,5 @@
 #include "universe.h"
+#include "../object/String.h"
 #include <stdio.h>
 namespace easy_vm{
 
@@ -11,6 +12,8 @@ void Universe::genesis(){
     True = new Integer(1);
     False = new Integer(0);
     None = new Object();
+
+    StringKlass::getInstance()->init();
 }
 void Universe::destory(){
     

@@ -34,6 +34,12 @@ class Function:public Object{
 friend class FunctionKlass;
 friend class Frame;    
 public:
+    enum CO_FLAGS {
+        CO_VARARGS = 0x4,
+        CO_VARKEYWORDS = 0x8,
+        CO_GENERATOR = 0x20,
+    };
+
     Function(Object* obj);
     Function(Klass* klass);
     Function(NativeFuncPointer nativeFunc);//用于创建Native函数

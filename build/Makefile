@@ -261,6 +261,33 @@ src/object/String.cc.s:
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/object/String.cc.s
 .PHONY : src/object/String.cc.s
 
+src/object/dict.o: src/object/dict.cc.o
+
+.PHONY : src/object/dict.o
+
+# target to build an object file
+src/object/dict.cc.o:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/object/dict.cc.o
+.PHONY : src/object/dict.cc.o
+
+src/object/dict.i: src/object/dict.cc.i
+
+.PHONY : src/object/dict.i
+
+# target to preprocess a source file
+src/object/dict.cc.i:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/object/dict.cc.i
+.PHONY : src/object/dict.cc.i
+
+src/object/dict.s: src/object/dict.cc.s
+
+.PHONY : src/object/dict.s
+
+# target to generate assembly for a file
+src/object/dict.cc.s:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/object/dict.cc.s
+.PHONY : src/object/dict.cc.s
+
 src/object/function.o: src/object/function.cc.o
 
 .PHONY : src/object/function.o
@@ -314,6 +341,33 @@ src/object/integer.s: src/object/integer.cc.s
 src/object/integer.cc.s:
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/object/integer.cc.s
 .PHONY : src/object/integer.cc.s
+
+src/object/method.o: src/object/method.cc.o
+
+.PHONY : src/object/method.o
+
+# target to build an object file
+src/object/method.cc.o:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/object/method.cc.o
+.PHONY : src/object/method.cc.o
+
+src/object/method.i: src/object/method.cc.i
+
+.PHONY : src/object/method.i
+
+# target to preprocess a source file
+src/object/method.cc.i:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/object/method.cc.i
+.PHONY : src/object/method.cc.i
+
+src/object/method.s: src/object/method.cc.s
+
+.PHONY : src/object/method.s
+
+# target to generate assembly for a file
+src/object/method.cc.s:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/object/method.cc.s
+.PHONY : src/object/method.cc.s
 
 src/object/object.o: src/object/object.cc.o
 
@@ -474,12 +528,18 @@ help:
 	@echo "... src/object/String.o"
 	@echo "... src/object/String.i"
 	@echo "... src/object/String.s"
+	@echo "... src/object/dict.o"
+	@echo "... src/object/dict.i"
+	@echo "... src/object/dict.s"
 	@echo "... src/object/function.o"
 	@echo "... src/object/function.i"
 	@echo "... src/object/function.s"
 	@echo "... src/object/integer.o"
 	@echo "... src/object/integer.i"
 	@echo "... src/object/integer.s"
+	@echo "... src/object/method.o"
+	@echo "... src/object/method.i"
+	@echo "... src/object/method.s"
 	@echo "... src/object/object.o"
 	@echo "... src/object/object.i"
 	@echo "... src/object/object.s"

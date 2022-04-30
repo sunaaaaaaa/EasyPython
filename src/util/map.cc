@@ -88,6 +88,11 @@ K Map<K, V>::get_key(int index) {
     return m_entries[index].m_k;
 }
 
+template <typename K, typename V>
+V Map<K, V>::get_value(int index) {
+    return m_entries[index].m_v;
+}
+
 template class Map<Object*, Object*>;
 
 }

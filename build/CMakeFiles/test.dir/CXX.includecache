@@ -79,6 +79,12 @@ vector
 /home/lighthouse/cppSpace/EasyPython/src/object/String.cc
 String.h
 /home/lighthouse/cppSpace/EasyPython/src/object/String.h
+dict.h
+/home/lighthouse/cppSpace/EasyPython/src/object/dict.h
+function.h
+/home/lighthouse/cppSpace/EasyPython/src/object/function.h
+method.h
+/home/lighthouse/cppSpace/EasyPython/src/object/method.h
 ../runtime/universe.h
 /home/lighthouse/cppSpace/EasyPython/src/runtime/universe.h
 string.h
@@ -91,6 +97,20 @@ iostream
 /home/lighthouse/cppSpace/EasyPython/src/object/String.h
 object.h
 /home/lighthouse/cppSpace/EasyPython/src/object/object.h
+vector
+-
+
+/home/lighthouse/cppSpace/EasyPython/src/object/dict.cc
+dict.h
+/home/lighthouse/cppSpace/EasyPython/src/object/dict.h
+
+/home/lighthouse/cppSpace/EasyPython/src/object/dict.h
+object.h
+/home/lighthouse/cppSpace/EasyPython/src/object/object.h
+Klass.h
+/home/lighthouse/cppSpace/EasyPython/src/object/Klass.h
+../util/map.h
+/home/lighthouse/cppSpace/EasyPython/src/util/map.h
 
 /home/lighthouse/cppSpace/EasyPython/src/object/function.cc
 function.h
@@ -121,6 +141,20 @@ iostream
 /home/lighthouse/cppSpace/EasyPython/src/object/integer.h
 object.h
 /home/lighthouse/cppSpace/EasyPython/src/object/object.h
+
+/home/lighthouse/cppSpace/EasyPython/src/object/method.cc
+method.h
+/home/lighthouse/cppSpace/EasyPython/src/object/method.h
+
+/home/lighthouse/cppSpace/EasyPython/src/object/method.h
+Klass.h
+/home/lighthouse/cppSpace/EasyPython/src/object/Klass.h
+dict.h
+/home/lighthouse/cppSpace/EasyPython/src/object/dict.h
+object.h
+/home/lighthouse/cppSpace/EasyPython/src/object/object.h
+function.h
+/home/lighthouse/cppSpace/EasyPython/src/object/function.h
 
 /home/lighthouse/cppSpace/EasyPython/src/object/object.cc
 object.h
@@ -173,6 +207,8 @@ interpreter.h
 /home/lighthouse/cppSpace/EasyPython/src/object/integer.h
 ../object/String.h
 /home/lighthouse/cppSpace/EasyPython/src/object/String.h
+../object/method.h
+/home/lighthouse/cppSpace/EasyPython/src/object/method.h
 ../object/function.h
 /home/lighthouse/cppSpace/EasyPython/src/object/function.h
 ../util/map.h
@@ -189,6 +225,8 @@ frame.h
 /home/lighthouse/cppSpace/EasyPython/src/runtime/universe.cc
 universe.h
 /home/lighthouse/cppSpace/EasyPython/src/runtime/universe.h
+../object/String.h
+/home/lighthouse/cppSpace/EasyPython/src/object/String.h
 stdio.h
 -
 

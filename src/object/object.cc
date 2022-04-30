@@ -2,6 +2,16 @@
 
 namespace easy_vm{
 
+Object* Object::getattr(Object* attr){
+   assert(m_klass != NULL);
+   return m_klass->getattr(this,attr); 
+}
+
+Object* Object::setattr(Object* attr,Object* value){
+   assert(m_klass != NULL);
+   return m_klass->setattr(this,attr,value);  
+}
+
 void Object::print(){
    if(m_klass!=NULL){
       m_klass->print(this);

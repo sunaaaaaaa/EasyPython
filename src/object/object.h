@@ -13,6 +13,8 @@ public:
    }
    void setKlass(Klass* kls){ m_klass = kls;}
    void print();
+   Object* getattr(Object* attr);
+   Object* setattr(Object* attr,Object* value);
    Object* len();
    Object* add(Object* obj);
    Object* sub(Object* obj);

@@ -18,8 +18,10 @@ add_executable(test
          src/runtime/interpreter.cc
          src/object/object.cc
          src/object/List.cc
+         src/object/dict.cc
          src/object/String.cc
          src/object/integer.cc
+         src/object/method.cc
          src/object/function.cc
          src/runtime/universe.cc
          src/runtime/frame.cc

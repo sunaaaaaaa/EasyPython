@@ -1,8 +1,12 @@
 #include "String.h"
+#include "dict.h"
+#include "function.h"
+#include "method.h"
 #include "../runtime/universe.h"
 #include <string.h>
 #include <stdlib.h>
 #include <iostream>
+
 namespace easy_vm{
 
 StringKlass* StringKlass::instance = NULL;
@@ -12,6 +16,30 @@ StringKlass* StringKlass::getInstance(){
         instance = new StringKlass();
     }
     return instance;
+}
+//StringKlass内置函数实现
+Object* string_upper(std::vector<Object*>* args){
+    Object* arg0 = args->at(0);
+    assert(arg0 && arg0->klass() == StringKlass::getInstance());
+
+    String* str = static_cast<String*>(arg0);
+    int length = str->length();
+    if(length < 0){
+        return Universe::None;
+    } 
+    char* v = new char[length];
+    char c;
+    for(int i = 0;i < length; ++i){
+       c = str->value()[i];
+       if(c >= 'a' && c <= 'z'){
+           v[i] = c - 0x20;
+       }else{
+           v[i] = c;
+       } 
+    }
+    String* s = new String(v,length);
+    delete[] v;
+    return s;
 }
 
 
@@ -91,8 +119,29 @@ Object* StringKlass::contains(Object* obj,Object* ele){
     return Universe::False; 
 }
 
-// Object* String::not_equal(Object* obj){}
-// Object* String::ge(Object* obj){}
+
+
+void StringKlass::init(){
+    Dict* dict = new Dict();
+    setKlassDict(dict);
+    dict->put(new String("upper"),new Function(string_upper)); 
+}
+
+Object* StringKlass::getattr(Object* obj,Object* attr){
+   Object* result = Universe::None;
+   result = getKlassDict()->get(attr);
+   if(result == Universe::None){
+       return result;
+   }
+   if(Method::isFunction(result)){
+       result = new Method(static_cast<Function*>(result),obj);
+   }
+   return result;
+}
+
+Object* StringKlass::setattr(Object* obj,Object* attr,Object* value){
+
+}
 // Object* String::le(Object* obj){}
 
 }

@@ -7,6 +7,7 @@
 #include "../object/List.h"
 #include "../object/integer.h"
 #include "../object/String.h"
+#include "../object/method.h"
 #include "../object/function.h"
 #include "../util/map.h"
 
@@ -28,8 +29,7 @@ void Interpreter::run(CodeObject* codes){
     m_main_frame->m_stack->resize(codes->m_stackSize);
     m_ret_value = NULL;
     runMainFrame();
-    destoryFrame();
-    
+    destoryFrame();    
 }
 
 void Interpreter::runMainFrame(){
@@ -117,8 +117,18 @@ void Interpreter::runMainFrame(){
                    auto& temp = m_main_frame->m_arg_list->at(op_arg);
                    temp = v;
                 }
-                //m_main_frame->m_arg_list->insert(m_main_frame->m_arg_list->begin() + op_arg,v);
-                break; 
+                break;
+            case ByteCode::LOAD_ATTR:
+                v = STACK_TOP();
+                m_main_frame->m_stack->pop_back();
+                w = m_main_frame->m_names->at(op_arg);
+                m_main_frame->m_stack->push_back(v->getattr(w));
+                break;
+            case ByteCode::STORE_ATTR:
+                break;     
+            case ByteCode::LOAD_LOCALS:
+                //m_main_frame->m_stack->push_back(m_main_frame->m_locals);
+                break;    
             case ByteCode::PRINT_ITEM:
                 v = m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1);
                 m_main_frame->m_stack->pop_back();
@@ -285,6 +295,7 @@ void Interpreter::runMainFrame(){
                     args = NULL;
                 }
                 break;    
+            case ByteCode::BUILD_TUPLE:
             case ByteCode::BUILD_LIST:
                 v = new List();
                 while(op_arg--){
@@ -297,7 +308,7 @@ void Interpreter::runMainFrame(){
             case ByteCode::BUILD_MAP:
                 break;
             case ByteCode::BUILD_CLASS:
-                break; 
+                break;   
             default:
                 std::cout << "Error:Unrecognized byte code: "<<std::hex<<op_code <<std::endl;                 
         }
@@ -309,6 +320,13 @@ void Interpreter::buildFrame(Object* callable, std::vector<Object*>* argList){
     if(callable->klass()==NativeFunctionKlass::getInstance()){
        //执行内置函数,将结果压栈
        m_main_frame->m_stack->push_back(static_cast<Function*>(callable)->call(argList));
+    }else if(callable->klass() == MethodKlass::getInstance()){
+       Method* method = static_cast<Method*>(callable);
+       if(!argList){
+           argList = new std::vector<Object*>();
+       }
+       argList->insert(argList->begin(),method->getOwner());
+       buildFrame(method->getFunc(),argList);
     }else{
        Frame* frame = new Frame(static_cast<Function*>(callable),argList);
        frame->setSender(m_main_frame);
