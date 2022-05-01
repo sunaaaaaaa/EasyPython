@@ -145,6 +145,8 @@ object.h
 /home/lighthouse/cppSpace/EasyPython/src/object/method.cc
 method.h
 /home/lighthouse/cppSpace/EasyPython/src/object/method.h
+iostream
+-
 
 /home/lighthouse/cppSpace/EasyPython/src/object/method.h
 Klass.h

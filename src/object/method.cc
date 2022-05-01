@@ -1,5 +1,5 @@
 #include "method.h"
-
+#include <iostream>
 namespace easy_vm{
 
 MethodKlass* MethodKlass::instance = NULL;
@@ -17,11 +17,12 @@ void MethodKlass::print(Object* obj){
 
 bool Method::isFunction(Object* obj){
     Klass* klass = obj->klass();
-    if(klass != FunctionKlass::getInstance()){
+    if((klass != FunctionKlass::getInstance())&&(klass != NativeFunctionKlass::getInstance())){
         return false;
     }
-    Function* func = static_cast<Function*>(obj);
-    return ((func->flags() & Function::CO_GENERATOR) != 0);
+    //Function* func = static_cast<Function*>(obj);
+    //return ((func->flags() & Function::CO_GENERATOR) != 0);
+    return true;
 }
 
 }

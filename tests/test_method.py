@@ -1,10 +1,17 @@
-def foo():
-    print "hello"
+s = "hello"
+t = s.upper()
 
-class A(object):
-    def func(self):
-        print self
-        print "world"
+print s
+print t
 
-a = A()
-a.func()            
+
+# def foo():
+#     print "hello"
+
+# class A(object):
+#     def func(self):
+#         print self
+#         print "world"
+
+# a = A()
+# a.func()            
