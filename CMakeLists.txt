@@ -20,10 +20,12 @@ add_executable(test
          src/object/Klass.cc
          src/object/List.cc
          src/object/dict.cc
+         src/object/iter.cc
          src/object/String.cc
          src/object/integer.cc
          src/object/method.cc
          src/object/function.cc
+         src/object/string_table.cc
          src/runtime/universe.cc
          src/runtime/frame.cc
          src/util/map.cc)

@@ -1,6 +1,7 @@
 #include "List.h"
 #include "integer.h"
 #include "dict.h"
+#include "iter.h"
 #include "method.h"
 #include "function.h"
 #include "../runtime/universe.h"
@@ -117,6 +118,11 @@ Object* ListKlass::contains(Object* obj,Object* ele){
     return Universe::False;
 }
 
+Object* ListKlass::iter(Object* obj){
+    assert(obj && obj->klass() == this);
+    return new ListIterator(static_cast<List*>(obj));
+    
+}
 
 List::List(){
    setKlass(ListKlass::getInstance());

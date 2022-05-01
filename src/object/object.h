@@ -31,6 +31,7 @@ public:
    void storeSubscr(Object* index,Object* value);//修改对应下标元素
    void delSubscr(Object* obj);
    Object* contains(Object* obj);
+   Object* iter();
 private:
    Klass* m_klass;   
 };

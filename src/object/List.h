@@ -19,7 +19,8 @@ public:
    virtual void delSubscr(Object* obj,Object* ele);
    virtual Object* contains(Object* obj,Object* ele);
    virtual Object* less(Object* obj1,Object* obj2);
-   virtual Object* greater(Object* obj1,Object* obj2);   
+   virtual Object* greater(Object* obj1,Object* obj2);
+   virtual Object* iter(Object* obj);   
 };
 
 class List:public Object{

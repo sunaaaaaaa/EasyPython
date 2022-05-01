@@ -36,6 +36,7 @@ public:
     virtual void storeSubscr(Object* obj,Object* index,Object* value){}
     virtual void delSubscr(Object* obj,Object* ele){}
     virtual Object* contains(Object* obj1,Object* obj2){return 0;}
+    virtual Object* iter(Object* obj){};
 public:
     static int compareKlass(Klass* kls1,Klass* kls2);
 private:

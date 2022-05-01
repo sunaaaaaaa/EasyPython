@@ -36,7 +36,19 @@ void test1(){
   std::cout << vector->size() << std::endl; 
 }
 
-int main(){
-  test();
+int getNum(){
+   return 5;
+}
 
+int getNum2(){
+  getNum();
+}
+
+int test2(){
+  getNum2();
+}
+
+int main(){
+  int a = test2();
+  std::cout<<a<<std::endl;
 }

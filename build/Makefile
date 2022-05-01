@@ -369,6 +369,33 @@ src/object/integer.cc.s:
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/object/integer.cc.s
 .PHONY : src/object/integer.cc.s
 
+src/object/iter.o: src/object/iter.cc.o
+
+.PHONY : src/object/iter.o
+
+# target to build an object file
+src/object/iter.cc.o:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/object/iter.cc.o
+.PHONY : src/object/iter.cc.o
+
+src/object/iter.i: src/object/iter.cc.i
+
+.PHONY : src/object/iter.i
+
+# target to preprocess a source file
+src/object/iter.cc.i:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/object/iter.cc.i
+.PHONY : src/object/iter.cc.i
+
+src/object/iter.s: src/object/iter.cc.s
+
+.PHONY : src/object/iter.s
+
+# target to generate assembly for a file
+src/object/iter.cc.s:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/object/iter.cc.s
+.PHONY : src/object/iter.cc.s
+
 src/object/method.o: src/object/method.cc.o
 
 .PHONY : src/object/method.o
@@ -422,6 +449,33 @@ src/object/object.s: src/object/object.cc.s
 src/object/object.cc.s:
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/object/object.cc.s
 .PHONY : src/object/object.cc.s
+
+src/object/string_table.o: src/object/string_table.cc.o
+
+.PHONY : src/object/string_table.o
+
+# target to build an object file
+src/object/string_table.cc.o:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/object/string_table.cc.o
+.PHONY : src/object/string_table.cc.o
+
+src/object/string_table.i: src/object/string_table.cc.i
+
+.PHONY : src/object/string_table.i
+
+# target to preprocess a source file
+src/object/string_table.cc.i:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/object/string_table.cc.i
+.PHONY : src/object/string_table.cc.i
+
+src/object/string_table.s: src/object/string_table.cc.s
+
+.PHONY : src/object/string_table.s
+
+# target to generate assembly for a file
+src/object/string_table.cc.s:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/object/string_table.cc.s
+.PHONY : src/object/string_table.cc.s
 
 src/runtime/frame.o: src/runtime/frame.cc.o
 
@@ -567,12 +621,18 @@ help:
 	@echo "... src/object/integer.o"
 	@echo "... src/object/integer.i"
 	@echo "... src/object/integer.s"
+	@echo "... src/object/iter.o"
+	@echo "... src/object/iter.i"
+	@echo "... src/object/iter.s"
 	@echo "... src/object/method.o"
 	@echo "... src/object/method.i"
 	@echo "... src/object/method.s"
 	@echo "... src/object/object.o"
 	@echo "... src/object/object.i"
 	@echo "... src/object/object.s"
+	@echo "... src/object/string_table.o"
+	@echo "... src/object/string_table.i"
+	@echo "... src/object/string_table.s"
 	@echo "... src/runtime/frame.o"
 	@echo "... src/runtime/frame.i"
 	@echo "... src/runtime/frame.s"

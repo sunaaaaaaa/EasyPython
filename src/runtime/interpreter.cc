@@ -9,6 +9,7 @@
 #include "../object/String.h"
 #include "../object/method.h"
 #include "../object/function.h"
+#include "../object/string_table.h"
 #include "../util/map.h"
 
 
@@ -326,7 +327,21 @@ void Interpreter::runMainFrame(){
             case ByteCode::BUILD_MAP:
                 break;
             case ByteCode::BUILD_CLASS:
-                break;   
+                break;
+            case ByteCode::GET_ITER:
+                v = STACK_TOP();
+                m_main_frame->m_stack->pop_back();
+                m_main_frame->m_stack->push_back(v->iter());
+                break;
+            case ByteCode::FOR_ITER:
+                v = STACK_TOP();
+                w = v->getattr(StringTable::getInstance()->m_next);
+                buildFrame(w,NULL);
+                if(STACK_TOP() == NULL){
+                    m_main_frame->m_pc += op_arg;
+                    m_main_frame->m_stack->pop_back();
+                }
+                break;  
             default:
                 std::cout << "Error:Unrecognized byte code: "<<std::hex<<op_code <<std::endl;                 
         }
