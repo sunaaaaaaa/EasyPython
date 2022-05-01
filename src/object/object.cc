@@ -73,6 +73,16 @@ Object* Object::subscr(Object* index){
    m_klass->subscr(this,index);
 }
 
+void Object::storeSubscr(Object* index,Object* value){
+   assert(m_klass != NULL);
+   m_klass->storeSubscr(this,index,value);
+}
+
+void Object::delSubscr(Object* ele){
+   assert(m_klass != NULL);
+   m_klass->delSubscr(this,ele);
+}
+
 Object* Object::contains(Object* obj){
    assert(m_klass != NULL);
    m_klass->contains(this,obj);

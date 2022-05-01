@@ -6,7 +6,7 @@ namespace easy_vm{
 
 class StringKlass:public Klass{
 private:
-   StringKlass(){}
+   StringKlass(){};
    static StringKlass* instance;
 public:
    static StringKlass* getInstance();
@@ -18,6 +18,8 @@ public:
    virtual Object* len(Object* obj);
    virtual Object* subscr(Object* obj,Object* index);
    virtual Object* contains(Object* obj,Object* ele);
+   virtual Object* less(Object* obj1,Object* obj2);
+   virtual Object* greater(Object* obj1,Object* obj2);
 };
 
 class String:public Object{

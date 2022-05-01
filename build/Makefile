@@ -207,6 +207,33 @@ src/main.cc.s:
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/main.cc.s
 .PHONY : src/main.cc.s
 
+src/object/Klass.o: src/object/Klass.cc.o
+
+.PHONY : src/object/Klass.o
+
+# target to build an object file
+src/object/Klass.cc.o:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/object/Klass.cc.o
+.PHONY : src/object/Klass.cc.o
+
+src/object/Klass.i: src/object/Klass.cc.i
+
+.PHONY : src/object/Klass.i
+
+# target to preprocess a source file
+src/object/Klass.cc.i:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/object/Klass.cc.i
+.PHONY : src/object/Klass.cc.i
+
+src/object/Klass.s: src/object/Klass.cc.s
+
+.PHONY : src/object/Klass.s
+
+# target to generate assembly for a file
+src/object/Klass.cc.s:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/object/Klass.cc.s
+.PHONY : src/object/Klass.cc.s
+
 src/object/List.o: src/object/List.cc.o
 
 .PHONY : src/object/List.o
@@ -522,6 +549,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/object/Klass.o"
+	@echo "... src/object/Klass.i"
+	@echo "... src/object/Klass.s"
 	@echo "... src/object/List.o"
 	@echo "... src/object/List.i"
 	@echo "... src/object/List.s"

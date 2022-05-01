@@ -151,6 +151,7 @@ void Interpreter::runMainFrame(){
             case ByteCode::BINARY_DIVIDE:
                 break;       
             case ByteCode::BINARY_SUBSCR:
+                //取列表或字符串元素
                 v = STACK_TOP();
                 m_main_frame->m_stack->pop_back();
                 w = STACK_TOP();
@@ -159,6 +160,23 @@ void Interpreter::runMainFrame(){
                 break;
             case ByteCode::BINARY_MODULO:
                 break;    
+            case ByteCode::STORE_SUBSCR:
+                //使用下标修改列表或字符串对应元素
+                u = STACK_TOP();
+                m_main_frame->m_stack->pop_back();
+                v = STACK_TOP();
+                m_main_frame->m_stack->pop_back();
+                w = STACK_TOP();
+                m_main_frame->m_stack->pop_back();
+                v->storeSubscr(u,w);
+                break;
+            case ByteCode::DELETE_SUBSCR:
+                w = STACK_TOP();
+                m_main_frame->m_stack->pop_back();
+                v = STACK_TOP();
+                m_main_frame->m_stack->pop_back();
+                v->delSubscr(w);
+                break;
             case ByteCode::RETURN_VALUE:
                 m_ret_value = m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1);
                 m_main_frame->m_stack->pop_back();
@@ -316,8 +334,8 @@ void Interpreter::runMainFrame(){
     }
 }
 //创建栈帧
-void Interpreter::buildFrame(Object* callable, std::vector<Object*>* argList){
-    if(callable->klass()==NativeFunctionKlass::getInstance()){
+void Interpreter::buildFrame(Object* callable, std::vector<Object*>* argList){ 
+    if(callable->klass()==NativeFunctionKlass::getInstance()){  
        //执行内置函数,将结果压栈
        m_main_frame->m_stack->push_back(static_cast<Function*>(callable)->call(argList));
     }else if(callable->klass() == MethodKlass::getInstance()){

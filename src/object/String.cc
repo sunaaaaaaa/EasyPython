@@ -14,6 +14,7 @@ StringKlass* StringKlass::instance = NULL;
 StringKlass* StringKlass::getInstance(){
     if(instance == NULL){
         instance = new StringKlass();
+        instance->setName(new String("str"));
     }
     return instance;
 }
@@ -142,6 +143,37 @@ Object* StringKlass::getattr(Object* obj,Object* attr){
 Object* StringKlass::setattr(Object* obj,Object* attr,Object* value){
 
 }
-// Object* String::le(Object* obj){}
+Object* StringKlass::less(Object* obj1,Object* obj2){
+    String* ls = static_cast<String*>(obj1);
+    assert(ls && ls->klass() == static_cast<Klass*>(this));
+
+    if(obj1->klass() != obj2->klass()){
+        if(Klass::compareKlass(obj1->klass(),obj2->klass()) < 0){
+            return Universe::True;
+        }else{
+            return Universe::False;
+        }
+    }
+    
+    String* rs = static_cast<String*>(obj2);
+    assert(rs && rs->klass() == static_cast<Klass*>(this));
+    int len = ls->length() < rs->length() ? ls->length() : rs->length();
+    for(int i = 0;i<len; ++i){
+        if(ls->value()[i] < rs->value()[i]){
+            return Universe::True;
+        }else if(ls->value()[i] > rs->value()[i]){
+            return Universe::False;   
+        }
+    }
+
+    if(ls->length() < rs->length()){
+        return Universe::True;
+    }
+    return Universe::False;
+}
+
+Object* StringKlass::greater(Object* obj1,Object* obj2){
+    return less(obj2,obj1);
+}
 
 }

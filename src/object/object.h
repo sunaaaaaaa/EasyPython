@@ -27,7 +27,9 @@ public:
    Object* not_equal(Object* obj);
    Object* ge(Object* obj);
    Object* le(Object* obj);
-   Object* subscr(Object* obj);//取下标操作，用于String类和List类，其他类该方法不实现
+   Object* subscr(Object* index);//取下标操作，用于String类和List类，其他类该方法不实现
+   void storeSubscr(Object* index,Object* value);//修改对应下标元素
+   void delSubscr(Object* obj);
    Object* contains(Object* obj);
 private:
    Klass* m_klass;   

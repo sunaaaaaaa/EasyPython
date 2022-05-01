@@ -8,14 +8,18 @@ namespace easy_vm{
 
 class ListKlass :public Klass{
 private:
-   ListKlass(){};
+   ListKlass();
    static ListKlass* instance;
 public:
    static ListKlass* getInstance();
 
    virtual void print(Object* obj);
    virtual Object* subscr(Object* obj,Object* index);
-   virtual Object* contains(Object* obj,Object* ele);     
+   virtual void storeSubscr(Object* obj,Object* index,Object* value);
+   virtual void delSubscr(Object* obj,Object* ele);
+   virtual Object* contains(Object* obj,Object* ele);
+   virtual Object* less(Object* obj1,Object* obj2);
+   virtual Object* greater(Object* obj1,Object* obj2);   
 };
 
 class List:public Object{
@@ -28,9 +32,11 @@ public:
     std::vector<Object*>* getList()const{return m_inner_list;}
     void append(Object* obj){m_inner_list->push_back(obj);}
     Object* pop(){
-        Object* temp = m_inner_list->at(m_inner_list->size()-1);
-        m_inner_list->pop_back();
-        return temp;
+        if(m_inner_list->size() > 0){
+           Object* temp = m_inner_list->at(m_inner_list->size()-1);
+           m_inner_list->pop_back();
+           return temp; 
+        }  
     }
     Object* get(int index){
         assert(index < size());
@@ -44,9 +50,20 @@ public:
         temp = obj;
     }
     Object* top(){return get(size()-1);}
+    
+public:
+    static Object* list_append(std::vector<Object*>* args);
+    static Object* list_replace(std::vector<Object*>* args);
+    static Object* list_find(std::vector<Object*>* args);
+    static Object* list_pop(std::vector<Object*>* args);
+    static Object* list_remove(std::vector<Object*>* args);
+    static Object* list_reverse(std::vector<Object*>* args);
+    static Object* list_sort(std::vector<Object*>* args);
 private:
     std::vector<Object*>* m_inner_list;   
 };
+
+
 
 }
 #endif

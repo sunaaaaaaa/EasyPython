@@ -17,8 +17,8 @@ public:
     void setKlassDict(Dict* dict){m_klass_dict = dict;}
     Dict* getKlassDict(){return m_klass_dict;}
     
-    virtual Object* getattr(Object* obj,Object* attr){}
-    virtual Object* setattr(Object* obj,Object* attr,Object* value){}
+    virtual Object* getattr(Object* obj,Object* attr);
+    virtual Object* setattr(Object* obj,Object* attr,Object* value);
     virtual void print(Object* obj1){}
     virtual Object* len(Object* obj){}
     virtual Object* greater(Object* obj1,Object* obj2){return 0;}
@@ -33,7 +33,11 @@ public:
     virtual Object* div(Object* obj1,Object* obj2){return 0;}
     virtual Object* mod(Object* obj1,Object* obj2){return 0;}
     virtual Object* subscr(Object* obj,Object* index){}
+    virtual void storeSubscr(Object* obj,Object* index,Object* value){}
+    virtual void delSubscr(Object* obj,Object* ele){}
     virtual Object* contains(Object* obj1,Object* obj2){return 0;}
+public:
+    static int compareKlass(Klass* kls1,Klass* kls2);
 private:
     String* m_name;
     Dict* m_klass_dict;

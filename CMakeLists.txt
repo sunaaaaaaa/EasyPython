@@ -17,6 +17,7 @@ add_executable(test
          src/code/code_object.cc
          src/runtime/interpreter.cc
          src/object/object.cc
+         src/object/Klass.cc
          src/object/List.cc
          src/object/dict.cc
          src/object/String.cc

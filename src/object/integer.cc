@@ -91,7 +91,12 @@ Object* IntegerKlass::mod(Object* l,Object* r){
 
 Object* IntegerKlass::greater(Object* l,Object* r){
    if(l->klass()!=r->klass()){
-      std::logic_error("compare op error,lvalue class is not sameple to rvalue class");
+      // std::logic_error("compare op error,lvalue class is not sameple to rvalue class");
+      if(Klass::compareKlass(l->klass(),r->klass()) < 0){
+         return Universe::False;
+      }else{
+         return Universe::True;
+      }
    }
 
    Integer* il = static_cast<Integer*>(l);
@@ -108,7 +113,12 @@ Object* IntegerKlass::greater(Object* l,Object* r){
 Object* IntegerKlass::less(Object* l,Object* r){
    
    if(l->klass()!=r->klass()){
-      std::logic_error("compare op error,lvalue class is not sameple to rvalue class");
+      // std::logic_error("compare op error,lvalue class is not sameple to rvalue class");
+      if(Klass::compareKlass(l->klass(),r->klass()) < 0){
+         return Universe::True;
+      }else{
+         return Universe::False;
+      }
    }
 
    Integer* il = static_cast<Integer*>(l);
@@ -157,7 +167,12 @@ Object* IntegerKlass::not_equal(Object* l,Object* r){
 }
 Object* IntegerKlass::ge(Object* l,Object* r){
    if(l->klass()!=r->klass()){
-      std::logic_error("compare op error,lvalue class is not sameple to rvalue class");
+      // std::logic_error("compare op error,lvalue class is not sameple to rvalue class");
+      if(Klass::compareKlass(l->klass(),r->klass()) <= 0){
+         return Universe::False;
+      }else{
+         return Universe::True;
+      }
    }
 
    Integer* il = static_cast<Integer*>(l);
@@ -173,7 +188,12 @@ Object* IntegerKlass::ge(Object* l,Object* r){
 }
 Object* IntegerKlass::le(Object* l,Object* r){
    if(l->klass()!=r->klass()){
-      std::logic_error("compare op error,lvalue class is not sameple to rvalue class");
+      // std::logic_error("compare op error,lvalue class is not sameple to rvalue class");
+      if(Klass::compareKlass(l->klass(),r->klass()) < 0){
+         return Universe::True;
+      }else{
+         return Universe::False;
+      }
    }
 
    Integer* il = static_cast<Integer*>(l);

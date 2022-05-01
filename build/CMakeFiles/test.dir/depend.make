@@ -30,12 +30,30 @@ CMakeFiles/test.dir/src/main.cc.o: ../src/runtime/interpreter.h
 CMakeFiles/test.dir/src/main.cc.o: ../src/util/buffer_input_stream.h
 CMakeFiles/test.dir/src/main.cc.o: ../src/util/map.h
 
+CMakeFiles/test.dir/src/object/Klass.cc.o: ../src/code/code_object.h
+CMakeFiles/test.dir/src/object/Klass.cc.o: ../src/object/Klass.cc
+CMakeFiles/test.dir/src/object/Klass.cc.o: ../src/object/Klass.h
+CMakeFiles/test.dir/src/object/Klass.cc.o: ../src/object/String.h
+CMakeFiles/test.dir/src/object/Klass.cc.o: ../src/object/dict.h
+CMakeFiles/test.dir/src/object/Klass.cc.o: ../src/object/function.h
+CMakeFiles/test.dir/src/object/Klass.cc.o: ../src/object/integer.h
+CMakeFiles/test.dir/src/object/Klass.cc.o: ../src/object/method.h
+CMakeFiles/test.dir/src/object/Klass.cc.o: ../src/object/object.h
+CMakeFiles/test.dir/src/object/Klass.cc.o: ../src/runtime/universe.h
+CMakeFiles/test.dir/src/object/Klass.cc.o: ../src/util/map.h
+
+CMakeFiles/test.dir/src/object/List.cc.o: ../src/code/code_object.h
 CMakeFiles/test.dir/src/object/List.cc.o: ../src/object/Klass.h
 CMakeFiles/test.dir/src/object/List.cc.o: ../src/object/List.cc
 CMakeFiles/test.dir/src/object/List.cc.o: ../src/object/List.h
+CMakeFiles/test.dir/src/object/List.cc.o: ../src/object/String.h
+CMakeFiles/test.dir/src/object/List.cc.o: ../src/object/dict.h
+CMakeFiles/test.dir/src/object/List.cc.o: ../src/object/function.h
 CMakeFiles/test.dir/src/object/List.cc.o: ../src/object/integer.h
+CMakeFiles/test.dir/src/object/List.cc.o: ../src/object/method.h
 CMakeFiles/test.dir/src/object/List.cc.o: ../src/object/object.h
 CMakeFiles/test.dir/src/object/List.cc.o: ../src/runtime/universe.h
+CMakeFiles/test.dir/src/object/List.cc.o: ../src/util/map.h
 
 CMakeFiles/test.dir/src/object/String.cc.o: ../src/code/code_object.h
 CMakeFiles/test.dir/src/object/String.cc.o: ../src/object/Klass.h

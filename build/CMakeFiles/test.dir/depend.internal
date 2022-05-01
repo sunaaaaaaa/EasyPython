@@ -30,13 +30,31 @@ CMakeFiles/test.dir/src/main.cc.o
  /home/lighthouse/cppSpace/EasyPython/src/runtime/interpreter.h
  /home/lighthouse/cppSpace/EasyPython/src/util/buffer_input_stream.h
  /home/lighthouse/cppSpace/EasyPython/src/util/map.h
+CMakeFiles/test.dir/src/object/Klass.cc.o
+ /home/lighthouse/cppSpace/EasyPython/src/code/code_object.h
+ /home/lighthouse/cppSpace/EasyPython/src/object/Klass.cc
+ /home/lighthouse/cppSpace/EasyPython/src/object/Klass.h
+ /home/lighthouse/cppSpace/EasyPython/src/object/String.h
+ /home/lighthouse/cppSpace/EasyPython/src/object/dict.h
+ /home/lighthouse/cppSpace/EasyPython/src/object/function.h
+ /home/lighthouse/cppSpace/EasyPython/src/object/integer.h
+ /home/lighthouse/cppSpace/EasyPython/src/object/method.h
+ /home/lighthouse/cppSpace/EasyPython/src/object/object.h
+ /home/lighthouse/cppSpace/EasyPython/src/runtime/universe.h
+ /home/lighthouse/cppSpace/EasyPython/src/util/map.h
 CMakeFiles/test.dir/src/object/List.cc.o
+ /home/lighthouse/cppSpace/EasyPython/src/code/code_object.h
  /home/lighthouse/cppSpace/EasyPython/src/object/Klass.h
  /home/lighthouse/cppSpace/EasyPython/src/object/List.cc
  /home/lighthouse/cppSpace/EasyPython/src/object/List.h
+ /home/lighthouse/cppSpace/EasyPython/src/object/String.h
+ /home/lighthouse/cppSpace/EasyPython/src/object/dict.h
+ /home/lighthouse/cppSpace/EasyPython/src/object/function.h
  /home/lighthouse/cppSpace/EasyPython/src/object/integer.h
+ /home/lighthouse/cppSpace/EasyPython/src/object/method.h
  /home/lighthouse/cppSpace/EasyPython/src/object/object.h
  /home/lighthouse/cppSpace/EasyPython/src/runtime/universe.h
+ /home/lighthouse/cppSpace/EasyPython/src/util/map.h
 CMakeFiles/test.dir/src/object/String.cc.o
  /home/lighthouse/cppSpace/EasyPython/src/code/code_object.h
  /home/lighthouse/cppSpace/EasyPython/src/object/Klass.h
