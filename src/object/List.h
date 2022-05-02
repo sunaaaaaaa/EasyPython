@@ -46,7 +46,7 @@ public:
         return m_inner_list->at(index);
     }
     void set(int index,Object* obj){
-        if(index > m_inner_list->size()){
+        if(index >= m_inner_list->size()){
             m_inner_list->resize(index + 1);
         }
         auto& temp = m_inner_list->at(index);

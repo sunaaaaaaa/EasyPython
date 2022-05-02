@@ -1,6 +1,7 @@
 #include <vector>
 #include <iostream>
 #include <map>
+#include "cell.h"
 #include "universe.h"
 #include "interpreter.h"
 #include "../code/bytecode.hpp"
@@ -127,6 +128,54 @@ void Interpreter::runMainFrame(){
                 break;
             case ByteCode::STORE_ATTR:
                 break;     
+            case ByteCode::LOAD_CLOSURE:
+                v = m_main_frame->mClosure()->get(op_arg);
+                if(v == NULL){
+                    v = m_main_frame->getCellFromParamter(op_arg);
+                    m_main_frame->mClosure()->set(op_arg,v);
+                }
+                if(v->klass() == CellKlass::getInstance()){
+                    m_main_frame->m_stack->push_back(v);
+                }else{
+                    m_main_frame->m_stack->push_back(new Cell(m_main_frame->mClosure(),op_arg));
+                }
+                break;
+            case ByteCode::LOAD_DEREF:
+                v = m_main_frame->mClosure()->get(op_arg);
+                if(v->klass() == CellKlass::getInstance()){
+                    v = static_cast<Cell*>(v)->getValue();
+                }
+                m_main_frame->m_stack->push_back(v);
+                break;
+            case ByteCode::STORE_DEREF:
+                v = STACK_TOP();
+                m_main_frame->m_stack->pop_back();
+                m_main_frame->mClosure()->set(op_arg,v);
+                break;    
+            case ByteCode::MAKE_CLOSURE:
+                v = STACK_TOP();
+                
+                m_main_frame->m_stack->pop_back();
+                subFunc = new Function(v);
+                subFunc->setClosure(static_cast<List*>(STACK_TOP()));
+                m_main_frame->m_stack->pop_back();
+                subFunc->setGlobals(m_main_frame->mGlobals());
+                if(op_arg > 0){
+                   args = new std::vector<Object*>();
+                   while(op_arg--){
+                        v = m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1);
+                        m_main_frame->m_stack->pop_back();
+                        args->push_back(v);
+                   }
+                   
+                   subFunc->setDefaults(args);
+                }
+                if(args != NULL){
+                    delete args;
+                    args = NULL;
+                }
+                m_main_frame->m_stack->push_back(subFunc);
+                break;
             case ByteCode::LOAD_LOCALS:
                 //m_main_frame->m_stack->push_back(m_main_frame->m_locals);
                 break;    
@@ -298,19 +347,23 @@ void Interpreter::runMainFrame(){
             case ByteCode::CALL_FUNCTION:
                 //此处为函数运行传入的实参
                 if(op_arg > 0){
+                    int na = op_arg & 0xff;//取低8位
+                    int nk = op_arg >> 8;  //高8位
+                    int arg_cnt = na + 2*nk; //高8位对应键参数的值，由于每个键参数都对应键和参数两个值，因此需要*2
+
                     args = new std::vector<Object*>();
                     args->resize(op_arg);
                     while(op_arg--){
-                        v = m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1);
+                        v = STACK_TOP();
                         m_main_frame->m_stack->pop_back();
                         auto& temp = args->at(op_arg);
                         temp = v;
                     }
                 }
                 
-                v = m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1);
+                v = STACK_TOP();
                 m_main_frame->m_stack->pop_back();
-                buildFrame(v,args);
+                buildFrame(v,args,op_arg);
                 if(args != NULL){
                     delete args;
                     args = NULL;
@@ -351,7 +404,7 @@ void Interpreter::runMainFrame(){
             case ByteCode::FOR_ITER:
                 v = STACK_TOP();
                 w = v->getattr(StringTable::getInstance()->m_next);
-                buildFrame(w,NULL);
+                buildFrame(w,NULL,op_arg);
                 if(STACK_TOP() == NULL){
                     m_main_frame->m_pc += op_arg;
                     m_main_frame->m_stack->pop_back();
@@ -365,13 +418,13 @@ void Interpreter::runMainFrame(){
                 }
                 break;
             default:
-                std::cout << "Error:Unrecognized byte code: "<<std::hex<<op_code <<std::endl;                 
+                std::cout << "Error:Unrecognized byte code: "<<std::dec<<(int)op_code <<std::endl;                 
         }
         
     }
 }
 //创建栈帧
-void Interpreter::buildFrame(Object* callable, std::vector<Object*>* argList){ 
+void Interpreter::buildFrame(Object* callable, std::vector<Object*>* argList,int op_arg){ 
     if(callable->klass()==NativeFunctionKlass::getInstance()){  
        //执行内置函数,将结果压栈
        m_main_frame->m_stack->push_back(static_cast<Function*>(callable)->call(argList));
@@ -381,9 +434,9 @@ void Interpreter::buildFrame(Object* callable, std::vector<Object*>* argList){
            argList = new std::vector<Object*>();
        }
        argList->insert(argList->begin(),method->getOwner());
-       buildFrame(method->getFunc(),argList);
+       buildFrame(method->getFunc(),argList,op_arg + 1);
     }else{
-       Frame* frame = new Frame(static_cast<Function*>(callable),argList);
+       Frame* frame = new Frame(static_cast<Function*>(callable),argList,op_arg);
        frame->setSender(m_main_frame);
        m_main_frame = frame; 
     }  

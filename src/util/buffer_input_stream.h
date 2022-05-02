@@ -32,7 +32,7 @@ public:
    }
    //因为python的字节码文件为大端方式，因此后面的字符是在高地址上，因此第四个字节是地址最高的
    int read_int(){
-       int b1 = read() & 0xff;
+       int b1 = read() & 0xff;//取每个char的低8位
        int b2 = read() & 0xff;
        int b3 = read() & 0xff;
        int b4 = read() & 0xff;

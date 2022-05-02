@@ -6,6 +6,36 @@
 
 #IncludeRegexTransform: 
 
+.././src/object/Klass.h
+stdio.h
+-
+
+.././src/object/List.h
+Klass.h
+.././src/object/Klass.h
+object.h
+.././src/object/object.h
+vector
+-
+
+.././src/object/dict.h
+object.h
+.././src/object/object.h
+Klass.h
+.././src/object/Klass.h
+../util/map.h
+.././src/util/map.h
+vector
+-
+
+.././src/object/object.h
+Klass.h
+.././src/object/Klass.h
+assert.h
+-
+
+.././src/util/map.h
+
 /home/lighthouse/cppSpace/EasyPython/src/code/binary_parser.cc
 binary_parser.h
 /home/lighthouse/cppSpace/EasyPython/src/code/binary_parser.h
@@ -155,6 +185,8 @@ assert.h
 -
 
 /home/lighthouse/cppSpace/EasyPython/src/object/function.h
+List.h
+/home/lighthouse/cppSpace/EasyPython/src/object/List.h
 Klass.h
 /home/lighthouse/cppSpace/EasyPython/src/object/Klass.h
 object.h
@@ -232,9 +264,33 @@ String.h
 
 /home/lighthouse/cppSpace/EasyPython/src/runtime/block.h
 
+/home/lighthouse/cppSpace/EasyPython/src/runtime/cell.cc
+cell.h
+/home/lighthouse/cppSpace/EasyPython/src/runtime/cell.h
+../object/String.h
+/home/lighthouse/cppSpace/EasyPython/src/object/String.h
+../object/dict.h
+/home/lighthouse/cppSpace/EasyPython/src/object/dict.h
+
+/home/lighthouse/cppSpace/EasyPython/src/runtime/cell.h
+../object/List.h
+/home/lighthouse/cppSpace/EasyPython/src/object/List.h
+../object/Klass.h
+/home/lighthouse/cppSpace/EasyPython/src/object/Klass.h
+../object/object.h
+/home/lighthouse/cppSpace/EasyPython/src/object/object.h
+
 /home/lighthouse/cppSpace/EasyPython/src/runtime/frame.cc
+dict.h
+/home/lighthouse/cppSpace/EasyPython/src/runtime/dict.h
+List.h
+/home/lighthouse/cppSpace/EasyPython/src/runtime/List.h
 frame.h
 /home/lighthouse/cppSpace/EasyPython/src/runtime/frame.h
+vector
+-
+assert.h
+-
 iostream
 -
 
@@ -247,6 +303,10 @@ block.h
 /home/lighthouse/cppSpace/EasyPython/src/util/map.h
 ../code/code_object.h
 /home/lighthouse/cppSpace/EasyPython/src/code/code_object.h
+../object/dict.h
+/home/lighthouse/cppSpace/EasyPython/src/object/dict.h
+../object/List.h
+/home/lighthouse/cppSpace/EasyPython/src/object/List.h
 ../object/object.h
 /home/lighthouse/cppSpace/EasyPython/src/object/object.h
 ../object/function.h
@@ -259,6 +319,8 @@ iostream
 -
 map
 -
+cell.h
+/home/lighthouse/cppSpace/EasyPython/src/runtime/cell.h
 universe.h
 /home/lighthouse/cppSpace/EasyPython/src/runtime/universe.h
 interpreter.h

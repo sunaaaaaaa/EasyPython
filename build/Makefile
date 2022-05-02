@@ -477,6 +477,33 @@ src/object/string_table.cc.s:
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/object/string_table.cc.s
 .PHONY : src/object/string_table.cc.s
 
+src/runtime/cell.o: src/runtime/cell.cc.o
+
+.PHONY : src/runtime/cell.o
+
+# target to build an object file
+src/runtime/cell.cc.o:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/runtime/cell.cc.o
+.PHONY : src/runtime/cell.cc.o
+
+src/runtime/cell.i: src/runtime/cell.cc.i
+
+.PHONY : src/runtime/cell.i
+
+# target to preprocess a source file
+src/runtime/cell.cc.i:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/runtime/cell.cc.i
+.PHONY : src/runtime/cell.cc.i
+
+src/runtime/cell.s: src/runtime/cell.cc.s
+
+.PHONY : src/runtime/cell.s
+
+# target to generate assembly for a file
+src/runtime/cell.cc.s:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/runtime/cell.cc.s
+.PHONY : src/runtime/cell.cc.s
+
 src/runtime/frame.o: src/runtime/frame.cc.o
 
 .PHONY : src/runtime/frame.o
@@ -633,6 +660,9 @@ help:
 	@echo "... src/object/string_table.o"
 	@echo "... src/object/string_table.i"
 	@echo "... src/object/string_table.s"
+	@echo "... src/runtime/cell.o"
+	@echo "... src/runtime/cell.i"
+	@echo "... src/runtime/cell.s"
 	@echo "... src/runtime/frame.o"
 	@echo "... src/runtime/frame.i"
 	@echo "... src/runtime/frame.s"

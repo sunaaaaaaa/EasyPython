@@ -1,5 +1,6 @@
 #ifndef __EASY_PYTHON_VM_FUNCTION_H_
 #define __EASY_PYTHON_VM_FUNCTION_H_
+#include "List.h"
 #include "Klass.h"
 #include "object.h"
 #include "../util/map.h"
@@ -49,7 +50,8 @@ public:
     void setGlobals(Map<Object*,Object*>* global){ m_global = global;}
     std::vector<Object*>* getDefaults(){return m_defaults;}
     void setDefaults(std::vector<Object*>* defaults);
-
+    List* getClosure(){return m_closure;}
+    void setClosure(List* list){m_closure = list;}
     Object* call(std::vector<Object*>* args);//当Function表示一个Native函数时，通过call去执行native内置函数的逻辑
 private:
     String* m_funcName;
@@ -57,6 +59,7 @@ private:
     CodeObject* m_codes;             //函数代码  
     Map<Object*,Object*>* m_global;  //函数所在域的全局变量 
     std::vector<Object*>* m_defaults;//参数默认值
+    List*  m_closure;
     NativeFuncPointer m_native_func;//当Function表示一个Native函数时，该字段才起作用
 };
 

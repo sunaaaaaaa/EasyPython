@@ -28,6 +28,7 @@ add_executable(test
          src/object/string_table.cc
          src/runtime/universe.cc
          src/runtime/frame.cc
+         src/runtime/cell.cc
          src/util/map.cc)
 
 # SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)

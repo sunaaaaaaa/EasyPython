@@ -9,7 +9,7 @@ class Interpreter{
 public:
    Interpreter();
    void run(CodeObject* codes);
-   void buildFrame(Object* callable,std::vector<Object*>* argList);
+   void buildFrame(Object* callable,std::vector<Object*>* argList,int op_arg);
    void runMainFrame();
    
    void leaveFrame();
