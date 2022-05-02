@@ -1,4 +1,5 @@
 #include "universe.h"
+#include "../object/dict.h"
 #include "../object/String.h"
 #include <stdio.h>
 namespace easy_vm{
@@ -14,6 +15,7 @@ void Universe::genesis(){
     None = new Object();
 
     StringKlass::getInstance()->init();
+    DictKlass::getInstance()->init();
 }
 void Universe::destory(){
     

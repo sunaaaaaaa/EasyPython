@@ -69,10 +69,17 @@ CMakeFiles/test.dir/src/object/String.cc.o
  /home/lighthouse/cppSpace/EasyPython/src/runtime/universe.h
  /home/lighthouse/cppSpace/EasyPython/src/util/map.h
 CMakeFiles/test.dir/src/object/dict.cc.o
+ /home/lighthouse/cppSpace/EasyPython/src/code/code_object.h
  /home/lighthouse/cppSpace/EasyPython/src/object/Klass.h
+ /home/lighthouse/cppSpace/EasyPython/src/object/List.h
+ /home/lighthouse/cppSpace/EasyPython/src/object/String.h
  /home/lighthouse/cppSpace/EasyPython/src/object/dict.cc
  /home/lighthouse/cppSpace/EasyPython/src/object/dict.h
+ /home/lighthouse/cppSpace/EasyPython/src/object/function.h
+ /home/lighthouse/cppSpace/EasyPython/src/object/integer.h
+ /home/lighthouse/cppSpace/EasyPython/src/object/iter.h
  /home/lighthouse/cppSpace/EasyPython/src/object/object.h
+ /home/lighthouse/cppSpace/EasyPython/src/runtime/universe.h
  /home/lighthouse/cppSpace/EasyPython/src/util/map.h
 CMakeFiles/test.dir/src/object/function.cc.o
  /home/lighthouse/cppSpace/EasyPython/src/code/code_object.h
@@ -150,10 +157,12 @@ CMakeFiles/test.dir/src/runtime/interpreter.cc.o
 CMakeFiles/test.dir/src/runtime/universe.cc.o
  /home/lighthouse/cppSpace/EasyPython/src/object/Klass.h
  /home/lighthouse/cppSpace/EasyPython/src/object/String.h
+ /home/lighthouse/cppSpace/EasyPython/src/object/dict.h
  /home/lighthouse/cppSpace/EasyPython/src/object/integer.h
  /home/lighthouse/cppSpace/EasyPython/src/object/object.h
  /home/lighthouse/cppSpace/EasyPython/src/runtime/universe.cc
  /home/lighthouse/cppSpace/EasyPython/src/runtime/universe.h
+ /home/lighthouse/cppSpace/EasyPython/src/util/map.h
 CMakeFiles/test.dir/src/util/map.cc.o
  /home/lighthouse/cppSpace/EasyPython/src/object/Klass.h
  /home/lighthouse/cppSpace/EasyPython/src/object/integer.h

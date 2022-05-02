@@ -299,10 +299,12 @@ void Interpreter::runMainFrame(){
                 //此处为函数运行传入的实参
                 if(op_arg > 0){
                     args = new std::vector<Object*>();
+                    args->resize(op_arg);
                     while(op_arg--){
                         v = m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1);
                         m_main_frame->m_stack->pop_back();
-                        args->push_back(v);
+                        auto& temp = args->at(op_arg);
+                        temp = v;
                     }
                 }
                 
@@ -325,9 +327,22 @@ void Interpreter::runMainFrame(){
                 m_main_frame->m_stack->push_back(v);
                 break; 
             case ByteCode::BUILD_MAP:
+                v = new Dict();
+                m_main_frame->m_stack->push_back(v);
+                break;
+            case ByteCode::STORE_MAP:
+                w = STACK_TOP();
+                m_main_frame->m_stack->pop_back();
+                u = STACK_TOP();
+                m_main_frame->m_stack->pop_back();
+                v = STACK_TOP();
+                {
+                    Dict* dict = static_cast<Dict*>(v);
+                    dict->put(w,u);
+                }
                 break;
             case ByteCode::BUILD_CLASS:
-                break;
+                break;    
             case ByteCode::GET_ITER:
                 v = STACK_TOP();
                 m_main_frame->m_stack->pop_back();
@@ -342,6 +357,13 @@ void Interpreter::runMainFrame(){
                     m_main_frame->m_stack->pop_back();
                 }
                 break;  
+            case ByteCode::UNPACK_SEQUENCE:
+                v = STACK_TOP();
+                m_main_frame->m_stack->pop_back();
+                while(op_arg--){
+                    m_main_frame->m_stack->push_back(v->subscr(new Integer(op_arg)));
+                }
+                break;
             default:
                 std::cout << "Error:Unrecognized byte code: "<<std::hex<<op_code <<std::endl;                 
         }

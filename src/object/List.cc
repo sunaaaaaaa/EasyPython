@@ -81,6 +81,38 @@ Object* ListKlass::greater(Object* obj1,Object* obj2){
     return less(obj2,obj1);
 }
 
+Object* ListKlass::add(Object* obj1,Object* obj2){
+    List* list = static_cast<List*>(obj1);
+    assert(list && list->klass() == static_cast<Klass*>(this));
+    List* list2 = static_cast<List*>(obj2);
+    assert(list2 && list2->klass() == static_cast<Klass*>(this));
+
+    List* result = new List();
+    for(int i = 0;i < list->size();++i){
+        result->m_inner_list->push_back(list->get(i));
+    }
+    for(int i = 0; i < list2->size(); ++i){
+        result->m_inner_list->push_back(list2->get(i));
+    }
+    return result;
+}
+
+//列表只能与整数相乘
+Object* ListKlass::mul(Object* obj1,Object* obj2){
+    List* list = static_cast<List*>(obj1);
+    assert(list && list->klass() == static_cast<Klass*>(this));
+    Integer* n = static_cast<Integer*>(obj1);
+    assert(n && n->klass() == IntegerKlass::getInstance());
+
+    List* result = new List();
+    for(int j = 0;j < n->value();++j){
+        for(int i = 0;i < list->size();++i){
+           result->m_inner_list->push_back(list->get(i));
+        }
+    }
+    return result;
+}
+
 Object* ListKlass::subscr(Object* obj,Object* index){
     assert(obj && obj->klass() == static_cast<Klass*>(this));
     assert(index && index->klass() == static_cast<Klass*>(IntegerKlass::getInstance()));
@@ -143,10 +175,10 @@ Object* List::list_append(std::vector<Object*>* args){
 Object* List::list_replace(std::vector<Object*>* args){
    assert(args->size() == 3);
    List* list = static_cast<List*>(args->at(0));
-   Object* index = args->at(2);
+   Object* index = args->at(1);
    assert(index && index->klass() == IntegerKlass::getInstance());
    Integer* idx = static_cast<Integer*>(index);
-   list->set(idx->value(),args->at(1));
+   list->set(idx->value(),args->at(2));
    return Universe::None;
 }
 

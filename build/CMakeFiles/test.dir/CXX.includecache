@@ -121,6 +121,20 @@ vector
 /home/lighthouse/cppSpace/EasyPython/src/object/dict.cc
 dict.h
 /home/lighthouse/cppSpace/EasyPython/src/object/dict.h
+List.h
+/home/lighthouse/cppSpace/EasyPython/src/object/List.h
+iter.h
+/home/lighthouse/cppSpace/EasyPython/src/object/iter.h
+String.h
+/home/lighthouse/cppSpace/EasyPython/src/object/String.h
+function.h
+/home/lighthouse/cppSpace/EasyPython/src/object/function.h
+../runtime/universe.h
+/home/lighthouse/cppSpace/EasyPython/src/runtime/universe.h
+assert.h
+-
+iostream
+-
 
 /home/lighthouse/cppSpace/EasyPython/src/object/dict.h
 object.h
@@ -129,6 +143,8 @@ Klass.h
 /home/lighthouse/cppSpace/EasyPython/src/object/Klass.h
 ../util/map.h
 /home/lighthouse/cppSpace/EasyPython/src/util/map.h
+vector
+-
 
 /home/lighthouse/cppSpace/EasyPython/src/object/function.cc
 function.h
@@ -171,10 +187,14 @@ function.h
 /home/lighthouse/cppSpace/EasyPython/src/object/iter.h
 List.h
 /home/lighthouse/cppSpace/EasyPython/src/object/List.h
+dict.h
+/home/lighthouse/cppSpace/EasyPython/src/object/dict.h
 Klass.h
 /home/lighthouse/cppSpace/EasyPython/src/object/Klass.h
 object.h
 /home/lighthouse/cppSpace/EasyPython/src/object/object.h
+function.h
+/home/lighthouse/cppSpace/EasyPython/src/object/function.h
 
 /home/lighthouse/cppSpace/EasyPython/src/object/method.cc
 method.h
@@ -271,6 +291,8 @@ frame.h
 /home/lighthouse/cppSpace/EasyPython/src/runtime/universe.cc
 universe.h
 /home/lighthouse/cppSpace/EasyPython/src/runtime/universe.h
+../object/dict.h
+/home/lighthouse/cppSpace/EasyPython/src/object/dict.h
 ../object/String.h
 /home/lighthouse/cppSpace/EasyPython/src/object/String.h
 stdio.h

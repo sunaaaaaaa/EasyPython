@@ -20,6 +20,8 @@ public:
    virtual Object* contains(Object* obj,Object* ele);
    virtual Object* less(Object* obj1,Object* obj2);
    virtual Object* greater(Object* obj1,Object* obj2);
+   virtual Object* add(Object* obj1,Object* obj2);//列表加法
+   virtual Object* mul(Object* obj1,Object* obj2);//列表乘法
    virtual Object* iter(Object* obj);   
 };
 
