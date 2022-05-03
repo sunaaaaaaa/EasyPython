@@ -9,6 +9,8 @@
 .././src/object/Klass.h
 stdio.h
 -
+vector
+-
 
 .././src/object/List.h
 Klass.h
@@ -94,6 +96,8 @@ iostream
 
 /home/lighthouse/cppSpace/EasyPython/src/object/Klass.h
 stdio.h
+-
+vector
 -
 
 /home/lighthouse/cppSpace/EasyPython/src/object/List.cc
