@@ -11,6 +11,14 @@ MethodKlass* MethodKlass::getInstance(){
     return instance;
 }
 
+MethodKlass::MethodKlass(){
+    setKlassDict(new Dict());
+    setSuper(ObjectKlass::getInstance());
+    setName(new String("method"));
+    Type* type = new Type();
+    type->setOwnKlass(this);
+}
+
 void MethodKlass::print(Object* obj){
 
 }

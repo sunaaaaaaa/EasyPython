@@ -15,6 +15,9 @@ CellKlass* CellKlass::getInstance(){
 CellKlass::CellKlass(){
     setKlassDict(new Dict());
     setName(new String("cell"));
+    setSuper(ObjectKlass::getInstance());
+    Type* type = new Type();
+    type->setOwnKlass(this);
 }
 
 Cell::Cell(List* list,int idx):m_table(list),m_index(idx){

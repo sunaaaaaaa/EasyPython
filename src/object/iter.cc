@@ -17,6 +17,9 @@ ListIteratorKlass::ListIteratorKlass(){
     dict->put(new String("next"),new Function(ListIterator::listiterator_next));
     setKlassDict(dict);
     setName(new String("listiterator"));
+    setSuper(ObjectKlass::getInstance());
+    Type* type = new Type();
+    type->setOwnKlass(this);
 }
 
 

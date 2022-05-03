@@ -4,6 +4,16 @@
 #include <assert.h>
 
 namespace easy_vm{
+
+class ObjectKlass:public Klass{
+private:
+   ObjectKlass();
+   static ObjectKlass* instance;
+public:
+   static ObjectKlass* getInstance();
+   static void init(Klass* kls);   
+};
+
 class Object{
 public:
    Object(){}
@@ -35,6 +45,28 @@ public:
 private:
    Klass* m_klass;   
 };
+
+class TypeKlass:public Klass{
+private:
+   TypeKlass(){}
+   static TypeKlass* instance;
+public:
+   static void init(Klass* kls);
+   static TypeKlass* getInstance();
+   virtual void print(Object* obj);
+};
+
+class Type:public Object{
+private:
+   Klass* m_own_klass;//Klass的类型对象，由于Klass本身也可以看作一个对象，需要获取一些Klass本身的属性时，需要对外提供接口
+                      //而为了不破坏Klass表示类型，Object表示对象的清晰结构，因此在Klass中设置一个Object的子类Type，专门记录Klass的一些属性
+                      //对外提供  
+public:
+   Type();
+   void setOwnKlass(Klass* kls);
+   Klass* getOwnKlass(){return m_own_klass;};          
+};
+
 }
 
 #endif

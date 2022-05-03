@@ -13,6 +13,7 @@ DictKlass* DictKlass::instance = NULL;
 DictKlass* DictKlass::getInstance(){
     if(instance == NULL){
         instance = new DictKlass();
+        instance->init();
     }
     return instance;
 }
@@ -30,6 +31,10 @@ void DictKlass::init(){
     dict->put(new String("itervalues"),new Function(Dict::dict_itervalues));
     dict->put(new String("iteritems"),new Function(Dict::dict_iteritems));
     setKlassDict(dict);
+    Type* type = new Type();
+    type->setOwnKlass(this);
+    setName(new String("dict"));
+    setSuper(ObjectKlass::getInstance());
 }
 
 void DictKlass::print(Object* obj){
@@ -84,6 +89,7 @@ Object* DictKlass::iter(Object* obj){
 
 Dict::Dict(){
     m_map = new Map<Object*,Object*>();
+    //std::cout << "aaa" << std::endl;
     setKlass(DictKlass::getInstance());
 }
 

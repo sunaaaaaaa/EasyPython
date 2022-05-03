@@ -179,6 +179,8 @@ vector
 /home/lighthouse/cppSpace/EasyPython/src/object/function.cc
 function.h
 /home/lighthouse/cppSpace/EasyPython/src/object/function.h
+../runtime/universe.h
+/home/lighthouse/cppSpace/EasyPython/src/runtime/universe.h
 iostream
 -
 assert.h
@@ -199,6 +201,10 @@ object.h
 /home/lighthouse/cppSpace/EasyPython/src/object/integer.cc
 integer.h
 /home/lighthouse/cppSpace/EasyPython/src/object/integer.h
+dict.h
+/home/lighthouse/cppSpace/EasyPython/src/object/dict.h
+String.h
+/home/lighthouse/cppSpace/EasyPython/src/object/String.h
 ../runtime/universe.h
 /home/lighthouse/cppSpace/EasyPython/src/runtime/universe.h
 iostream
@@ -247,6 +253,14 @@ function.h
 /home/lighthouse/cppSpace/EasyPython/src/object/object.cc
 object.h
 /home/lighthouse/cppSpace/EasyPython/src/object/object.h
+dict.h
+/home/lighthouse/cppSpace/EasyPython/src/object/dict.h
+string_table.h
+/home/lighthouse/cppSpace/EasyPython/src/object/string_table.h
+../runtime/universe.h
+/home/lighthouse/cppSpace/EasyPython/src/runtime/universe.h
+iostream
+-
 
 /home/lighthouse/cppSpace/EasyPython/src/object/object.h
 Klass.h

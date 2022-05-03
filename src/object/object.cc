@@ -1,6 +1,31 @@
 #include "object.h"
-
+#include "dict.h"
+#include "string_table.h"
+#include "../runtime/universe.h"
+#include <iostream>
 namespace easy_vm{
+
+ObjectKlass* ObjectKlass::instance = NULL;
+
+ObjectKlass* ObjectKlass::getInstance(){
+   if(instance == NULL){
+      instance = new ObjectKlass();
+      init(instance);
+   }
+   return instance;
+}
+
+ObjectKlass::ObjectKlass(){
+}
+
+void ObjectKlass::init(Klass* kls){
+   kls->setSuper(NULL);
+   Dict* d  = new Dict();
+   kls->setKlassDict(d);
+   kls->setName(new String("object"));
+   Type* type = new Type();
+   type->setOwnKlass(kls);
+}
 
 Object* Object::getattr(Object* attr){
    assert(m_klass != NULL);
@@ -91,6 +116,48 @@ Object* Object::contains(Object* obj){
 Object* Object::iter(){
    assert(m_klass != NULL);
    return m_klass->iter(this);
+}
+
+TypeKlass* TypeKlass::instance = NULL;
+
+TypeKlass* TypeKlass::getInstance(){
+   if(instance == NULL){
+      instance = new TypeKlass();
+      init(instance);
+   }
+   return instance;
+}
+
+void TypeKlass::init(Klass* kls){
+   kls->setName(new String("type"));
+   kls->setSuper(ObjectKlass::getInstance());
+   Type* type = new Type();
+   type->setOwnKlass(kls); 
+}
+
+void TypeKlass::print(Object* obj){
+   assert(obj->klass() == static_cast<Klass*>(this));
+   std::cout << "<type:";
+   Klass* ownklass = static_cast<Type*>(obj)->getOwnKlass();
+   Dict* dict = ownklass->getKlassDict();
+   if(dict){
+      Object* mod = dict->get(static_cast<Object*>(StringTable::getInstance()->mod));
+      if(mod != Universe::None){
+         mod->print();
+         std::cout << ".";
+      }
+   }
+   ownklass->getName()->print();
+   std::cout << ">" <<std::endl;
+}
+
+Type::Type(){
+   setKlass(TypeKlass::getInstance());
+}
+//完成Klass与该Klass对应Type的绑定
+void Type::setOwnKlass(Klass* kls){
+   m_own_klass = kls;
+   kls->setType(this);
 }
 
 }

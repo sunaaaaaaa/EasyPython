@@ -10,7 +10,8 @@ private:
 
 public:
     static StringTable* getInstance();
-    String* m_next;      
+    String* m_next;
+    String* mod;      
 };    
 }
 

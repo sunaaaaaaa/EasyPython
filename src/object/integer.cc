@@ -1,11 +1,19 @@
 #include "integer.h"
+#include "dict.h"
+#include "String.h"
 #include "../runtime/universe.h"
 #include<iostream>
 namespace easy_vm{
 
 IntegerKlass* IntegerKlass::instance = NULL;
 
-IntegerKlass::IntegerKlass(){}
+IntegerKlass::IntegerKlass(){
+   Type* type = new Type();
+   type->setOwnKlass(this);
+   setSuper(ObjectKlass::getInstance());
+   setKlassDict(new Dict());
+   setName(new String("int"));
+}
 
 IntegerKlass* IntegerKlass::getInstance(){
    if(instance == NULL){

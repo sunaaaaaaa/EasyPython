@@ -10,7 +10,7 @@ namespace easy_vm{
 //普通函数的class类
 class FunctionKlass :public Klass{
 private:
-    FunctionKlass(){};
+    FunctionKlass();
     static FunctionKlass* instance;
 public:
     static FunctionKlass* getInstance();
@@ -70,6 +70,8 @@ Object* type_of(std::vector<Object*>* args);
 Object* builtin_super(std::vector<Object*>* args);
 Object* isInstance(std::vector<Object*>* args);
 Object* sysgc(std::vector<Object*>* args);
+Object* ininstance(std::vector<Object*>* args);
+Object* type(std::vector<Object*>* args);
 }
 
 #endif

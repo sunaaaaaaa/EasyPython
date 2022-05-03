@@ -6,7 +6,7 @@ namespace easy_vm{
 
 class StringKlass:public Klass{
 private:
-   StringKlass(){};
+   StringKlass();
    static StringKlass* instance;
 public:
    static StringKlass* getInstance();

@@ -24,6 +24,13 @@ Interpreter::Interpreter(){
     m_builtins->put(new String("False"),Universe::False);
     m_builtins->put(new String("None"),Universe::None);
     m_builtins->put(new String("len"),new Function(len));
+    m_builtins->put(new String("type"),new Function(type));
+    m_builtins->put(new String("isinstance"),new Function(isInstance));
+    m_builtins->put(new String("int"),IntegerKlass::getInstance()->getType());
+    // m_builtins->put(new String("object"),IntegerKlass::getInstance()->getType());
+    m_builtins->put(new String("str"),StringKlass::getInstance()->getType());
+    m_builtins->put(new String("list"),ListKlass::getInstance()->getType());
+    m_builtins->put(new String("dict"),DictKlass::getInstance()->getType());
 }
 
 void Interpreter::run(CodeObject* codes){

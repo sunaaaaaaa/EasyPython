@@ -8,9 +8,7 @@ namespace easy_vm{
 //表示一个方法
 class MethodKlass:public Klass{
 private:
-    MethodKlass(){
-        setKlassDict(new Dict());
-    }
+    MethodKlass();
     static MethodKlass* instance;
 public:
     static MethodKlass* getInstance();

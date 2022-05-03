@@ -1,4 +1,5 @@
 #include "function.h"
+#include "../runtime/universe.h"
 #include <iostream>
 #include <assert.h>
 namespace easy_vm{
@@ -11,6 +12,13 @@ FunctionKlass* FunctionKlass::getInstance(){
         instance = new FunctionKlass();
     }
     return instance;
+}
+
+FunctionKlass::FunctionKlass(){
+    setSuper(ObjectKlass::getInstance());
+    setName(new String("function"));
+    Type* type = new Type();
+    type->setOwnKlass(this);
 }
 
 void FunctionKlass::print(Object* obj){
@@ -73,8 +81,30 @@ Object* Function::call(std::vector<Object*>* args){
     return (*m_native_func)(args);
 }
 
+//-------------------------------------------------------------内置函数实现--------------------------------------------------//
+
 Object* len(std::vector<Object*>* args){
     return args->at(0)->len();
+}
+
+Object* isInstance(std::vector<Object*>* args){
+    assert(args->size()==2);
+    Object* obj = args->at(0);//对象
+    Object* ty = args->at(1);//类型
+    assert(ty && ty->klass() == TypeKlass::getInstance());
+    Klass* objType = obj->klass();
+    while(objType != NULL){
+        if(objType == static_cast<Type*>(ty)->getOwnKlass()){
+            return Universe::True;
+        }
+        objType = objType->getSuper();
+    }
+    return Universe::False; 
+}
+
+Object* type(std::vector<Object*>* args){
+   Object* obj = args->at(0);
+   return obj->klass()->getType();
 }
 
 }

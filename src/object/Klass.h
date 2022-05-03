@@ -8,6 +8,7 @@ namespace easy_vm{
 class Object;
 class String;
 class Dict;
+class Type;
 
 class Klass{
 public:
@@ -16,7 +17,11 @@ public:
     String* getName(){return m_name;}
     void setKlassDict(Dict* dict){m_klass_dict = dict;}
     Dict* getKlassDict(){return m_klass_dict;}
-    
+    void setType(Type* type){m_type = type;}
+    Type* getType(){return m_type;}
+    Klass* getSuper(){return m_super;}
+    void setSuper(Klass* super){m_super = super;}
+
     virtual Object* getattr(Object* obj,Object* attr);
     virtual Object* setattr(Object* obj,Object* attr,Object* value);
     virtual void print(Object* obj1){}
@@ -42,6 +47,8 @@ public:
 private:
     String* m_name;
     Dict* m_klass_dict;
+    Klass* m_super;//表示该类型的父类型
+    Type*  m_type;//存储当前Klass类型信息的对象
 };
 
 }

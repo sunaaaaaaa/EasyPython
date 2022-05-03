@@ -29,6 +29,9 @@ ListKlass::ListKlass(){
     dict->put(new String("sort"),new Function(List::list_sort));
     setName(new String("list"));
     setKlassDict(dict);
+    Type* type = new Type();
+    type->setOwnKlass(this);
+    setSuper(ObjectKlass::getInstance());
 }
 
 void ListKlass::print(Object* obj){

@@ -63,6 +63,13 @@ String::~String(){
     }
 }
 
+StringKlass::StringKlass(){
+    Type* type = new Type();
+    type->setOwnKlass(this);
+    setSuper(ObjectKlass::getInstance());
+    setKlassDict(new Dict());
+}
+
 void StringKlass::print(Object* obj){
    String* s = static_cast<String*>(obj);
     
