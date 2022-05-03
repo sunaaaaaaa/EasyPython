@@ -80,7 +80,7 @@ void StringKlass::print(Object* obj){
     std::cout << std::endl; 
 }
 
-Object* StringKlass::allocateInstance(std::vector<Object*>* args){
+Object* StringKlass::allocateInstance(Object* objType,std::vector<Object*>* args){
     if (!args || args->size() == 0)
         return new String("");
     else

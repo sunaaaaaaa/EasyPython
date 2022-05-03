@@ -27,7 +27,7 @@ Interpreter::Interpreter(){
     m_builtins->put(new String("type"),new Function(type));
     m_builtins->put(new String("isinstance"),new Function(isInstance));
     m_builtins->put(new String("int"),IntegerKlass::getInstance()->getType());
-    // m_builtins->put(new String("object"),IntegerKlass::getInstance()->getType());
+    m_builtins->put(new String("object"),ObjectKlass::getInstance()->getType());
     m_builtins->put(new String("str"),StringKlass::getInstance()->getType());
     m_builtins->put(new String("list"),ListKlass::getInstance()->getType());
     m_builtins->put(new String("dict"),DictKlass::getInstance()->getType());
@@ -35,7 +35,6 @@ Interpreter::Interpreter(){
 
 void Interpreter::run(CodeObject* codes){
     m_main_frame = new Frame(codes);
-    m_main_frame->m_stack->resize(codes->m_stackSize);
     m_ret_value = NULL;
     runMainFrame();
     destoryFrame();    
@@ -44,7 +43,6 @@ void Interpreter::run(CodeObject* codes){
 void Interpreter::runMainFrame(){
     
     Block* cur_block = NULL;//当前语句块
-    
     while(m_main_frame->hasMoreCodes()){
         unsigned char op_code = m_main_frame->getOpCode();
         bool has_argument = (op_code & 0xFF) >= ByteCode::HAVE_ARGUMENT;
@@ -90,8 +88,8 @@ void Interpreter::runMainFrame(){
             case ByteCode::STORE_NAME:
                 //放入变量字典
                 v = m_main_frame->m_names->at(op_arg);
-                m_main_frame->m_locals->put(v,m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1));
-                m_main_frame->m_stack->pop_back(); 
+                m_main_frame->m_locals->put(v,STACK_TOP());
+                m_main_frame->m_stack->pop_back();
                 break; 
             case ByteCode::LOAD_GLOBAL:   
                 v = m_main_frame->m_names->at(op_arg);
@@ -184,7 +182,7 @@ void Interpreter::runMainFrame(){
                 m_main_frame->m_stack->push_back(subFunc);
                 break;
             case ByteCode::LOAD_LOCALS:
-                //m_main_frame->m_stack->push_back(m_main_frame->m_locals);
+                m_main_frame->m_stack->push_back(m_main_frame->m_locals);
                 break;    
             case ByteCode::PRINT_ITEM:
                 v = m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1);
@@ -235,7 +233,7 @@ void Interpreter::runMainFrame(){
                 v->delSubscr(w);
                 break;
             case ByteCode::RETURN_VALUE:
-                m_ret_value = m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1);
+                m_ret_value = STACK_TOP();
                 m_main_frame->m_stack->pop_back();
                 //如果当前栈帧是主函数栈帧，则程序退出
                 if(m_main_frame->isMainFrame()){
@@ -330,7 +328,7 @@ void Interpreter::runMainFrame(){
                 m_main_frame->m_pc = cur_block->m_target;//地址跳转
                 break;             
             case ByteCode::MAKE_FUNCTION:
-                v = m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1);
+                v = STACK_TOP();
                 m_main_frame->m_stack->pop_back();
                 subFunc = new Function(v);
                 subFunc->setGlobals(m_main_frame->mGlobals());
@@ -338,7 +336,7 @@ void Interpreter::runMainFrame(){
                 if(op_arg > 0){
                    args = new std::vector<Object*>();
                    while(op_arg--){
-                        v = m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1);
+                        v = STACK_TOP();
                         m_main_frame->m_stack->pop_back();
                         args->push_back(v);
                    }
@@ -380,7 +378,7 @@ void Interpreter::runMainFrame(){
             case ByteCode::BUILD_LIST:
                 v = new List();
                 while(op_arg--){
-                    w = m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1);
+                    w = STACK_TOP();
                     m_main_frame->m_stack->pop_back();
                     static_cast<List*>(v)->set(op_arg,w);
                 }
@@ -402,6 +400,14 @@ void Interpreter::runMainFrame(){
                 }
                 break;
             case ByteCode::BUILD_CLASS:
+                v = STACK_TOP();
+                m_main_frame->m_stack->pop_back();
+                w = STACK_TOP();
+                m_main_frame->m_stack->pop_back();
+                u = STACK_TOP();
+                m_main_frame->m_stack->pop_back();
+                v = Klass::createKlass(v,w,u);
+                m_main_frame->m_stack->push_back(v);
                 break;    
             case ByteCode::GET_ITER:
                 v = STACK_TOP();
@@ -447,7 +453,7 @@ void Interpreter::buildFrame(Object* callable, std::vector<Object*>* argList,int
        frame->setSender(m_main_frame);
        m_main_frame = frame; 
     }else if(callable->klass() == TypeKlass::getInstance()){
-        Object* inst = static_cast<Type*>(callable)->getOwnKlass()->allocateInstance(argList);
+        Object* inst = static_cast<Type*>(callable)->getOwnKlass()->allocateInstance(callable,argList);
         m_main_frame->m_stack->push_back(inst);
     }  
 }

@@ -20,7 +20,7 @@ public:
     virtual void delSubscr(Object* obj,Object* ele);
     virtual Object* contains(Object* obj,Object* ele);
     virtual Object* iter(Object* obj);
-    virtual Object* allocateInstance(std::vector<Object*>* args);  
+    virtual Object* allocateInstance(Object* objType,std::vector<Object*>* args);  
 };
 
 class Dict:public Object{

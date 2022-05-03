@@ -29,7 +29,7 @@ void IntegerKlass::print(Object* obj){
    std::cout << std::dec << i->value() <<std::endl; 
 }
 
-Object* IntegerKlass::allocateInstance(std::vector<Object*>* args){
+Object* IntegerKlass::allocateInstance(Object* objType,std::vector<Object*>* args){
    if(!args || args->size()==0){
       return new Integer(0);
    }else{

@@ -23,7 +23,7 @@ public:
    virtual Object* add(Object* obj1,Object* obj2);//列表加法
    virtual Object* mul(Object* obj1,Object* obj2);//列表乘法
    virtual Object* iter(Object* obj);
-   virtual Object* allocateInstance(std::vector<Object*>* args);     
+   virtual Object* allocateInstance(Object* objType,std::vector<Object*>* args);     
 };
 
 class List:public Object{

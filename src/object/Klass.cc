@@ -42,4 +42,28 @@ int Klass::compareKlass(Klass* kls1,Klass* kls2){
     }
 }
 
+Object* Klass::createKlass(Object* attrs,Object* supers,Object* name){
+    assert(attrs && attrs->klass() == DictKlass::getInstance());
+    assert(supers && supers->klass() == ListKlass::getInstance());
+    assert(name && name->klass() == StringKlass::getInstance());
+    Klass* newKlass = new Klass();
+    Dict* klassAttr = static_cast<Dict*>(attrs);
+    List* klassSupers = static_cast<List*>(supers);
+    newKlass->setKlassDict(klassAttr);
+    newKlass->setName(static_cast<String*>(name));
+    if(klassSupers->getList()->size() > 0){
+        Type* super = static_cast<Type*>(klassSupers->get(0));
+        newKlass->setSuper(super->getOwnKlass());
+    }
+    Type* type = new Type();
+    type->setOwnKlass(newKlass);
+    return type;
+}
+
+Object* Klass::allocateInstance(Object* objType,std::vector<Object*>* args){
+    Object* inst = new Object();
+    inst->setKlass(static_cast<Type*>(objType)->getOwnKlass());
+    return inst; 
+}
+
 }

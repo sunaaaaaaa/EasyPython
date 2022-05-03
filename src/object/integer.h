@@ -23,7 +23,7 @@ public:
    virtual Object* not_equal(Object* l,Object* r);
    virtual Object* ge(Object* l,Object* r);
    virtual Object* le(Object* l,Object* r);
-   virtual Object* allocateInstance(std::vector<Object*>* args);  
+   virtual Object* allocateInstance(Object* objType,std::vector<Object*>* args);  
 };
 
 

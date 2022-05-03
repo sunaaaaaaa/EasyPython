@@ -2,6 +2,7 @@
 #define __EASY_PYTHON_VM_KLASS_H_
 #include <stdio.h>
 #include <vector>
+#include <iostream>
 //表示Class
 namespace easy_vm{
 //前置声明，因为Object引用了Klass，而Klass又引用了Object    
@@ -24,7 +25,7 @@ public:
 
     virtual Object* getattr(Object* obj,Object* attr);
     virtual Object* setattr(Object* obj,Object* attr,Object* value);
-    virtual void print(Object* obj1){}
+    virtual void print(Object* obj1){std::cout <<"自建类型，由于无法重写Klass的该方法，使用默认，打印地址：" <<obj1 << std::endl;}
     virtual Object* len(Object* obj){}
     virtual Object* greater(Object* obj1,Object* obj2){return 0;}
     virtual Object* less(Object* obj1,Object* obj2){return 0;}
@@ -42,12 +43,16 @@ public:
     virtual void delSubscr(Object* obj,Object* ele){}
     virtual Object* contains(Object* obj1,Object* obj2){return 0;}
     virtual Object* iter(Object* obj){};
-    virtual Object* allocateInstance(std::vector<Object*>* args){return 0;}
+    virtual Object* allocateInstance(Object* objType,std::vector<Object*>* args);
 public:
     static int compareKlass(Klass* kls1,Klass* kls2);
+    //第一个为一个Dict，记录方法和属性
+    //第二个参数为一个列表，记录父类
+    //第三个为字符串常量，表示类名
+    static Object* createKlass(Object* attrs,Object* supers,Object* name);
 private:
     String* m_name;
-    Dict* m_klass_dict;
+    Dict* m_klass_dict;//存储当前类型的方法和属性
     Klass* m_super;//表示该类型的父类型
     Type*  m_type;//存储当前Klass类型信息的对象
 };

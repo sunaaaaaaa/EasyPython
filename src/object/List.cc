@@ -51,7 +51,7 @@ void ListKlass::print(Object* obj){
     std::cout <<"]"<<std::endl;
 }
 
-Object* ListKlass::allocateInstance(std::vector<Object*>* args){
+Object* ListKlass::allocateInstance(Object* objType,std::vector<Object*>* args){
     if (!args || args->size() == 0)
         return new List();
     else

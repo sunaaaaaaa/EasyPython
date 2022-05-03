@@ -11,6 +11,8 @@ stdio.h
 -
 vector
 -
+iostream
+-
 
 .././src/object/List.h
 Klass.h
@@ -98,6 +100,8 @@ iostream
 stdio.h
 -
 vector
+-
+iostream
 -
 
 /home/lighthouse/cppSpace/EasyPython/src/object/List.cc

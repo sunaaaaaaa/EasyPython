@@ -56,7 +56,7 @@ void DictKlass::print(Object* obj){
     std::cout<<"}"<<std::endl;
 }
 
-Object* DictKlass::allocateInstance(std::vector<Object*>* args){
+Object* DictKlass::allocateInstance(Object* objType,std::vector<Object*>* args){
     if (!args || args->size() == 0)
         return new Dict();
     else
