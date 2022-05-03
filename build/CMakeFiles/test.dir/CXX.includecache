@@ -193,6 +193,8 @@ assert.h
 /home/lighthouse/cppSpace/EasyPython/src/object/function.h
 List.h
 /home/lighthouse/cppSpace/EasyPython/src/object/List.h
+dict.h
+/home/lighthouse/cppSpace/EasyPython/src/object/dict.h
 Klass.h
 /home/lighthouse/cppSpace/EasyPython/src/object/Klass.h
 object.h

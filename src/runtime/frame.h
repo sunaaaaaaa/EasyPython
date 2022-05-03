@@ -9,8 +9,6 @@
 #include "../object/object.h"
 #include "../object/function.h"
 
-
-
 //栈帧
 namespace easy_vm{
 class Frame{
@@ -23,8 +21,8 @@ public:
    std::vector<Block*>* m_loop_stack;//代码块深度栈
    std::vector<Object*>* m_consts; //常量表引用
    std::vector<Object*>* m_names;  //变量名表引用
-   Map<Object*,Object*>* m_locals; //本地变量
-   Map<Object*,Object*>* m_globals;//全局变量表 
+   Dict* m_locals; //本地变量
+   Dict* m_globals;//全局变量表 
    std::vector<Object*>* m_arg_list;//参数列表
    List* m_closure;//闭包变量
    CodeObject* m_codes; //执行代码
@@ -40,8 +38,8 @@ public:
    std::vector<Block*>* getLoopStack(){return m_loop_stack;}
    std::vector<Object*>* mConsts(){return m_consts;} 
    std::vector<Object*>* mNames(){return m_names;}  
-   Map<Object*,Object*>* mLocals(){return m_locals;}
-   Map<Object*,Object*>* mGlobals(){return m_globals;}
+   Dict* mLocals(){return m_locals;}
+   Dict* mGlobals(){return m_globals;}
    List* mClosure(){return m_closure;}
 
    bool isMainFrame(){return m_sender == NULL;}
