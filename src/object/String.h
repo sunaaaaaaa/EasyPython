@@ -20,6 +20,7 @@ public:
    virtual Object* contains(Object* obj,Object* ele);
    virtual Object* less(Object* obj1,Object* obj2);
    virtual Object* greater(Object* obj1,Object* obj2);
+   virtual Object* allocateInstance(std::vector<Object*>* args);  
 };
 
 class String:public Object{

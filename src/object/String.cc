@@ -80,6 +80,13 @@ void StringKlass::print(Object* obj){
     std::cout << std::endl; 
 }
 
+Object* StringKlass::allocateInstance(std::vector<Object*>* args){
+    if (!args || args->size() == 0)
+        return new String("");
+    else
+        return NULL;
+}
+
 Object* StringKlass::len(Object* obj){
     return new Integer(static_cast<String*>(obj)->length());
 }

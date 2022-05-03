@@ -51,6 +51,13 @@ void ListKlass::print(Object* obj){
     std::cout <<"]"<<std::endl;
 }
 
+Object* ListKlass::allocateInstance(std::vector<Object*>* args){
+    if (!args || args->size() == 0)
+        return new List();
+    else
+        return NULL;
+}
+
 Object* ListKlass::less(Object* obj1,Object* obj2){
     List* ls = static_cast<List*>(obj1);
     assert(ls && ls->klass() == static_cast<Klass*>(this));

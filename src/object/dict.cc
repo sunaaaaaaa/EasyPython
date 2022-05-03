@@ -56,6 +56,13 @@ void DictKlass::print(Object* obj){
     std::cout<<"}"<<std::endl;
 }
 
+Object* DictKlass::allocateInstance(std::vector<Object*>* args){
+    if (!args || args->size() == 0)
+        return new Dict();
+    else
+        return NULL;
+}
+
 Object* DictKlass::subscr(Object* obj,Object* index){
     assert(obj && obj->klass() == static_cast<Klass*>(this));
     Dict* dict = static_cast<Dict*>(obj);

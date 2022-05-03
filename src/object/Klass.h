@@ -1,7 +1,7 @@
 #ifndef __EASY_PYTHON_VM_KLASS_H_
 #define __EASY_PYTHON_VM_KLASS_H_
 #include <stdio.h>
-
+#include <vector>
 //表示Class
 namespace easy_vm{
 //前置声明，因为Object引用了Klass，而Klass又引用了Object    
@@ -42,6 +42,7 @@ public:
     virtual void delSubscr(Object* obj,Object* ele){}
     virtual Object* contains(Object* obj1,Object* obj2){return 0;}
     virtual Object* iter(Object* obj){};
+    virtual Object* allocateInstance(std::vector<Object*>* args){return 0;}
 public:
     static int compareKlass(Klass* kls1,Klass* kls2);
 private:

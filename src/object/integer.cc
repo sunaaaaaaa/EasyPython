@@ -29,6 +29,14 @@ void IntegerKlass::print(Object* obj){
    std::cout << std::dec << i->value() <<std::endl; 
 }
 
+Object* IntegerKlass::allocateInstance(std::vector<Object*>* args){
+   if(!args || args->size()==0){
+      return new Integer(0);
+   }else{
+      return NULL;
+   }
+} 
+
 Object* IntegerKlass::add(Object* l,Object* r){
    if(l->klass()!=r->klass()){
       std::logic_error("integer add error,lvalue class is not sameple to rvalue class");

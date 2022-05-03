@@ -442,10 +442,13 @@ void Interpreter::buildFrame(Object* callable, std::vector<Object*>* argList,int
        }
        argList->insert(argList->begin(),method->getOwner());
        buildFrame(method->getFunc(),argList,op_arg + 1);
-    }else{
+    }else if(callable->klass() == FunctionKlass::getInstance()){
        Frame* frame = new Frame(static_cast<Function*>(callable),argList,op_arg);
        frame->setSender(m_main_frame);
        m_main_frame = frame; 
+    }else if(callable->klass() == TypeKlass::getInstance()){
+        Object* inst = static_cast<Type*>(callable)->getOwnKlass()->allocateInstance(argList);
+        m_main_frame->m_stack->push_back(inst);
     }  
 }
 
