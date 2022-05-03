@@ -27,6 +27,8 @@ void ObjectKlass::init(Klass* kls){
    type->setOwnKlass(kls);
 }
 
+void Object::initObjAttr(){ m_objAttr = new Dict();}
+
 Object* Object::getattr(Object* attr){
    assert(m_klass != NULL);
    return m_klass->getattr(this,attr); 

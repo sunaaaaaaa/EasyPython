@@ -22,6 +22,10 @@ public:
       return m_klass;
    }
    void setKlass(Klass* kls){ m_klass = kls;}
+   void setObjAttr(Dict* dict){m_objAttr = dict;}
+   Dict* getObjAttr(){return m_objAttr;}
+   void initObjAttr();
+
    void print();
    Object* getattr(Object* attr);
    Object* setattr(Object* attr,Object* value);
@@ -43,7 +47,8 @@ public:
    Object* contains(Object* obj);
    Object* iter();
 private:
-   Klass* m_klass;   
+   Klass* m_klass;
+   Dict* m_objAttr;//存放为该对象添加的属性，即当创建某个自定义类型的对象时，可以动态为该对象添加一些属性而不应该该类型的其他对象   
 };
 
 class TypeKlass:public Klass{

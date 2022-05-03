@@ -42,6 +42,10 @@ CMakeFiles/test.dir/src/object/Klass.cc.o: ../src/object/function.h
 CMakeFiles/test.dir/src/object/Klass.cc.o: ../src/object/integer.h
 CMakeFiles/test.dir/src/object/Klass.cc.o: ../src/object/method.h
 CMakeFiles/test.dir/src/object/Klass.cc.o: ../src/object/object.h
+CMakeFiles/test.dir/src/object/Klass.cc.o: ../src/object/string_table.h
+CMakeFiles/test.dir/src/object/Klass.cc.o: ../src/runtime/block.h
+CMakeFiles/test.dir/src/object/Klass.cc.o: ../src/runtime/frame.h
+CMakeFiles/test.dir/src/object/Klass.cc.o: ../src/runtime/interpreter.h
 CMakeFiles/test.dir/src/object/Klass.cc.o: ../src/runtime/universe.h
 CMakeFiles/test.dir/src/object/Klass.cc.o: ../src/util/map.h
 

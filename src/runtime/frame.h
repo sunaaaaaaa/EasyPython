@@ -27,7 +27,8 @@ public:
    List* m_closure;//闭包变量
    CodeObject* m_codes; //执行代码
    Frame* m_sender;//调用该函数的函数的栈帧
-   int m_pc;//当前栈帧的pc 
+   int m_pc;//当前栈帧的pc
+   bool m_entryFlag; //标记当前栈帧是否是第一个Python代码栈帧，因为虚拟机在执行__init__函数时执行的是python代码(因为该函数不产生字节码) 
 public:
    void setPc(int pc){m_pc = pc;}
    int getPc(){return m_pc;}
@@ -41,6 +42,8 @@ public:
    Dict* mLocals(){return m_locals;}
    Dict* mGlobals(){return m_globals;}
    List* mClosure(){return m_closure;}
+   bool getEntryFlag(){return m_entryFlag;}
+   void setEntryFlag(bool flag){m_entryFlag = flag;}
 
    bool isMainFrame(){return m_sender == NULL;}
    bool hasMoreCodes();

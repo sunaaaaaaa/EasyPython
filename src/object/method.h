@@ -18,7 +18,7 @@ public:
 class Method:public Object{
 friend class MethodKlass;
 private:
-   Object* m_owner;
+   Object* m_owner;//方法的调用者
    Function* m_func;
 public:
    Method(Function* func):m_owner(NULL),m_func(func){

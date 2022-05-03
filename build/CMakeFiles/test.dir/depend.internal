@@ -43,6 +43,10 @@ CMakeFiles/test.dir/src/object/Klass.cc.o
  /home/lighthouse/cppSpace/EasyPython/src/object/integer.h
  /home/lighthouse/cppSpace/EasyPython/src/object/method.h
  /home/lighthouse/cppSpace/EasyPython/src/object/object.h
+ /home/lighthouse/cppSpace/EasyPython/src/object/string_table.h
+ /home/lighthouse/cppSpace/EasyPython/src/runtime/block.h
+ /home/lighthouse/cppSpace/EasyPython/src/runtime/frame.h
+ /home/lighthouse/cppSpace/EasyPython/src/runtime/interpreter.h
  /home/lighthouse/cppSpace/EasyPython/src/runtime/universe.h
  /home/lighthouse/cppSpace/EasyPython/src/util/map.h
 CMakeFiles/test.dir/src/object/List.cc.o

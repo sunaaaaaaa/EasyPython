@@ -1,11 +1,21 @@
 #include "Klass.h"
 #include "method.h"
+#include "string_table.h"
 #include "../runtime/universe.h"
+#include "../runtime/interpreter.h"
 #include <iostream>
 namespace easy_vm{
 
 Object* Klass::getattr(Object* obj,Object* attr){
    Object* result = Universe::None;
+   //先找对象存储的属性
+   if(obj->getObjAttr()!=NULL){
+       result = obj->getObjAttr()->get(attr);
+       if(result != Universe::None){
+           return result;
+       }
+   }
+   //如果未对属性进行过更改，则从类型中寻找 
    result = getKlassDict()->get(attr);
    if(result == Universe::None){
        std::cout << "warning:attr: ";
@@ -20,7 +30,11 @@ Object* Klass::getattr(Object* obj,Object* attr){
 }
 
 Object* Klass::setattr(Object* obj,Object* attr,Object* value){
-
+   if(obj->getObjAttr() == NULL){
+       obj->initObjAttr();
+   }
+   obj->getObjAttr()->put(attr,value);
+   return Universe::None;
 }
 
 //0表示类型相同，小于0表示kls1的类型小于kls2的类型，大于0反之
@@ -63,6 +77,11 @@ Object* Klass::createKlass(Object* attrs,Object* supers,Object* name){
 Object* Klass::allocateInstance(Object* objType,std::vector<Object*>* args){
     Object* inst = new Object();
     inst->setKlass(static_cast<Type*>(objType)->getOwnKlass());
+    //看该对象所属的Klass是否定义了__init__函数，如果定义了则执行,所有内置类型都重写了该方法，因此不会执行
+    Object* construct = inst->getattr(StringTable::getInstance()->init);
+    if(construct != Universe::None){
+        Interpreter::getInstance()->callVitrual(construct,args);
+    } 
     return inst; 
 }
 

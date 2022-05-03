@@ -18,6 +18,15 @@
 #define STACK_TOP() m_main_frame->m_stack->at(m_main_frame->m_stack->size()-1)
 namespace easy_vm{
 
+Interpreter* Interpreter::instance = NULL;
+
+Interpreter* Interpreter::getInstance(){
+    if(instance == NULL){
+        instance = new Interpreter();
+    }
+    return instance;
+}
+
 Interpreter::Interpreter(){
     m_builtins = new Map<Object*,Object*>;
     m_builtins->put(new String("True"),Universe::True);
@@ -86,7 +95,7 @@ void Interpreter::runMainFrame(){
                 m_main_frame->m_stack->push_back(Universe::None);
                 break;
             case ByteCode::STORE_NAME:
-                //放入变量字典
+                //放入属性字典
                 v = m_main_frame->m_names->at(op_arg);
                 m_main_frame->m_locals->put(v,STACK_TOP());
                 m_main_frame->m_stack->pop_back();
@@ -132,6 +141,12 @@ void Interpreter::runMainFrame(){
                 m_main_frame->m_stack->push_back(v->getattr(w));
                 break;
             case ByteCode::STORE_ATTR:
+                u = STACK_TOP();
+                m_main_frame->m_stack->pop_back();
+                v = m_main_frame->m_names->at(op_arg);
+                w = STACK_TOP();
+                m_main_frame->m_stack->pop_back();
+                u->setattr(v,w);
                 break;     
             case ByteCode::LOAD_CLOSURE:
                 v = m_main_frame->mClosure()->get(op_arg);
@@ -235,8 +250,9 @@ void Interpreter::runMainFrame(){
             case ByteCode::RETURN_VALUE:
                 m_ret_value = STACK_TOP();
                 m_main_frame->m_stack->pop_back();
-                //如果当前栈帧是主函数栈帧，则程序退出
-                if(m_main_frame->isMainFrame()){
+                //如果当前栈帧是主函数栈帧或者第一个Python栈帧，则程序退出
+                //为python栈帧时，程序退出后回到Interpreter的callVirtual方法中
+                if(m_main_frame->isMainFrame()||m_main_frame->getEntryFlag()){
                     return;
                 }
                 //否则，退出当前栈帧
@@ -469,6 +485,34 @@ void Interpreter::destoryFrame(){
     Frame* temp = m_main_frame;
     m_main_frame = m_main_frame->getSender();
     delete temp;
+}
+
+//执行某类型的__init__函数
+Object* Interpreter::callVitrual(Object* func,std::vector<Object*>* args){
+    if(func->klass() == NativeFunctionKlass::getInstance()){
+        return static_cast<Function*>(func)->call(args);
+    }else if(func->klass() == MethodKlass::getInstance()){
+        Method* method = static_cast<Method*>(func);
+        if(!args){
+            args = new std::vector<Object*>();
+        }
+        args->insert(args->begin(),method->getOwner());
+        return callVitrual(method->getFunc(),args); 
+    }else if(Method::isFunction(func)){
+        int size = args ? args->size() : 0;
+        Frame* frame = new Frame(static_cast<Function*>(func),args,size);
+        frame->setEntryFlag(true);
+        enterFrame(frame);
+        runMainFrame();
+        destoryFrame();
+        return m_ret_value;
+    }
+    return Universe::None;
+}
+
+void Interpreter::enterFrame(Frame* frame){
+    frame->setSender(m_main_frame);
+    m_main_frame = frame;
 }
 
 } 

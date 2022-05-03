@@ -7,12 +7,17 @@ namespace easy_vm{
 //解释器
 class Interpreter{
 public:
-   Interpreter();
+   
    void run(CodeObject* codes);
    void buildFrame(Object* callable,std::vector<Object*>* argList,int op_arg);
    void runMainFrame();
-   
    void leaveFrame();
+   void enterFrame(Frame* frame);//开始执行python栈帧
+   Object* callVitrual(Object* func,std::vector<Object*>* args);
+   static Interpreter* getInstance();   
+private:
+   Interpreter();
+   static Interpreter* instance;
 private:
    void destoryFrame();
    Frame*  m_main_frame;
