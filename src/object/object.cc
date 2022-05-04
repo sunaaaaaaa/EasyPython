@@ -1,5 +1,6 @@
 #include "object.h"
 #include "dict.h"
+#include "method.h"
 #include "string_table.h"
 #include "../runtime/universe.h"
 #include <iostream>
@@ -152,6 +153,29 @@ void TypeKlass::print(Object* obj){
    ownklass->getName()->print();
    std::cout << ">" <<std::endl;
 }
+
+Object* TypeKlass::getattr(Object* obj,Object* attr){
+   Type* type = static_cast<Type*>(obj);
+   Object* result = Universe::None;
+   result = type->getOwnKlass()->getKlassDict()->get(attr);
+   if(result == Universe::None){
+       std::cout << "warning:attr: ";
+       attr->print();
+       std::cout << "not find" <<std::endl;
+       return result;
+   }
+   // if(Method::isFunction(result)){
+   //     result = new Method(static_cast<Function*>(result),obj);
+   // }
+   return result; 
+}
+
+Object* TypeKlass::setattr(Object* obj,Object* attr,Object* value){
+   Type* type = static_cast<Type*>(obj);
+   type->getOwnKlass()->getKlassDict()->put(attr,value);
+   return Universe::None;
+}
+
 
 Type::Type(){
    setKlass(TypeKlass::getInstance());

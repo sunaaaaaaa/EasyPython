@@ -15,6 +15,7 @@ StringTable::StringTable(){
     m_next = new String("next");
     mod = new String("__module__");
     init = new String("__init__");
+    add = new String("__add__");
 }
 
 }

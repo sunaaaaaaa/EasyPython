@@ -3,6 +3,7 @@
 #include "string_table.h"
 #include "../runtime/universe.h"
 #include "../runtime/interpreter.h"
+#include <vector>
 #include <iostream>
 namespace easy_vm{
 
@@ -83,6 +84,25 @@ Object* Klass::allocateInstance(Object* objType,std::vector<Object*>* args){
         Interpreter::getInstance()->callVitrual(construct,args);
     } 
     return inst; 
+}
+
+Object* Klass::findAndCall(Object* obj,std::vector<Object*>* args,Object* funcName){
+    Object* func = obj->getattr(funcName);
+    if(func != Universe::None){
+        return Interpreter::getInstance()->callVitrual(func,args);
+    }
+    std::cout << "class: ";
+    obj->klass()->m_name->print();
+    std::cout << " Error:unsupport operation for class" << std::endl;
+    assert(false);
+    return Universe::None;
+}
+
+//如果自定义类型通过__add__重载加法运算，则会调用此add方法，内置类型都重写了该方法
+Object* Klass::add(Object* obj1,Object* obj2){
+   std::vector<Object*>* args = new std::vector<Object*>();
+   args->push_back(obj2);
+   return findAndCall(obj1,args,StringTable::getInstance()->add);
 }
 
 }

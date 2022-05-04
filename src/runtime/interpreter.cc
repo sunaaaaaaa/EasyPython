@@ -374,10 +374,11 @@ void Interpreter::runMainFrame(){
 
                     args = new std::vector<Object*>();
                     args->resize(op_arg);
-                    while(op_arg--){
+                    int op_cnt = op_arg;
+                    while(op_cnt--){
                         v = STACK_TOP();
                         m_main_frame->m_stack->pop_back();
-                        auto& temp = args->at(op_arg);
+                        auto& temp = args->at(op_cnt);
                         temp = v;
                     }
                 }
@@ -487,7 +488,7 @@ void Interpreter::destoryFrame(){
     delete temp;
 }
 
-//执行某类型的__init__函数
+//执行某类型的__init__函数、重载方法等(例如__add__等)
 Object* Interpreter::callVitrual(Object* func,std::vector<Object*>* args){
     if(func->klass() == NativeFunctionKlass::getInstance()){
         return static_cast<Function*>(func)->call(args);

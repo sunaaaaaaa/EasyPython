@@ -12,7 +12,8 @@ public:
     static StringTable* getInstance();
     String* m_next;
     String* mod;
-    String* init;      
+    String* init;
+    String* add;      
 };    
 }
 

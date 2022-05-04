@@ -97,6 +97,8 @@ string_table.h
 /home/lighthouse/cppSpace/EasyPython/src/runtime/universe.h
 ../runtime/interpreter.h
 /home/lighthouse/cppSpace/EasyPython/src/runtime/interpreter.h
+vector
+-
 iostream
 -
 
@@ -269,6 +271,8 @@ object.h
 /home/lighthouse/cppSpace/EasyPython/src/object/object.h
 dict.h
 /home/lighthouse/cppSpace/EasyPython/src/object/dict.h
+method.h
+/home/lighthouse/cppSpace/EasyPython/src/object/method.h
 string_table.h
 /home/lighthouse/cppSpace/EasyPython/src/object/string_table.h
 ../runtime/universe.h

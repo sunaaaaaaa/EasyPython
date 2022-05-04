@@ -33,7 +33,7 @@ public:
     virtual Object* not_equal(Object* obj1,Object* obj2){return 0;}
     virtual Object* ge(Object* obj1,Object* obj2){return 0;}
     virtual Object* le(Object* obj1,Object* obj2){return 0;}
-    virtual Object* add(Object* obj1,Object* obj2){return 0;}
+    virtual Object* add(Object* obj1,Object* obj2);
     virtual Object* sub(Object* obj1,Object* obj2){return 0;}
     virtual Object* mul(Object* obj1,Object* obj2){return 0;}
     virtual Object* div(Object* obj1,Object* obj2){return 0;}
@@ -50,6 +50,8 @@ public:
     //第二个参数为一个列表，记录父类
     //第三个为字符串常量，表示类名
     static Object* createKlass(Object* attrs,Object* supers,Object* name);
+private:
+    Object* findAndCall(Object* obj,std::vector<Object*>* args,Object* funcName);
 private:
     String* m_name;
     Dict* m_klass_dict;//存储当前类型的方法和属性

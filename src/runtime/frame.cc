@@ -7,7 +7,7 @@
 namespace easy_vm{
 //该构造函数仅用于main函数
 Frame::Frame(CodeObject* codes):m_consts(codes->m_consts),m_names(codes->m_names),
-                                m_codes(codes),m_pc(0),m_arg_list(codes->m_argList),m_sender(NULL){
+                                m_codes(codes),m_pc(0),m_arg_list(codes->m_argList),m_sender(NULL),m_entryFlag(false){
     m_locals = new Dict();
     m_stack = new std::vector<Object*>();
     m_loop_stack = new std::vector<Block*>();
@@ -15,7 +15,7 @@ Frame::Frame(CodeObject* codes):m_consts(codes->m_consts),m_names(codes->m_names
     m_locals->put(new String("__name__"),new String("__main__"));
 }
 
-Frame::Frame(Function* func):m_consts(func->m_codes->m_consts),m_names(func->m_codes->m_names),m_codes(func->m_codes),m_pc(0){
+Frame::Frame(Function* func):m_consts(func->m_codes->m_consts),m_names(func->m_codes->m_names),m_codes(func->m_codes),m_pc(0),m_entryFlag(false){
     m_locals = new Dict();
     m_stack = new std::vector<Object*>();
     m_loop_stack = new std::vector<Block*>();
@@ -25,7 +25,7 @@ Frame::Frame(Function* func):m_consts(func->m_codes->m_consts),m_names(func->m_c
 }
 
 Frame::Frame(Function* func,std::vector<Object*>* args,int op_arg)
-      :m_consts(func->m_codes->m_consts),m_names(func->m_codes->m_names),m_codes(func->m_codes),m_pc(0){
+      :m_consts(func->m_codes->m_consts),m_names(func->m_codes->m_names),m_codes(func->m_codes),m_pc(0),m_entryFlag(false){
     
     assert((args && op_arg != 0) || (args == NULL && op_arg == 0));
     m_locals = new Dict();
