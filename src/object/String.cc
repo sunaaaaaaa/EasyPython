@@ -15,6 +15,7 @@ StringKlass* StringKlass::getInstance(){
     if(instance == NULL){
         instance = new StringKlass();
         instance->setName(new String("str"));
+        //instance->init();
     }
     return instance;
 }
@@ -66,7 +67,7 @@ String::~String(){
 StringKlass::StringKlass(){
     Type* type = new Type();
     type->setOwnKlass(this);
-    setSuper(ObjectKlass::getInstance());
+    addSuper(ObjectKlass::getInstance());
     setKlassDict(new Dict());
 }
 

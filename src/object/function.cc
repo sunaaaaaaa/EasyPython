@@ -15,7 +15,7 @@ FunctionKlass* FunctionKlass::getInstance(){
 }
 
 FunctionKlass::FunctionKlass(){
-    setSuper(ObjectKlass::getInstance());
+    addSuper(ObjectKlass::getInstance());
     setName(new String("function"));
     Type* type = new Type();
     type->setOwnKlass(this);
@@ -93,11 +93,14 @@ Object* isInstance(std::vector<Object*>* args){
     Object* ty = args->at(1);//类型
     assert(ty && ty->klass() == TypeKlass::getInstance());
     Klass* objType = obj->klass();
-    while(objType != NULL){
-        if(objType == static_cast<Type*>(ty)->getOwnKlass()){
+    
+    if(objType->getType() == static_cast<Type*>(ty)){
+        return Universe::True;
+    }
+    for(int i = 0;i<objType->getMro()->size();++i){
+        if(objType->getMro()->get(i) == static_cast<Type*>(ty)){
             return Universe::True;
         }
-        objType = objType->getSuper();
     }
     return Universe::False; 
 }

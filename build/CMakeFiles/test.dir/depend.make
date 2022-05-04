@@ -127,9 +127,11 @@ CMakeFiles/test.dir/src/object/method.cc.o: ../src/object/List.h
 CMakeFiles/test.dir/src/object/method.cc.o: ../src/object/String.h
 CMakeFiles/test.dir/src/object/method.cc.o: ../src/object/dict.h
 CMakeFiles/test.dir/src/object/method.cc.o: ../src/object/function.h
+CMakeFiles/test.dir/src/object/method.cc.o: ../src/object/integer.h
 CMakeFiles/test.dir/src/object/method.cc.o: ../src/object/method.cc
 CMakeFiles/test.dir/src/object/method.cc.o: ../src/object/method.h
 CMakeFiles/test.dir/src/object/method.cc.o: ../src/object/object.h
+CMakeFiles/test.dir/src/object/method.cc.o: ../src/runtime/universe.h
 CMakeFiles/test.dir/src/object/method.cc.o: ../src/util/map.h
 
 CMakeFiles/test.dir/src/object/object.cc.o: ../src/code/code_object.h
@@ -196,6 +198,7 @@ CMakeFiles/test.dir/src/runtime/interpreter.cc.o: ../src/runtime/universe.h
 CMakeFiles/test.dir/src/runtime/interpreter.cc.o: ../src/util/map.h
 
 CMakeFiles/test.dir/src/runtime/universe.cc.o: ../src/object/Klass.h
+CMakeFiles/test.dir/src/runtime/universe.cc.o: ../src/object/List.h
 CMakeFiles/test.dir/src/runtime/universe.cc.o: ../src/object/String.h
 CMakeFiles/test.dir/src/runtime/universe.cc.o: ../src/object/dict.h
 CMakeFiles/test.dir/src/runtime/universe.cc.o: ../src/object/integer.h

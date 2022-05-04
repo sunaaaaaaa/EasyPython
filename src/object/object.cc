@@ -30,6 +30,12 @@ void ObjectKlass::init(Klass* kls){
 
 void Object::initObjAttr(){ m_objAttr = new Dict();}
 
+
+Object* Object::findAttr(Object* attr){
+   assert(m_klass != NULL);
+   return m_klass->findAttr(this,attr);
+}
+
 Object* Object::getattr(Object* attr){
    assert(m_klass != NULL);
    return m_klass->getattr(this,attr); 
@@ -133,7 +139,7 @@ TypeKlass* TypeKlass::getInstance(){
 
 void TypeKlass::init(Klass* kls){
    kls->setName(new String("type"));
-   kls->setSuper(ObjectKlass::getInstance());
+   kls->addSuper(ObjectKlass::getInstance());
    Type* type = new Type();
    type->setOwnKlass(kls); 
 }
@@ -154,21 +160,21 @@ void TypeKlass::print(Object* obj){
    std::cout << ">" <<std::endl;
 }
 
-Object* TypeKlass::getattr(Object* obj,Object* attr){
-   Type* type = static_cast<Type*>(obj);
-   Object* result = Universe::None;
-   result = type->getOwnKlass()->getKlassDict()->get(attr);
-   if(result == Universe::None){
-       std::cout << "warning:attr: ";
-       attr->print();
-       std::cout << "not find" <<std::endl;
-       return result;
-   }
-   if(Method::isFunction(result)){
-       result = new Method(static_cast<Function*>(result),obj);
-   }
-   return result; 
-}
+// Object* TypeKlass::getattr(Object* obj,Object* attr){
+//    Type* type = static_cast<Type*>(obj);
+//    Object* result = Universe::None;
+//    result = type->getOwnKlass()->getKlassDict()->get(attr);
+//    if(result == Universe::None){
+//        std::cout << "warning:attr: ";
+//        attr->print();
+//        std::cout << "not find" <<std::endl;
+//        return result;
+//    }
+//    if(Method::isFunction(result)){
+//        result = new Method(static_cast<Function*>(result),obj);
+//    }
+//    return result; 
+// }
 
 Object* TypeKlass::setattr(Object* obj,Object* attr,Object* value){
    Type* type = static_cast<Type*>(obj);

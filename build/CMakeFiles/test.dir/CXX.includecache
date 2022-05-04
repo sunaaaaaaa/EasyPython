@@ -87,6 +87,8 @@ runtime/interpreter.h
 /home/lighthouse/cppSpace/EasyPython/src/runtime/interpreter.h
 
 /home/lighthouse/cppSpace/EasyPython/src/object/Klass.cc
+List.h
+/home/lighthouse/cppSpace/EasyPython/src/object/List.h
 Klass.h
 /home/lighthouse/cppSpace/EasyPython/src/object/Klass.h
 method.h
@@ -98,6 +100,8 @@ string_table.h
 ../runtime/interpreter.h
 /home/lighthouse/cppSpace/EasyPython/src/runtime/interpreter.h
 vector
+-
+algorithm
 -
 iostream
 -
@@ -253,6 +257,8 @@ function.h
 /home/lighthouse/cppSpace/EasyPython/src/object/method.cc
 method.h
 /home/lighthouse/cppSpace/EasyPython/src/object/method.h
+../runtime/universe.h
+/home/lighthouse/cppSpace/EasyPython/src/runtime/universe.h
 iostream
 -
 
@@ -385,6 +391,8 @@ frame.h
 /home/lighthouse/cppSpace/EasyPython/src/runtime/universe.cc
 universe.h
 /home/lighthouse/cppSpace/EasyPython/src/runtime/universe.h
+../object/List.h
+/home/lighthouse/cppSpace/EasyPython/src/object/List.h
 ../object/dict.h
 /home/lighthouse/cppSpace/EasyPython/src/object/dict.h
 ../object/String.h

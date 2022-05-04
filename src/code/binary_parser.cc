@@ -50,7 +50,7 @@ CodeObject* BinaryParser::getCodeObject(){
     int nlocals   = m_bufferIns->read_int();
     int stacksize = m_bufferIns->read_int();
     int flags     = m_bufferIns->read_int();
-     std::cout << "arg count: " << argcount <<std::endl;
+    std::cout << "arg count: " << argcount <<std::endl;
 
     String* byte_codes = getByteCode();
     std::vector<Object*>* consts     = getConsts();

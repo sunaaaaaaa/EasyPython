@@ -1,21 +1,125 @@
+#include "List.h"
 #include "Klass.h"
 #include "method.h"
 #include "string_table.h"
 #include "../runtime/universe.h"
 #include "../runtime/interpreter.h"
 #include <vector>
+#include <algorithm>
 #include <iostream>
 namespace easy_vm{
 
+void Klass::addSuper(Klass* super){
+    if(m_super == NULL){
+        m_super = new List();
+    }
+    m_super->append(super->getType());
+}
+
+
+void Klass::orderSuper(){
+    if(m_super == NULL){
+        return;
+    }
+    if(m_mro == NULL){
+        m_mro = new List();
+    }
+
+    int cur = -1;
+    for(int i = 0;i<m_super->size();++i){
+        Type* type = static_cast<Type*>(m_super->get(i));
+        Klass* kls = type->getOwnKlass();
+        m_mro->append(type);
+        //如果当前父类没有父类，则处理下一个父类
+        if(kls->m_mro == NULL){
+            continue;
+        }
+        //查找父类的超类是否已经存储过了，如果重复存储则将前面的删除，保留后面的
+        for(int j = 0;j<kls->m_mro->size();++j){
+            Type* type = static_cast<Type*>(kls->m_mro->get(i));
+            int index = m_mro->index(type);
+            if(index < cur){
+                std::cout << "Error:method resolution order conflicts"<<std::endl;
+                assert(false);
+            }
+            cur = index;
+            if(index >= 0){
+                m_mro->deleteIndex(index);
+            }
+            m_mro->append(type);
+        }
+    }
+
+    if(m_mro == NULL){
+        return;
+    }
+    std::cout <<m_name->value() <<" mro is:";
+    for(int i = 0;i<m_mro->size();++i){
+        Type* type = static_cast<Type*>(m_mro->get(i));
+        Klass* kls = type->getOwnKlass();
+        std::cout <<kls->getName()->value() <<"  ";
+    }
+    std::cout <<std::endl;
+}
+
+Object* Klass::findAttr(Object* obj,Object* attr){
+    //默认逻辑
+    Object* result = Universe::None;
+    //先找对象存储的属性
+    if(obj->getObjAttr()!=NULL){
+        result = obj->getObjAttr()->get(attr);
+        if(result != Universe::None){
+            return result;
+        }
+    }
+    result = findAttrInParent(obj,attr);
+    if(Method::isFunction(result)){
+       result = new Method(static_cast<Function*>(result),obj);
+    }
+    return result;
+}
+
+//从当前类型以及父类型中寻找
+Object* Klass::findAttrInParent(Object* obj,Object* attr){
+    Object* result = Universe::None;
+    result = getKlassDict()->get(attr);
+    if(result != Universe::None){
+        return result;
+    }
+    
+    //直接父类找不到则从父类的父类中寻找
+    if(obj->klass()->getMro() == NULL){
+        return result;
+    }
+    
+    List* parentKls = obj->klass()->getMro();
+    for(int i = 0;i<parentKls->size();++i){
+        result = static_cast<Type*>(parentKls->get(i))->getOwnKlass()->getKlassDict()->get(attr);
+        if(result != Universe::None){
+            break;
+        }
+    }
+    
+    if(result == Universe::None){
+        std::cout << "warning:attr: ";
+        attr->print();
+        std::cout << "not find an where(include parent class)" <<std::endl;
+    }
+    return result;
+}
+
 Object* Klass::getattr(Object* obj,Object* attr){
    //如果类型重写了__getattr__函数，则执行__getattr__函数
+   if(obj==Universe::None){
+       return Universe::None;
+   }
    Object* func = obj->klass()->getKlassDict()->get(StringTable::getInstance()->getattr);
    if(func != Universe::None && func->klass()==FunctionKlass::getInstance()){
        func = new Method(static_cast<Function*>(func),obj);
        std::vector<Object*>* args = new std::vector<Object*>();
        args->push_back(attr);
        return Interpreter::getInstance()->callVitrual(func,args);
-   }  
+   } 
    //默认逻辑
    Object* result = Universe::None;
    //先找对象存储的属性
@@ -26,13 +130,7 @@ Object* Klass::getattr(Object* obj,Object* attr){
        }
    }
    //如果未对属性进行过更改，则从类型中寻找 
-   result = getKlassDict()->get(attr);
-   if(result == Universe::None){
-       std::cout << "warning:attr: ";
-       attr->print();
-       std::cout << "not find" <<std::endl;
-       return result;
-   }
+   result = findAttrInParent(obj,attr);
    if(Method::isFunction(result)){
        result = new Method(static_cast<Function*>(result),obj);
    }
@@ -87,8 +185,11 @@ Object* Klass::createKlass(Object* attrs,Object* supers,Object* name){
     newKlass->setKlassDict(klassAttr);
     newKlass->setName(static_cast<String*>(name));
     if(klassSupers->getList()->size() > 0){
-        Type* super = static_cast<Type*>(klassSupers->get(0));
-        newKlass->setSuper(super->getOwnKlass());
+        for(int i = 0;i<klassSupers->getList()->size();++i){
+           Type* super = static_cast<Type*>(klassSupers->get(i));
+           newKlass->addSuper(super->getOwnKlass());
+        }
+        newKlass->orderSuper(); 
     }
     Type* type = new Type();
     type->setOwnKlass(newKlass);
@@ -99,9 +200,11 @@ Object* Klass::allocateInstance(Object* objType,std::vector<Object*>* args){
     Object* inst = new Object();
     inst->setKlass(static_cast<Type*>(objType)->getOwnKlass());
     //看该对象所属的Klass是否定义了__init__函数，如果定义了则执行,所有内置类型都重写了该方法，因此不会执行
-    Object* construct = inst->getattr(StringTable::getInstance()->init);
+    Object* construct = inst->findAttr(StringTable::getInstance()->init);
     if(construct != Universe::None){
         Interpreter::getInstance()->callVitrual(construct,args);
+    }else{
+        std::cout <<"use default construct create an object"<<std::endl;
     } 
     return inst; 
 }

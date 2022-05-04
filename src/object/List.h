@@ -12,7 +12,7 @@ private:
    static ListKlass* instance;
 public:
    static ListKlass* getInstance();
-
+   void init();
    virtual void print(Object* obj);
    virtual Object* subscr(Object* obj,Object* index);
    virtual void storeSubscr(Object* obj,Object* index,Object* value);
@@ -31,7 +31,6 @@ friend class ListKlass;
 public:
     List();
     List(std::vector<Object*>* objList);
-    
     int size()const{return m_inner_list->size();}
     std::vector<Object*>* getList()const{return m_inner_list;}
     void append(Object* obj){m_inner_list->push_back(obj);}
@@ -54,7 +53,8 @@ public:
         temp = obj;
     }
     Object* top(){return get(size()-1);}
-    
+    int index(Object* obj);
+    void deleteIndex(int index);
 public:
     static Object* list_append(std::vector<Object*>* args);
     static Object* list_replace(std::vector<Object*>* args);

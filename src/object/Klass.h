@@ -9,19 +9,23 @@ namespace easy_vm{
 class Object;
 class String;
 class Dict;
+class List;
 class Type;
 
 class Klass{
 public:
-    Klass(){}
+    Klass():m_super(NULL),m_mro(NULL){}
     void setName(String* s){ m_name = s;}
     String* getName(){return m_name;}
     void setKlassDict(Dict* dict){m_klass_dict = dict;}
     Dict* getKlassDict(){return m_klass_dict;}
     void setType(Type* type){m_type = type;}
     Type* getType(){return m_type;}
-    Klass* getSuper(){return m_super;}
-    void setSuper(Klass* super){m_super = super;}
+    List* getSuper(){return m_super;}
+    void setSuper(List* super){m_super = super;}
+    List* getMro(){return m_mro;}
+    void addSuper(Klass* super);
+    void orderSuper();//深度遍历所有父类
 
     virtual Object* getattr(Object* obj,Object* attr);
     virtual Object* setattr(Object* obj,Object* attr,Object* value);
@@ -44,6 +48,7 @@ public:
     virtual Object* contains(Object* obj1,Object* obj2){return 0;}
     virtual Object* iter(Object* obj){};
     virtual Object* allocateInstance(Object* objType,std::vector<Object*>* args);
+    virtual Object* findAttr(Object* obj,Object* attr);
 public:
     static int compareKlass(Klass* kls1,Klass* kls2);
     //第一个为一个Dict，记录方法和属性
@@ -52,11 +57,13 @@ public:
     static Object* createKlass(Object* attrs,Object* supers,Object* name);
 private:
     Object* findAndCall(Object* obj,std::vector<Object*>* args,Object* funcName);
+    Object* findAttrInParent(Object* obj,Object* attr);
 private:
     String* m_name;
     Dict* m_klass_dict;//存储当前类型的方法和属性
-    Klass* m_super;//表示该类型的父类型
     Type*  m_type;//存储当前Klass类型信息的对象
+    List* m_super;//表示该类型的父类型
+    List* m_mro; //父类的深度遍历序列(重复元素只保留最后一个)
 };
 
 }

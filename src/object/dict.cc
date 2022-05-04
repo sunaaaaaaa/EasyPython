@@ -13,7 +13,7 @@ DictKlass* DictKlass::instance = NULL;
 DictKlass* DictKlass::getInstance(){
     if(instance == NULL){
         instance = new DictKlass();
-        instance->init();
+        //instance->init();
     }
     return instance;
 }
@@ -34,7 +34,7 @@ void DictKlass::init(){
     Type* type = new Type();
     type->setOwnKlass(this);
     setName(new String("dict"));
-    setSuper(ObjectKlass::getInstance());
+    addSuper(ObjectKlass::getInstance());
 }
 
 void DictKlass::print(Object* obj){

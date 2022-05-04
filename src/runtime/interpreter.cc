@@ -455,6 +455,10 @@ void Interpreter::runMainFrame(){
 }
 //创建栈帧
 void Interpreter::buildFrame(Object* callable, std::vector<Object*>* argList,int op_arg){ 
+    if(callable==Universe::None){
+        std::cout << "Error:callable is null" << std::endl;
+        assert(false);
+    }
     if(callable->klass()==NativeFunctionKlass::getInstance()){  
        //执行内置函数,将结果压栈
        m_main_frame->m_stack->push_back(static_cast<Function*>(callable)->call(argList));

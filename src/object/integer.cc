@@ -10,7 +10,7 @@ IntegerKlass* IntegerKlass::instance = NULL;
 IntegerKlass::IntegerKlass(){
    Type* type = new Type();
    type->setOwnKlass(this);
-   setSuper(ObjectKlass::getInstance());
+   addSuper(ObjectKlass::getInstance());
    setKlassDict(new Dict());
    setName(new String("int"));
 }

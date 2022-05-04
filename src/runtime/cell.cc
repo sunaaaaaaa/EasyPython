@@ -15,7 +15,7 @@ CellKlass* CellKlass::getInstance(){
 CellKlass::CellKlass(){
     setKlassDict(new Dict());
     setName(new String("cell"));
-    setSuper(ObjectKlass::getInstance());
+    addSuper(ObjectKlass::getInstance());
     Type* type = new Type();
     type->setOwnKlass(this);
 }

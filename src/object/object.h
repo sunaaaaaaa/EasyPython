@@ -27,6 +27,7 @@ public:
    void initObjAttr();
 
    void print();
+   Object* findAttr(Object* attr);
    Object* getattr(Object* attr);
    Object* setattr(Object* attr,Object* value);
    Object* len();
@@ -60,7 +61,7 @@ public:
    static TypeKlass* getInstance();
    virtual void print(Object* obj);
    //Type类型在设置属性的时候，是为ownKlass添加属性，而不是给自身，因此需要重写Klass的默认实现
-   virtual Object* getattr(Object* obj,Object* attr);
+   //virtual Object* getattr(Object* obj,Object* attr);
    virtual Object* setattr(Object* obj,Object* attr,Object* value);
 };
 

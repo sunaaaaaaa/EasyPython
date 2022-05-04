@@ -14,11 +14,14 @@ ListKlass* ListKlass::instance = NULL;
 ListKlass* ListKlass::getInstance(){
     if(instance == NULL){
         instance = new ListKlass();
+        //instance->init();
     }
     return instance;
 }
 
-ListKlass::ListKlass(){
+ListKlass::ListKlass(){}
+
+void ListKlass::init(){
     Dict* dict = new Dict();
     dict->put(new String("append"),new Function(List::list_append));
     dict->put(new String("replace"),new Function(List::list_replace));
@@ -31,7 +34,7 @@ ListKlass::ListKlass(){
     setKlassDict(dict);
     Type* type = new Type();
     type->setOwnKlass(this);
-    setSuper(ObjectKlass::getInstance());
+    addSuper(ObjectKlass::getInstance());
 }
 
 void ListKlass::print(Object* obj){
@@ -174,6 +177,19 @@ List::List(){
 List::List(std::vector<Object*>* objList){
    setKlass(ListKlass::getInstance());
    m_inner_list = objList;
+}
+
+int List::index(Object* obj){
+    for(int i = 0;i<size();++i){
+        if(get(i) == obj){
+            return i;
+        }
+    }
+    return -1;
+}
+
+void List::deleteIndex(int index){
+    m_inner_list->erase(m_inner_list->begin() + index);
 }
 
 Object* List::list_append(std::vector<Object*>* args){

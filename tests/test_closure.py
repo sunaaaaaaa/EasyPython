@@ -5,5 +5,5 @@ def func():
     return say
 
 f = func()
-f()
-f()            
+f() #2
+f() #2           

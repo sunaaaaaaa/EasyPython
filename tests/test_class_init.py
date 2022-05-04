@@ -3,13 +3,12 @@ class A(object):
         self.value = v
 
 a = A(1)
-print a.value
+print a.value #1
 b = A(2)
 
 a.field = 3
 
 A.field = 4
 
-print a.field
-print b.field
-print A.field
+print a.field #3
+print b.field #4

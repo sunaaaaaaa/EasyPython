@@ -128,9 +128,11 @@ CMakeFiles/test.dir/src/object/method.cc.o
  /home/lighthouse/cppSpace/EasyPython/src/object/String.h
  /home/lighthouse/cppSpace/EasyPython/src/object/dict.h
  /home/lighthouse/cppSpace/EasyPython/src/object/function.h
+ /home/lighthouse/cppSpace/EasyPython/src/object/integer.h
  /home/lighthouse/cppSpace/EasyPython/src/object/method.cc
  /home/lighthouse/cppSpace/EasyPython/src/object/method.h
  /home/lighthouse/cppSpace/EasyPython/src/object/object.h
+ /home/lighthouse/cppSpace/EasyPython/src/runtime/universe.h
  /home/lighthouse/cppSpace/EasyPython/src/util/map.h
 CMakeFiles/test.dir/src/object/object.cc.o
  /home/lighthouse/cppSpace/EasyPython/src/code/code_object.h
@@ -197,6 +199,7 @@ CMakeFiles/test.dir/src/runtime/interpreter.cc.o
  /home/lighthouse/cppSpace/EasyPython/src/util/map.h
 CMakeFiles/test.dir/src/runtime/universe.cc.o
  /home/lighthouse/cppSpace/EasyPython/src/object/Klass.h
+ /home/lighthouse/cppSpace/EasyPython/src/object/List.h
  /home/lighthouse/cppSpace/EasyPython/src/object/String.h
  /home/lighthouse/cppSpace/EasyPython/src/object/dict.h
  /home/lighthouse/cppSpace/EasyPython/src/object/integer.h

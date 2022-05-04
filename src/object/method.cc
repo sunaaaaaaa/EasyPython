@@ -1,4 +1,5 @@
 #include "method.h"
+#include "../runtime/universe.h"
 #include <iostream>
 namespace easy_vm{
 
@@ -13,7 +14,7 @@ MethodKlass* MethodKlass::getInstance(){
 
 MethodKlass::MethodKlass(){
     setKlassDict(new Dict());
-    setSuper(ObjectKlass::getInstance());
+    addSuper(ObjectKlass::getInstance());
     setName(new String("method"));
     Type* type = new Type();
     type->setOwnKlass(this);
@@ -24,6 +25,9 @@ void MethodKlass::print(Object* obj){
 }
 
 bool Method::isFunction(Object* obj){
+    if(obj==Universe::None){
+        return false;
+    }
     Klass* klass = obj->klass();
     if((klass != FunctionKlass::getInstance())&&(klass != NativeFunctionKlass::getInstance())){
         return false;
