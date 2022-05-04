@@ -472,6 +472,16 @@ void Interpreter::buildFrame(Object* callable, std::vector<Object*>* argList,int
     }else if(callable->klass() == TypeKlass::getInstance()){
         Object* inst = static_cast<Type*>(callable)->getOwnKlass()->allocateInstance(callable,argList);
         m_main_frame->m_stack->push_back(inst);
+    }else{
+        //当对象直接被当作函数来调用，即callable不是Function或者Method或者内置函数时
+        //需要从该对象的取出__call__函数执行
+        Object* call = callable->getattr(StringTable::getInstance()->call);
+        if(call != NULL){
+            buildFrame(call,argList,op_arg);
+        }else{
+            callable->print();
+            std::cout << "can not call a normal object,if you want,please override the __call__ method"<<std::endl;
+        }
     }  
 }
 

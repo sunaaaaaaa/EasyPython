@@ -153,7 +153,7 @@ Object* ListKlass::contains(Object* obj,Object* ele){
     assert(list && list->klass() == static_cast<Klass*>(this));
     int size = list->m_inner_list->size();
     for(int i = 0; i<size; ++i){
-        if(list->m_inner_list->at(i)->equal(ele)){
+        if(list->m_inner_list->at(i)->equal(ele)!=Universe::False){
             return Universe::True;
         }
     }

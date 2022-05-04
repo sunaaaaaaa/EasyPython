@@ -8,6 +8,15 @@
 namespace easy_vm{
 
 Object* Klass::getattr(Object* obj,Object* attr){
+   //如果类型重写了__getattr__函数，则执行__getattr__函数
+   Object* func = obj->klass()->getKlassDict()->get(StringTable::getInstance()->getattr);
+   if(func != Universe::None && func->klass()==FunctionKlass::getInstance()){
+       func = new Method(static_cast<Function*>(func),obj);
+       std::vector<Object*>* args = new std::vector<Object*>();
+       args->push_back(attr);
+       return Interpreter::getInstance()->callVitrual(func,args);
+   }  
+   //默认逻辑
    Object* result = Universe::None;
    //先找对象存储的属性
    if(obj->getObjAttr()!=NULL){
@@ -31,6 +40,17 @@ Object* Klass::getattr(Object* obj,Object* attr){
 }
 
 Object* Klass::setattr(Object* obj,Object* attr,Object* value){
+   //增加重载逻辑，如果对象重写了__setattr__函数，则执行该函数，否则放入ObjAttr字典中
+   Object* func = getKlassDict()->get(StringTable::getInstance()->setattr);
+
+   if(func != Universe::None && func->klass()==FunctionKlass::getInstance()){
+       func = new Method(static_cast<Function*>(func),obj);
+       std::vector<Object*>* args = new std::vector<Object*>();
+       args->push_back(attr);
+       args->push_back(value);
+       return Interpreter::getInstance()->callVitrual(func,args);
+   }
+   //默认逻辑，放入ObjAttr字典
    if(obj->getObjAttr() == NULL){
        obj->initObjAttr();
    }
@@ -96,6 +116,23 @@ Object* Klass::findAndCall(Object* obj,std::vector<Object*>* args,Object* funcNa
     std::cout << " Error:unsupport operation for class" << std::endl;
     assert(false);
     return Universe::None;
+}
+
+Object* Klass::subscr(Object* obj,Object* index){
+   std::vector<Object*>* args = new std::vector<Object*>();
+   args->push_back(index);
+   return findAndCall(obj,args,StringTable::getInstance()->getitem);
+}
+
+void Klass::storeSubscr(Object* obj,Object* index,Object* value){
+   std::vector<Object*>* args = new std::vector<Object*>();
+   args->push_back(index);
+   args->push_back(value);
+   findAndCall(obj,args,StringTable::getInstance()->setitem);
+}
+
+void Klass::delSubscr(Object* obj,Object* ele){
+   
 }
 
 //如果自定义类型通过__add__重载加法运算，则会调用此add方法，内置类型都重写了该方法

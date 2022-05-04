@@ -106,7 +106,9 @@ Object* StringKlass::equal(Object* l,Object* r){
         return Universe::False;
     }
     for(int i = 0;i<sl->length();++i){
-        if(sl->value()[i] != sr->value()[i]){
+        char a1 = sl->value()[i];
+        char a2 = sr->value()[i];
+        if(a1 != a2){
             return Universe::False;
         }
     }

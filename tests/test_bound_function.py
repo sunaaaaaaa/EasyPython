@@ -22,5 +22,4 @@ a.bar = func #此时绑定的是一个函数，因为a是对象，不是类型
 A.bar = func #此时为类型A添加一个方法
 
 a.bar(a,"hello")#此时需要传入a，否则缺少参数
-A.bar(a,"world")
 b.bar("yayaya") #此时不需要传入b，因为bar是个方法

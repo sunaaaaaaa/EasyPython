@@ -13,7 +13,12 @@ public:
     String* m_next;
     String* mod;
     String* init;
-    String* add;      
+    String* add;
+    String* call;
+    String* getitem;
+    String* setitem;
+    String* getattr;
+    String* setattr;      
 };    
 }
 

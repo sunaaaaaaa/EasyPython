@@ -164,9 +164,9 @@ Object* TypeKlass::getattr(Object* obj,Object* attr){
        std::cout << "not find" <<std::endl;
        return result;
    }
-   // if(Method::isFunction(result)){
-   //     result = new Method(static_cast<Function*>(result),obj);
-   // }
+   if(Method::isFunction(result)){
+       result = new Method(static_cast<Function*>(result),obj);
+   }
    return result; 
 }
 

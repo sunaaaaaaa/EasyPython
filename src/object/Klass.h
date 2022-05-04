@@ -38,9 +38,9 @@ public:
     virtual Object* mul(Object* obj1,Object* obj2){return 0;}
     virtual Object* div(Object* obj1,Object* obj2){return 0;}
     virtual Object* mod(Object* obj1,Object* obj2){return 0;}
-    virtual Object* subscr(Object* obj,Object* index){}
-    virtual void storeSubscr(Object* obj,Object* index,Object* value){}
-    virtual void delSubscr(Object* obj,Object* ele){}
+    virtual Object* subscr(Object* obj,Object* index);
+    virtual void storeSubscr(Object* obj,Object* index,Object* value);
+    virtual void delSubscr(Object* obj,Object* ele);
     virtual Object* contains(Object* obj1,Object* obj2){return 0;}
     virtual Object* iter(Object* obj){};
     virtual Object* allocateInstance(Object* objType,std::vector<Object*>* args);

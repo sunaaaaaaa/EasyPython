@@ -142,7 +142,7 @@ Object* IntegerKlass::less(Object* l,Object* r){
     
    assert(il && (il->klass()==static_cast<Klass*>(this)));
    assert(ir && (ir->klass()==static_cast<Klass*>(this)));
-   if(il->value() > ir->value()){
+   if(il->value() >= ir->value()){
       return Universe::False;
    }else{
       return Universe::True;
