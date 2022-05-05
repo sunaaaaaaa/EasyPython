@@ -1,3 +1,7 @@
+x = 1
+def hello(s):
+    print s
+
 class A(object):
     value = 1
     def say(self):

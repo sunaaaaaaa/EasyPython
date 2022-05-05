@@ -47,8 +47,8 @@ public:
 
    bool isMainFrame(){return m_sender == NULL;}
    bool hasMoreCodes();
-   unsigned char getOpCode();
-   int getOpArg();
+   unsigned char getOpCode();//获取当前字节码
+   int getOpArg();//获取字节码参数的数目
    Object* getCellFromParamter(int index); 
 };
 }
