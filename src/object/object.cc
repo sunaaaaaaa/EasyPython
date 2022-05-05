@@ -30,6 +30,10 @@ void ObjectKlass::init(Klass* kls){
 
 void Object::initObjAttr(){ m_objAttr = new Dict();}
 
+void* Object::operator new(size_t size){
+   return Universe::heap->allocate(size);
+   //return temp;
+}
 
 Object* Object::findAttr(Object* attr){
    assert(m_klass != NULL);
@@ -185,6 +189,7 @@ Object* TypeKlass::setattr(Object* obj,Object* attr,Object* value){
 
 Type::Type(){
    setKlass(TypeKlass::getInstance());
+   std::cout << "aa"<<std::endl;
 }
 //完成Klass与该Klass对应Type的绑定
 void Type::setOwnKlass(Klass* kls){

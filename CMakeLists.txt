@@ -29,6 +29,7 @@ add_executable(test
          src/runtime/universe.cc
          src/runtime/frame.cc
          src/runtime/cell.cc
+         src/runtime/space.cc
          src/util/map.cc)
 
 # SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)

@@ -9,11 +9,16 @@ namespace easy_vm{
 Integer* Universe::True = NULL;
 Integer* Universe::False = NULL;
 Object* Universe::None = NULL;
+Heap* Universe::heap = NULL;
+std::vector<Klass*>* Universe::klasses = NULL;
 
 void Universe::genesis(){
+    heap = Heap::getInstance();
+    klasses = new std::vector<Klass*>();
     True = new Integer(1);
     False = new Integer(0);
     None = new Object();
+    
     StringKlass::getInstance()->init();
     DictKlass::getInstance()->init();
     IntegerKlass::getInstance();

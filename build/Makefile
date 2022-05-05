@@ -558,6 +558,33 @@ src/runtime/interpreter.cc.s:
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/runtime/interpreter.cc.s
 .PHONY : src/runtime/interpreter.cc.s
 
+src/runtime/space.o: src/runtime/space.cc.o
+
+.PHONY : src/runtime/space.o
+
+# target to build an object file
+src/runtime/space.cc.o:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/runtime/space.cc.o
+.PHONY : src/runtime/space.cc.o
+
+src/runtime/space.i: src/runtime/space.cc.i
+
+.PHONY : src/runtime/space.i
+
+# target to preprocess a source file
+src/runtime/space.cc.i:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/runtime/space.cc.i
+.PHONY : src/runtime/space.cc.i
+
+src/runtime/space.s: src/runtime/space.cc.s
+
+.PHONY : src/runtime/space.s
+
+# target to generate assembly for a file
+src/runtime/space.cc.s:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/runtime/space.cc.s
+.PHONY : src/runtime/space.cc.s
+
 src/runtime/universe.o: src/runtime/universe.cc.o
 
 .PHONY : src/runtime/universe.o
@@ -669,6 +696,9 @@ help:
 	@echo "... src/runtime/interpreter.o"
 	@echo "... src/runtime/interpreter.i"
 	@echo "... src/runtime/interpreter.s"
+	@echo "... src/runtime/space.o"
+	@echo "... src/runtime/space.i"
+	@echo "... src/runtime/space.s"
 	@echo "... src/runtime/universe.o"
 	@echo "... src/runtime/universe.i"
 	@echo "... src/runtime/universe.s"

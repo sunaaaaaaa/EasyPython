@@ -14,7 +14,7 @@ class Type;
 
 class Klass{
 public:
-    Klass():m_super(NULL),m_mro(NULL){}
+    Klass();
     void setName(String* s){ m_name = s;}
     String* getName(){return m_name;}
     void setKlassDict(Dict* dict){m_klass_dict = dict;}
@@ -26,6 +26,7 @@ public:
     List* getMro(){return m_mro;}
     void addSuper(Klass* super);
     void orderSuper();//深度遍历所有父类
+    void* operator new(size_t size);
 
     virtual Object* getattr(Object* obj,Object* attr);
     virtual Object* setattr(Object* obj,Object* attr,Object* value);

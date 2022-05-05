@@ -30,7 +30,8 @@ public:
 class Integer:public Object{
 public:
      Integer(int val):m_value(val){
-          setKlass(IntegerKlass::getInstance());
+          IntegerKlass* kls = IntegerKlass::getInstance();
+          setKlass(kls);
      }
      int value() const {return m_value;}
 private:

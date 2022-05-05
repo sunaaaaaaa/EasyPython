@@ -16,6 +16,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/test.dir/src/runtime/universe.cc.o"
   "CMakeFiles/test.dir/src/runtime/frame.cc.o"
   "CMakeFiles/test.dir/src/runtime/cell.cc.o"
+  "CMakeFiles/test.dir/src/runtime/space.cc.o"
   "CMakeFiles/test.dir/src/util/map.cc.o"
   "test.pdb"
   "test"

@@ -9,6 +9,11 @@
 #include <iostream>
 namespace easy_vm{
 
+Klass::Klass():m_super(NULL),m_mro(NULL),m_name(NULL),m_klass_dict(NULL){
+    Universe::klasses->push_back(this);
+}
+
+
 void Klass::addSuper(Klass* super){
     if(m_super == NULL){
         m_super = new List();
@@ -60,6 +65,12 @@ void Klass::orderSuper(){
         std::cout <<kls->getName()->value() <<"  ";
     }
     std::cout <<std::endl;
+}
+
+void* Klass::operator new(size_t size){
+    // void* temp = Universe::heap->allocateMeta(size);
+    // return temp;
+    return Universe::heap->allocateMeta(size);
 }
 
 Object* Klass::findAttr(Object* obj,Object* attr){

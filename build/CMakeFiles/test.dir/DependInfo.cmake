@@ -20,6 +20,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/lighthouse/cppSpace/EasyPython/src/runtime/cell.cc" "/home/lighthouse/cppSpace/EasyPython/build/CMakeFiles/test.dir/src/runtime/cell.cc.o"
   "/home/lighthouse/cppSpace/EasyPython/src/runtime/frame.cc" "/home/lighthouse/cppSpace/EasyPython/build/CMakeFiles/test.dir/src/runtime/frame.cc.o"
   "/home/lighthouse/cppSpace/EasyPython/src/runtime/interpreter.cc" "/home/lighthouse/cppSpace/EasyPython/build/CMakeFiles/test.dir/src/runtime/interpreter.cc.o"
+  "/home/lighthouse/cppSpace/EasyPython/src/runtime/space.cc" "/home/lighthouse/cppSpace/EasyPython/build/CMakeFiles/test.dir/src/runtime/space.cc.o"
   "/home/lighthouse/cppSpace/EasyPython/src/runtime/universe.cc" "/home/lighthouse/cppSpace/EasyPython/build/CMakeFiles/test.dir/src/runtime/universe.cc.o"
   "/home/lighthouse/cppSpace/EasyPython/src/util/map.cc" "/home/lighthouse/cppSpace/EasyPython/build/CMakeFiles/test.dir/src/util/map.cc.o"
   )

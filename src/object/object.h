@@ -25,6 +25,7 @@ public:
    void setObjAttr(Dict* dict){m_objAttr = dict;}
    Dict* getObjAttr(){return m_objAttr;}
    void initObjAttr();
+   void* operator new(size_t size);
 
    void print();
    Object* findAttr(Object* attr);
