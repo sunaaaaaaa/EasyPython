@@ -1,4 +1,5 @@
 #include "Space.h"
+#include "../memory/oopClosure.h"
 #include <iostream>
 namespace easy_vm{
 
@@ -101,7 +102,8 @@ void* Heap::allocateMeta(size_t size){
 
 //复制存活对象，交换eden与survivor指针
 void Heap::copyLiveObjects(){
-
+    ScanvengeOopClosure closure(eden,survivor,metaspace);
+    closure.scavenge();
 }
 
 void Heap::gc(){

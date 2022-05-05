@@ -1,4 +1,5 @@
 #include "array_list.h"
+#include "../runtime/universe.h"
 #include <stdio.h>
 
 namespace easy_vm{
@@ -67,11 +68,12 @@ T ArrayList<T>::pop(){
 
 template<class T>
 void ArrayList<T>::expand(){
-     T* new_array = new T[m_length << 1];
+    void* temp = Universe::heap->allocate(sizeof(T)*(m_length << 1));
+     T* new_array = new(temp) T[m_length << 1];
      for(int i = 0; i <m_length;++i){
          new_array[i] = m_array[i];
      }
-     delete[] m_array;
+     //delete[] m_array;
      m_array = new_array;
      m_length << 1;
 

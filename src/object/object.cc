@@ -35,6 +35,11 @@ void* Object::operator new(size_t size){
    //return temp;
 }
 
+void Object::oops_do(OopClosure* closure){
+   closure->do_oop((Object**)&m_objAttr);
+   klass()->oops_do(closure,this);
+}
+
 Object* Object::findAttr(Object* attr){
    assert(m_klass != NULL);
    return m_klass->findAttr(this,attr);

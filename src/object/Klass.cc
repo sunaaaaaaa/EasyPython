@@ -73,6 +73,12 @@ void* Klass::operator new(size_t size){
     return Universe::heap->allocateMeta(size);
 }
 
+void Klass::oops_do(OopClosure* closure, Object* obj) {
+    std::cout << "warning: klass oops_do for ";
+    m_name->print();
+    std::cout << std::endl;
+}
+
 Object* Klass::findAttr(Object* obj,Object* attr){
     //默认逻辑
     Object* result = Universe::None;

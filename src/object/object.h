@@ -2,7 +2,7 @@
 #define __EASY_PYTHON_VM_OBJECT_H_
 #include "Klass.h"
 #include <assert.h>
-
+#include "../memory/oopClosure.h"
 namespace easy_vm{
 
 class ObjectKlass:public Klass{
@@ -26,7 +26,8 @@ public:
    Dict* getObjAttr(){return m_objAttr;}
    void initObjAttr();
    void* operator new(size_t size);
-
+   void oops_do(OopClosure* closure);
+   
    void print();
    Object* findAttr(Object* attr);
    Object* getattr(Object* attr);

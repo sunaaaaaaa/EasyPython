@@ -30,7 +30,10 @@ add_executable(test
          src/runtime/frame.cc
          src/runtime/cell.cc
          src/runtime/space.cc
-         src/util/map.cc)
+         src/memory/oopClosure.cc
+         src/util/map.cc
+         src/util/stack.cc
+         src/util/array_list.cc)
 
 # SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 # SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

@@ -492,9 +492,33 @@ CMakeFiles/test.dir/src/runtime/space.cc.o.provides: CMakeFiles/test.dir/src/run
 CMakeFiles/test.dir/src/runtime/space.cc.o.provides.build: CMakeFiles/test.dir/src/runtime/space.cc.o
 
 
+CMakeFiles/test.dir/src/memory/oopClosure.cc.o: CMakeFiles/test.dir/flags.make
+CMakeFiles/test.dir/src/memory/oopClosure.cc.o: ../src/memory/oopClosure.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lighthouse/cppSpace/EasyPython/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/test.dir/src/memory/oopClosure.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test.dir/src/memory/oopClosure.cc.o -c /home/lighthouse/cppSpace/EasyPython/src/memory/oopClosure.cc
+
+CMakeFiles/test.dir/src/memory/oopClosure.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test.dir/src/memory/oopClosure.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lighthouse/cppSpace/EasyPython/src/memory/oopClosure.cc > CMakeFiles/test.dir/src/memory/oopClosure.cc.i
+
+CMakeFiles/test.dir/src/memory/oopClosure.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test.dir/src/memory/oopClosure.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lighthouse/cppSpace/EasyPython/src/memory/oopClosure.cc -o CMakeFiles/test.dir/src/memory/oopClosure.cc.s
+
+CMakeFiles/test.dir/src/memory/oopClosure.cc.o.requires:
+
+.PHONY : CMakeFiles/test.dir/src/memory/oopClosure.cc.o.requires
+
+CMakeFiles/test.dir/src/memory/oopClosure.cc.o.provides: CMakeFiles/test.dir/src/memory/oopClosure.cc.o.requires
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/memory/oopClosure.cc.o.provides.build
+.PHONY : CMakeFiles/test.dir/src/memory/oopClosure.cc.o.provides
+
+CMakeFiles/test.dir/src/memory/oopClosure.cc.o.provides.build: CMakeFiles/test.dir/src/memory/oopClosure.cc.o
+
+
 CMakeFiles/test.dir/src/util/map.cc.o: CMakeFiles/test.dir/flags.make
 CMakeFiles/test.dir/src/util/map.cc.o: ../src/util/map.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lighthouse/cppSpace/EasyPython/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/test.dir/src/util/map.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lighthouse/cppSpace/EasyPython/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/test.dir/src/util/map.cc.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test.dir/src/util/map.cc.o -c /home/lighthouse/cppSpace/EasyPython/src/util/map.cc
 
 CMakeFiles/test.dir/src/util/map.cc.i: cmake_force
@@ -514,6 +538,54 @@ CMakeFiles/test.dir/src/util/map.cc.o.provides: CMakeFiles/test.dir/src/util/map
 .PHONY : CMakeFiles/test.dir/src/util/map.cc.o.provides
 
 CMakeFiles/test.dir/src/util/map.cc.o.provides.build: CMakeFiles/test.dir/src/util/map.cc.o
+
+
+CMakeFiles/test.dir/src/util/stack.cc.o: CMakeFiles/test.dir/flags.make
+CMakeFiles/test.dir/src/util/stack.cc.o: ../src/util/stack.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lighthouse/cppSpace/EasyPython/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/test.dir/src/util/stack.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test.dir/src/util/stack.cc.o -c /home/lighthouse/cppSpace/EasyPython/src/util/stack.cc
+
+CMakeFiles/test.dir/src/util/stack.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test.dir/src/util/stack.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lighthouse/cppSpace/EasyPython/src/util/stack.cc > CMakeFiles/test.dir/src/util/stack.cc.i
+
+CMakeFiles/test.dir/src/util/stack.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test.dir/src/util/stack.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lighthouse/cppSpace/EasyPython/src/util/stack.cc -o CMakeFiles/test.dir/src/util/stack.cc.s
+
+CMakeFiles/test.dir/src/util/stack.cc.o.requires:
+
+.PHONY : CMakeFiles/test.dir/src/util/stack.cc.o.requires
+
+CMakeFiles/test.dir/src/util/stack.cc.o.provides: CMakeFiles/test.dir/src/util/stack.cc.o.requires
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/util/stack.cc.o.provides.build
+.PHONY : CMakeFiles/test.dir/src/util/stack.cc.o.provides
+
+CMakeFiles/test.dir/src/util/stack.cc.o.provides.build: CMakeFiles/test.dir/src/util/stack.cc.o
+
+
+CMakeFiles/test.dir/src/util/array_list.cc.o: CMakeFiles/test.dir/flags.make
+CMakeFiles/test.dir/src/util/array_list.cc.o: ../src/util/array_list.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lighthouse/cppSpace/EasyPython/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/test.dir/src/util/array_list.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/test.dir/src/util/array_list.cc.o -c /home/lighthouse/cppSpace/EasyPython/src/util/array_list.cc
+
+CMakeFiles/test.dir/src/util/array_list.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test.dir/src/util/array_list.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lighthouse/cppSpace/EasyPython/src/util/array_list.cc > CMakeFiles/test.dir/src/util/array_list.cc.i
+
+CMakeFiles/test.dir/src/util/array_list.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test.dir/src/util/array_list.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lighthouse/cppSpace/EasyPython/src/util/array_list.cc -o CMakeFiles/test.dir/src/util/array_list.cc.s
+
+CMakeFiles/test.dir/src/util/array_list.cc.o.requires:
+
+.PHONY : CMakeFiles/test.dir/src/util/array_list.cc.o.requires
+
+CMakeFiles/test.dir/src/util/array_list.cc.o.provides: CMakeFiles/test.dir/src/util/array_list.cc.o.requires
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/util/array_list.cc.o.provides.build
+.PHONY : CMakeFiles/test.dir/src/util/array_list.cc.o.provides
+
+CMakeFiles/test.dir/src/util/array_list.cc.o.provides.build: CMakeFiles/test.dir/src/util/array_list.cc.o
 
 
 # Object files for target test
@@ -536,7 +608,10 @@ test_OBJECTS = \
 "CMakeFiles/test.dir/src/runtime/frame.cc.o" \
 "CMakeFiles/test.dir/src/runtime/cell.cc.o" \
 "CMakeFiles/test.dir/src/runtime/space.cc.o" \
-"CMakeFiles/test.dir/src/util/map.cc.o"
+"CMakeFiles/test.dir/src/memory/oopClosure.cc.o" \
+"CMakeFiles/test.dir/src/util/map.cc.o" \
+"CMakeFiles/test.dir/src/util/stack.cc.o" \
+"CMakeFiles/test.dir/src/util/array_list.cc.o"
 
 # External object files for target test
 test_EXTERNAL_OBJECTS =
@@ -559,10 +634,13 @@ test: CMakeFiles/test.dir/src/runtime/universe.cc.o
 test: CMakeFiles/test.dir/src/runtime/frame.cc.o
 test: CMakeFiles/test.dir/src/runtime/cell.cc.o
 test: CMakeFiles/test.dir/src/runtime/space.cc.o
+test: CMakeFiles/test.dir/src/memory/oopClosure.cc.o
 test: CMakeFiles/test.dir/src/util/map.cc.o
+test: CMakeFiles/test.dir/src/util/stack.cc.o
+test: CMakeFiles/test.dir/src/util/array_list.cc.o
 test: CMakeFiles/test.dir/build.make
 test: CMakeFiles/test.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/lighthouse/cppSpace/EasyPython/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Linking CXX executable test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/lighthouse/cppSpace/EasyPython/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Linking CXX executable test"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -588,7 +666,10 @@ CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/runtime/universe.cc.o.requ
 CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/runtime/frame.cc.o.requires
 CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/runtime/cell.cc.o.requires
 CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/runtime/space.cc.o.requires
+CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/memory/oopClosure.cc.o.requires
 CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/util/map.cc.o.requires
+CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/util/stack.cc.o.requires
+CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/util/array_list.cc.o.requires
 
 .PHONY : CMakeFiles/test.dir/requires
 

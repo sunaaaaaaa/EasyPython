@@ -207,6 +207,33 @@ src/main.cc.s:
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/main.cc.s
 .PHONY : src/main.cc.s
 
+src/memory/oopClosure.o: src/memory/oopClosure.cc.o
+
+.PHONY : src/memory/oopClosure.o
+
+# target to build an object file
+src/memory/oopClosure.cc.o:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/memory/oopClosure.cc.o
+.PHONY : src/memory/oopClosure.cc.o
+
+src/memory/oopClosure.i: src/memory/oopClosure.cc.i
+
+.PHONY : src/memory/oopClosure.i
+
+# target to preprocess a source file
+src/memory/oopClosure.cc.i:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/memory/oopClosure.cc.i
+.PHONY : src/memory/oopClosure.cc.i
+
+src/memory/oopClosure.s: src/memory/oopClosure.cc.s
+
+.PHONY : src/memory/oopClosure.s
+
+# target to generate assembly for a file
+src/memory/oopClosure.cc.s:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/memory/oopClosure.cc.s
+.PHONY : src/memory/oopClosure.cc.s
+
 src/object/Klass.o: src/object/Klass.cc.o
 
 .PHONY : src/object/Klass.o
@@ -612,6 +639,33 @@ src/runtime/universe.cc.s:
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/runtime/universe.cc.s
 .PHONY : src/runtime/universe.cc.s
 
+src/util/array_list.o: src/util/array_list.cc.o
+
+.PHONY : src/util/array_list.o
+
+# target to build an object file
+src/util/array_list.cc.o:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/util/array_list.cc.o
+.PHONY : src/util/array_list.cc.o
+
+src/util/array_list.i: src/util/array_list.cc.i
+
+.PHONY : src/util/array_list.i
+
+# target to preprocess a source file
+src/util/array_list.cc.i:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/util/array_list.cc.i
+.PHONY : src/util/array_list.cc.i
+
+src/util/array_list.s: src/util/array_list.cc.s
+
+.PHONY : src/util/array_list.s
+
+# target to generate assembly for a file
+src/util/array_list.cc.s:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/util/array_list.cc.s
+.PHONY : src/util/array_list.cc.s
+
 src/util/map.o: src/util/map.cc.o
 
 .PHONY : src/util/map.o
@@ -639,6 +693,33 @@ src/util/map.cc.s:
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/util/map.cc.s
 .PHONY : src/util/map.cc.s
 
+src/util/stack.o: src/util/stack.cc.o
+
+.PHONY : src/util/stack.o
+
+# target to build an object file
+src/util/stack.cc.o:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/util/stack.cc.o
+.PHONY : src/util/stack.cc.o
+
+src/util/stack.i: src/util/stack.cc.i
+
+.PHONY : src/util/stack.i
+
+# target to preprocess a source file
+src/util/stack.cc.i:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/util/stack.cc.i
+.PHONY : src/util/stack.cc.i
+
+src/util/stack.s: src/util/stack.cc.s
+
+.PHONY : src/util/stack.s
+
+# target to generate assembly for a file
+src/util/stack.cc.s:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/util/stack.cc.s
+.PHONY : src/util/stack.cc.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -657,6 +738,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/memory/oopClosure.o"
+	@echo "... src/memory/oopClosure.i"
+	@echo "... src/memory/oopClosure.s"
 	@echo "... src/object/Klass.o"
 	@echo "... src/object/Klass.i"
 	@echo "... src/object/Klass.s"
@@ -702,9 +786,15 @@ help:
 	@echo "... src/runtime/universe.o"
 	@echo "... src/runtime/universe.i"
 	@echo "... src/runtime/universe.s"
+	@echo "... src/util/array_list.o"
+	@echo "... src/util/array_list.i"
+	@echo "... src/util/array_list.s"
 	@echo "... src/util/map.o"
 	@echo "... src/util/map.i"
 	@echo "... src/util/map.s"
+	@echo "... src/util/stack.o"
+	@echo "... src/util/stack.i"
+	@echo "... src/util/stack.s"
 .PHONY : help
 
 

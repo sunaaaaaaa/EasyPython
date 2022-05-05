@@ -1,6 +1,6 @@
 #ifndef __EASY_PYTHON_VM_MAP_H_
 #define __EASY_PYTHON_VM_MAP_H_
-
+#include "../runtime/universe.h"
 namespace easy_vm{
 
 template<class K,class V>
@@ -12,7 +12,13 @@ public:
     MapEntry(const MapEntry<K,V>& entry);
     MapEntry(K k,V v):m_k(k),m_v(v){}
     MapEntry():m_k(0),m_v(0){}
+    void* operator new[](size_t size);
 };
+
+template <typename K, typename V>
+void* MapEntry<K, V>::operator new[](size_t size) {
+    return Universe::heap->allocate(size);
+}
 
 template<class K,class V>
 class Map{

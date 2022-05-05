@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <vector>
 #include <iostream>
+#include "../memory/oopClosure.h"
 //表示Class
 namespace easy_vm{
 //前置声明，因为Object引用了Klass，而Klass又引用了Object    
@@ -27,7 +28,7 @@ public:
     void addSuper(Klass* super);
     void orderSuper();//深度遍历所有父类
     void* operator new(size_t size);
-
+    virtual void oops_do(OopClosure* closure, Object* obj);
     virtual Object* getattr(Object* obj,Object* attr);
     virtual Object* setattr(Object* obj,Object* attr,Object* value);
     virtual void print(Object* obj1){std::cout <<"自建类型，由于无法重写Klass的该方法，使用默认，打印地址：" <<obj1 << std::endl;}

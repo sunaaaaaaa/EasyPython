@@ -67,7 +67,7 @@ void Map<K, V>::expand() {
             new_entries[i] = m_entries[i];
         }
         m_length <<= 1;
-        delete[] m_entries;
+        //delete[] m_entries;
         m_entries = new_entries;
     }
 }

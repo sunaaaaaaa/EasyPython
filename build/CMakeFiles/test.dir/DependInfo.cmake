@@ -7,6 +7,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/lighthouse/cppSpace/EasyPython/src/code/binary_parser.cc" "/home/lighthouse/cppSpace/EasyPython/build/CMakeFiles/test.dir/src/code/binary_parser.cc.o"
   "/home/lighthouse/cppSpace/EasyPython/src/code/code_object.cc" "/home/lighthouse/cppSpace/EasyPython/build/CMakeFiles/test.dir/src/code/code_object.cc.o"
   "/home/lighthouse/cppSpace/EasyPython/src/main.cc" "/home/lighthouse/cppSpace/EasyPython/build/CMakeFiles/test.dir/src/main.cc.o"
+  "/home/lighthouse/cppSpace/EasyPython/src/memory/oopClosure.cc" "/home/lighthouse/cppSpace/EasyPython/build/CMakeFiles/test.dir/src/memory/oopClosure.cc.o"
   "/home/lighthouse/cppSpace/EasyPython/src/object/Klass.cc" "/home/lighthouse/cppSpace/EasyPython/build/CMakeFiles/test.dir/src/object/Klass.cc.o"
   "/home/lighthouse/cppSpace/EasyPython/src/object/List.cc" "/home/lighthouse/cppSpace/EasyPython/build/CMakeFiles/test.dir/src/object/List.cc.o"
   "/home/lighthouse/cppSpace/EasyPython/src/object/String.cc" "/home/lighthouse/cppSpace/EasyPython/build/CMakeFiles/test.dir/src/object/String.cc.o"
@@ -22,7 +23,9 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/lighthouse/cppSpace/EasyPython/src/runtime/interpreter.cc" "/home/lighthouse/cppSpace/EasyPython/build/CMakeFiles/test.dir/src/runtime/interpreter.cc.o"
   "/home/lighthouse/cppSpace/EasyPython/src/runtime/space.cc" "/home/lighthouse/cppSpace/EasyPython/build/CMakeFiles/test.dir/src/runtime/space.cc.o"
   "/home/lighthouse/cppSpace/EasyPython/src/runtime/universe.cc" "/home/lighthouse/cppSpace/EasyPython/build/CMakeFiles/test.dir/src/runtime/universe.cc.o"
+  "/home/lighthouse/cppSpace/EasyPython/src/util/array_list.cc" "/home/lighthouse/cppSpace/EasyPython/build/CMakeFiles/test.dir/src/util/array_list.cc.o"
   "/home/lighthouse/cppSpace/EasyPython/src/util/map.cc" "/home/lighthouse/cppSpace/EasyPython/build/CMakeFiles/test.dir/src/util/map.cc.o"
+  "/home/lighthouse/cppSpace/EasyPython/src/util/stack.cc" "/home/lighthouse/cppSpace/EasyPython/build/CMakeFiles/test.dir/src/util/stack.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
