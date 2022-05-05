@@ -46,7 +46,8 @@ Object* string_upper(std::vector<Object*>* args){
 
 
 String::String(const char* str):m_length(strlen(str)){
-    m_value = new char[m_length];
+    //m_value = new char[m_length];
+    m_value = (char*)Universe::heap->allocate(m_length);
     strcpy(m_value,str);
     setKlass(StringKlass::getInstance());
 }
@@ -58,10 +59,10 @@ String::String(const char* str,const int length):m_length(length){
     setKlass(StringKlass::getInstance());
 }
 String::~String(){
-    if(m_value!=nullptr){
-        delete[] m_value;
-        m_value = nullptr;
-    }
+    // if(m_value!=nullptr){
+    //     delete[] m_value;
+    //     m_value = nullptr;
+    // }
 }
 
 StringKlass::StringKlass(){

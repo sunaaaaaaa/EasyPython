@@ -189,7 +189,6 @@ Object* TypeKlass::setattr(Object* obj,Object* attr,Object* value){
 
 Type::Type(){
    setKlass(TypeKlass::getInstance());
-   std::cout << "aa"<<std::endl;
 }
 //完成Klass与该Klass对应Type的绑定
 void Type::setOwnKlass(Klass* kls){
